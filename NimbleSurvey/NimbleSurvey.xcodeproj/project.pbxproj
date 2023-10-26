@@ -118,16 +118,14 @@
 		1691F7CD2AEAD3EC00D0AE30 /* NimbleSurvey */ = {
 			isa = PBXGroup;
 			children = (
+				1691F80F2AEAD77700D0AE30 /* Support */,
 				1691F80A2AEAD62A00D0AE30 /* Router */,
 				1691F8072AEAD60700D0AE30 /* Utility */,
 				1691F7CE2AEAD3EC00D0AE30 /* AppDelegate.swift */,
 				1691F7D02AEAD3EC00D0AE30 /* SceneDelegate.swift */,
 				1691F7D22AEAD3EC00D0AE30 /* ViewController.swift */,
 				1691F7D42AEAD3EC00D0AE30 /* Main.storyboard */,
-				1691F7DA2AEAD3ED00D0AE30 /* Assets.xcassets */,
 				1691F7DC2AEAD3ED00D0AE30 /* LaunchScreen.storyboard */,
-				1691F7DF2AEAD3ED00D0AE30 /* Info.plist */,
-				1691F7D72AEAD3EC00D0AE30 /* NimbleSurvey.xcdatamodeld */,
 			);
 			path = NimbleSurvey;
 			sourceTree = "<group>";
@@ -160,6 +158,16 @@
 				1691F80B2AEAD64E00D0AE30 /* RouterConfiguration.swift */,
 			);
 			path = Router;
+			sourceTree = "<group>";
+		};
+		1691F80F2AEAD77700D0AE30 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				1691F7D72AEAD3EC00D0AE30 /* NimbleSurvey.xcdatamodeld */,
+				1691F7DA2AEAD3ED00D0AE30 /* Assets.xcassets */,
+				1691F7DF2AEAD3ED00D0AE30 /* Info.plist */,
+			);
+			path = Support;
 			sourceTree = "<group>";
 		};
 		822CB0961888B1A4DDEBF27A /* Frameworks */ = {
@@ -613,7 +621,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = V7YAHHBGTK;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = NimbleSurvey/Info.plist;
+				INFOPLIST_FILE = NimbleSurvey/Support/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -643,7 +651,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = V7YAHHBGTK;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = NimbleSurvey/Info.plist;
+				INFOPLIST_FILE = NimbleSurvey/Support/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
