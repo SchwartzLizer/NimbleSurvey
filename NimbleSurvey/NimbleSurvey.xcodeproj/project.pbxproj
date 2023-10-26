@@ -61,6 +61,8 @@
 		1691F8682AEADDC800D0AE30 /* Kingfisher+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1691F8662AEADDC800D0AE30 /* Kingfisher+Extension.swift */; };
 		1691F86A2AEADDEF00D0AE30 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1691F8692AEADDEF00D0AE30 /* UIImageView+Extension.swift */; };
 		1691F86B2AEADDEF00D0AE30 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1691F8692AEADDEF00D0AE30 /* UIImageView+Extension.swift */; };
+		1691F86D2AEADE1700D0AE30 /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1691F86C2AEADE1700D0AE30 /* UserDefault.swift */; };
+		1691F86E2AEADE1700D0AE30 /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1691F86C2AEADE1700D0AE30 /* UserDefault.swift */; };
 		390504E14DEC605C3BEFE1A0 /* Pods_NimbleSurvey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6942B8E3CF1A1E99EEFD1F3F /* Pods_NimbleSurvey.framework */; };
 		5916B312550746DD8A4F3D82 /* Pods_NimbleSurveyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 466F709E889635EE1E69F567 /* Pods_NimbleSurveyTests.framework */; };
 		5B7AE6F80E5D3DE4FE3A4B92 /* Pods_NimbleSurvey_NimbleSurveyUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E47FA3A6B4E2112B8D1CA790 /* Pods_NimbleSurvey_NimbleSurveyUITests.framework */; };
@@ -119,6 +121,7 @@
 		1691F8632AEADDAC00D0AE30 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		1691F8662AEADDC800D0AE30 /* Kingfisher+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Kingfisher+Extension.swift"; sourceTree = "<group>"; };
 		1691F8692AEADDEF00D0AE30 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
+		1691F86C2AEADE1700D0AE30 /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
 		1C31DED4DD8BC742FDE1488C /* Pods-NimbleSurvey.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NimbleSurvey.debug.xcconfig"; path = "Target Support Files/Pods-NimbleSurvey/Pods-NimbleSurvey.debug.xcconfig"; sourceTree = "<group>"; };
 		466F709E889635EE1E69F567 /* Pods_NimbleSurveyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NimbleSurveyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6942B8E3CF1A1E99EEFD1F3F /* Pods_NimbleSurvey.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NimbleSurvey.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -240,6 +243,7 @@
 				1691F7DF2AEAD3ED00D0AE30 /* Info.plist */,
 				1691F84B2AEADC4A00D0AE30 /* Constants.swift */,
 				1691F84E2AEADC7500D0AE30 /* Localizable.xcstrings */,
+				1691F86C2AEADE1700D0AE30 /* UserDefault.swift */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -665,6 +669,7 @@
 				1691F81B2AEAD98A00D0AE30 /* RouterEnumeration.swift in Sources */,
 				1691F8552AEADCF400D0AE30 /* CustomPageControl.swift in Sources */,
 				1691F83B2AEADB6800D0AE30 /* LogoutModel.swift in Sources */,
+				1691F86D2AEADE1700D0AE30 /* UserDefault.swift in Sources */,
 				1691F7D12AEAD3EC00D0AE30 /* SceneDelegate.swift in Sources */,
 				1691F80C2AEAD64E00D0AE30 /* RouterConfiguration.swift in Sources */,
 				1691F84C2AEADC4A00D0AE30 /* Constants.swift in Sources */,
@@ -678,6 +683,7 @@
 				1691F8272AEADA4B00D0AE30 /* ErrorModel.swift in Sources */,
 				1691F81F2AEAD9B200D0AE30 /* Router.swift in Sources */,
 				1691F82E2AEADA8B00D0AE30 /* ForgotPasswordModel.swift in Sources */,
+				1691F86E2AEADE1700D0AE30 /* UserDefault.swift in Sources */,
 				1691F8462AEADBFB00D0AE30 /* Protocol+Extension.swift in Sources */,
 				1691F8532AEADCD200D0AE30 /* AlertUtility.swift in Sources */,
 				1691F8682AEADDC800D0AE30 /* Kingfisher+Extension.swift in Sources */,
