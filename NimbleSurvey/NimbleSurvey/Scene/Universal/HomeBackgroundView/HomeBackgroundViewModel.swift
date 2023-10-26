@@ -6,3 +6,12 @@
 //
 
 import Foundation
+
+class HomeBackgroundViewModel: ViewModel {
+
+    init(url: URL) {
+        self.url = url
+    }
+
+    public let url: URL
+}
