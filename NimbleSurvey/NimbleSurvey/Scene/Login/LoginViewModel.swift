@@ -35,30 +35,32 @@ extension LoginViewModel: RequestService {
             clientID: Constants.ServiceKeys.key,
             clientSecret: Constants.ServiceKeys.secrect)
 
-        NetworkManager.shared.request(router: router) { (result: NetworkResult<LoginModel, NetworkError>) in
+        NetworkManager.shared.request(router: router) { [weak self] (result: NetworkResult<LoginModel, NetworkError>) in
+            guard let strongSelf = self else { return }
+
             switch result {
             case .success(let model):
-                guard let refreshToken = model.data?.attributes?.refreshToken else {
-                    self.noRefreshTokenFound?()
-                    return
-                }
-                guard let accessToken = model.data?.attributes?.accessToken else {
-                    self.noAccessTokenFound?()
-                    return
-                }
-                UserDefault().saveAccessToken(data: accessToken)
-                UserDefault().saveRefreshToken(data: refreshToken)
-                TokenRefresher.shared.startTimer()
-                self.loginSuccess?()
-            case .failure(let error):
-                if case .serverError(let errorResponse) = error {
-                    guard let errors = errorResponse.errors.first?.detail else {
-                        self.loginFailed?(error.localizedDescription)
-                        return
-                    }
-                    self.loginFailed?(errors)
+                if
+                    let refreshToken = model.data?.attributes?.refreshToken,
+                    let accessToken = model.data?.attributes?.accessToken
+                {
+                    UserDefault().saveAccessToken(data: accessToken)
+                    UserDefault().saveRefreshToken(data: refreshToken)
+                    TokenRefresher.shared.startTimer()
+                    strongSelf.loginSuccess?()
+
                 } else {
-                    self.loginFailed?(error.localizedDescription)
+                    strongSelf.noRefreshTokenFound?()
+                    strongSelf.noAccessTokenFound?()
+                }
+
+            case .failure(let error):
+                switch error {
+                case .serverError(let errorResponse):
+                    let errorMessage = errorResponse.errors.first?.detail ?? error.localizedDescription
+                    strongSelf.loginFailed?(errorMessage)
+                default:
+                    strongSelf.loginFailed?(error.localizedDescription)
                 }
             }
         }
