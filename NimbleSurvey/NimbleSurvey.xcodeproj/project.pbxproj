@@ -118,14 +118,9 @@
 		1691F7CD2AEAD3EC00D0AE30 /* NimbleSurvey */ = {
 			isa = PBXGroup;
 			children = (
-				1691F80F2AEAD77700D0AE30 /* Support */,
+				1691F8102AEAD80F00D0AE30 /* Scene */,
 				1691F80A2AEAD62A00D0AE30 /* Router */,
 				1691F8072AEAD60700D0AE30 /* Utility */,
-				1691F7CE2AEAD3EC00D0AE30 /* AppDelegate.swift */,
-				1691F7D02AEAD3EC00D0AE30 /* SceneDelegate.swift */,
-				1691F7D22AEAD3EC00D0AE30 /* ViewController.swift */,
-				1691F7D42AEAD3EC00D0AE30 /* Main.storyboard */,
-				1691F7DC2AEAD3ED00D0AE30 /* LaunchScreen.storyboard */,
 			);
 			path = NimbleSurvey;
 			sourceTree = "<group>";
@@ -168,6 +163,75 @@
 				1691F7DF2AEAD3ED00D0AE30 /* Info.plist */,
 			);
 			path = Support;
+			sourceTree = "<group>";
+		};
+		1691F8102AEAD80F00D0AE30 /* Scene */ = {
+			isa = PBXGroup;
+			children = (
+				1691F7DC2AEAD3ED00D0AE30 /* LaunchScreen.storyboard */,
+				1691F7CE2AEAD3EC00D0AE30 /* AppDelegate.swift */,
+				1691F7D02AEAD3EC00D0AE30 /* SceneDelegate.swift */,
+				1691F8132AEAD83A00D0AE30 /* ForgotPassword */,
+				1691F8122AEAD82D00D0AE30 /* Home */,
+				1691F8112AEAD81F00D0AE30 /* Login */,
+				1691F80F2AEAD77700D0AE30 /* Support */,
+				1691F8142AEAD84400D0AE30 /* Universal */,
+			);
+			path = Scene;
+			sourceTree = "<group>";
+		};
+		1691F8112AEAD81F00D0AE30 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				1691F7D22AEAD3EC00D0AE30 /* ViewController.swift */,
+				1691F7D42AEAD3EC00D0AE30 /* Main.storyboard */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		1691F8122AEAD82D00D0AE30 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		1691F8132AEAD83A00D0AE30 /* ForgotPassword */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ForgotPassword;
+			sourceTree = "<group>";
+		};
+		1691F8142AEAD84400D0AE30 /* Universal */ = {
+			isa = PBXGroup;
+			children = (
+				1691F8172AEAD86200D0AE30 /* RightMenuView */,
+				1691F8162AEAD85400D0AE30 /* NotificationView */,
+				1691F8152AEAD84B00D0AE30 /* HomeBackgroundView */,
+			);
+			path = Universal;
+			sourceTree = "<group>";
+		};
+		1691F8152AEAD84B00D0AE30 /* HomeBackgroundView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = HomeBackgroundView;
+			sourceTree = "<group>";
+		};
+		1691F8162AEAD85400D0AE30 /* NotificationView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = NotificationView;
+			sourceTree = "<group>";
+		};
+		1691F8172AEAD86200D0AE30 /* RightMenuView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = RightMenuView;
 			sourceTree = "<group>";
 		};
 		822CB0961888B1A4DDEBF27A /* Frameworks */ = {
