@@ -8,19 +8,22 @@
 import Foundation
 
 // MARK: - SurveyListModel
+
 struct SurveyListModel: Codable {
     let data: [SurveyListModelData]?
     let meta: SurveyListModelMeta?
 }
 
-// MARK: - SurveyListModelDatum
+// MARK: - SurveyListModelData
+
 struct SurveyListModelData: Codable {
     let id, type: String?
     let attributes: SurveyListModelAttributes?
     let relationships: SurveyListModelRelationships?
 }
 
-// MARK: - Attributes
+// MARK: - SurveyListModelAttributes
+
 struct SurveyListModelAttributes: Codable {
     let title, description, thankEmailAboveThreshold, thankEmailBelowThreshold: String?
     let isActive: Bool?
@@ -42,21 +45,26 @@ struct SurveyListModelAttributes: Codable {
     }
 }
 
-// MARK: - Relationships
+// MARK: - SurveyListModelRelationships
+
 struct SurveyListModelRelationships: Codable {
     let questions: SurveyListModelQuestions?
 }
 
-// MARK: - Questions
+// MARK: - SurveyListModelQuestions
+
 struct SurveyListModelQuestions: Codable {
     let data: [QuestionsData]?
 }
 
-// MARK: - QuestionsDatum
+// MARK: - QuestionsData
+
 struct QuestionsData: Codable {
     let id: String?
     let type: String?
 }
+
+// MARK: - SurveyListModelMeta
 
 struct SurveyListModelMeta: Codable {
     let page, pages, pageSize, records: Int?

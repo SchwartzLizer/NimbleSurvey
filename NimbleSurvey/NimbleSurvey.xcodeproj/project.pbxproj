@@ -31,6 +31,8 @@
 		1691F82E2AEADA8B00D0AE30 /* ForgotPasswordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1691F82C2AEADA8B00D0AE30 /* ForgotPasswordModel.swift */; };
 		1691F8322AEADADB00D0AE30 /* SurveyListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1691F8312AEADADB00D0AE30 /* SurveyListModel.swift */; };
 		1691F8332AEADADB00D0AE30 /* SurveyListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1691F8312AEADADB00D0AE30 /* SurveyListModel.swift */; };
+		1691F8352AEADB0700D0AE30 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1691F8342AEADB0700D0AE30 /* LoginModel.swift */; };
+		1691F8362AEADB0700D0AE30 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1691F8342AEADB0700D0AE30 /* LoginModel.swift */; };
 		390504E14DEC605C3BEFE1A0 /* Pods_NimbleSurvey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6942B8E3CF1A1E99EEFD1F3F /* Pods_NimbleSurvey.framework */; };
 		5916B312550746DD8A4F3D82 /* Pods_NimbleSurveyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 466F709E889635EE1E69F567 /* Pods_NimbleSurveyTests.framework */; };
 		5B7AE6F80E5D3DE4FE3A4B92 /* Pods_NimbleSurvey_NimbleSurveyUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E47FA3A6B4E2112B8D1CA790 /* Pods_NimbleSurvey_NimbleSurveyUITests.framework */; };
@@ -74,6 +76,7 @@
 		1691F8252AEADA4B00D0AE30 /* ErrorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorModel.swift; sourceTree = "<group>"; };
 		1691F82C2AEADA8B00D0AE30 /* ForgotPasswordModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordModel.swift; sourceTree = "<group>"; };
 		1691F8312AEADADB00D0AE30 /* SurveyListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyListModel.swift; sourceTree = "<group>"; };
+		1691F8342AEADB0700D0AE30 /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
 		1C31DED4DD8BC742FDE1488C /* Pods-NimbleSurvey.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NimbleSurvey.debug.xcconfig"; path = "Target Support Files/Pods-NimbleSurvey/Pods-NimbleSurvey.debug.xcconfig"; sourceTree = "<group>"; };
 		466F709E889635EE1E69F567 /* Pods_NimbleSurveyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NimbleSurveyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6942B8E3CF1A1E99EEFD1F3F /* Pods_NimbleSurvey.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NimbleSurvey.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -289,6 +292,7 @@
 		1691F82F2AEADABA00D0AE30 /* Signin-Logout */ = {
 			isa = PBXGroup;
 			children = (
+				1691F8342AEADB0700D0AE30 /* LoginModel.swift */,
 			);
 			path = "Signin-Logout";
 			sourceTree = "<group>";
@@ -572,6 +576,7 @@
 				1691F7D32AEAD3EC00D0AE30 /* LoginViewController.swift in Sources */,
 				1691F7CF2AEAD3EC00D0AE30 /* AppDelegate.swift in Sources */,
 				1691F8322AEADADB00D0AE30 /* SurveyListModel.swift in Sources */,
+				1691F8352AEADB0700D0AE30 /* LoginModel.swift in Sources */,
 				1691F7D92AEAD3EC00D0AE30 /* NimbleSurvey.xcdatamodeld in Sources */,
 				1691F81B2AEAD98A00D0AE30 /* RouterEnumeration.swift in Sources */,
 				1691F7D12AEAD3EC00D0AE30 /* SceneDelegate.swift in Sources */,
@@ -587,6 +592,7 @@
 				1691F81F2AEAD9B200D0AE30 /* Router.swift in Sources */,
 				1691F82E2AEADA8B00D0AE30 /* ForgotPasswordModel.swift in Sources */,
 				1691F8332AEADADB00D0AE30 /* SurveyListModel.swift in Sources */,
+				1691F8362AEADB0700D0AE30 /* LoginModel.swift in Sources */,
 				1691F81C2AEAD98A00D0AE30 /* RouterEnumeration.swift in Sources */,
 				1691F8222AEADA1A00D0AE30 /* NetworkManager.swift in Sources */,
 				1691F80D2AEAD65000D0AE30 /* Logger.swift in Sources */,
