@@ -1,4 +1,34 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="false" userDefinedModelVersionIdentifier="">
-    <elements/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22225" systemVersion="23A344" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="SurveyList" representedClassName="SurveyList" syncable="YES" codeGenerationType="class">
+        <relationship name="data" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SurveyListData"/>
+    </entity>
+    <entity name="SurveyListAttributes" representedClassName="SurveyListAttributes" syncable="YES" codeGenerationType="class">
+        <attribute name="activeAt" optional="YES" attributeType="String"/>
+        <attribute name="coverImageURL" optional="YES" attributeType="String"/>
+        <attribute name="createdAt" optional="YES" attributeType="String"/>
+        <attribute name="descriptions" optional="YES" attributeType="String"/>
+        <attribute name="inactiveAt" optional="YES" attributeType="String"/>
+        <attribute name="isActive" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="surveyType" optional="YES" attributeType="String"/>
+        <attribute name="thankEmailAboveThreshold" optional="YES" attributeType="String"/>
+        <attribute name="thankEmailBelowThreshold" optional="YES" attributeType="String"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="SurveyListData" representedClassName="SurveyListData" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="type" optional="YES" attributeType="String"/>
+        <relationship name="attributes" optional="YES" maxCount="1" deletionRule="Nullify"/>
+        <relationship name="relationships" optional="YES" maxCount="1" deletionRule="Nullify"/>
+    </entity>
+    <entity name="SurveyListQuestions" representedClassName="SurveyListQuestions" syncable="YES" codeGenerationType="class">
+        <relationship name="data" optional="YES" maxCount="1" deletionRule="Nullify"/>
+    </entity>
+    <entity name="SurveyListQuestionsData" representedClassName="SurveyListQuestionsData" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="type" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="SurveyListRelationships" representedClassName="SurveyListRelationships" syncable="YES" codeGenerationType="class">
+        <relationship name="questions" optional="YES" maxCount="1" deletionRule="Nullify"/>
+    </entity>
 </model>
