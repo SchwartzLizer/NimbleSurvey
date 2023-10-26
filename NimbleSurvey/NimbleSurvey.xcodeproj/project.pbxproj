@@ -49,6 +49,8 @@
 		1691F8532AEADCD200D0AE30 /* AlertUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1691F8512AEADCD200D0AE30 /* AlertUtility.swift */; };
 		1691F8552AEADCF400D0AE30 /* CustomPageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1691F8542AEADCF400D0AE30 /* CustomPageControl.swift */; };
 		1691F8562AEADCF400D0AE30 /* CustomPageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1691F8542AEADCF400D0AE30 /* CustomPageControl.swift */; };
+		1691F8582AEADD2D00D0AE30 /* Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1691F8572AEADD2D00D0AE30 /* Loader.swift */; };
+		1691F8592AEADD2D00D0AE30 /* Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1691F8572AEADD2D00D0AE30 /* Loader.swift */; };
 		390504E14DEC605C3BEFE1A0 /* Pods_NimbleSurvey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6942B8E3CF1A1E99EEFD1F3F /* Pods_NimbleSurvey.framework */; };
 		5916B312550746DD8A4F3D82 /* Pods_NimbleSurveyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 466F709E889635EE1E69F567 /* Pods_NimbleSurveyTests.framework */; };
 		5B7AE6F80E5D3DE4FE3A4B92 /* Pods_NimbleSurvey_NimbleSurveyUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E47FA3A6B4E2112B8D1CA790 /* Pods_NimbleSurvey_NimbleSurveyUITests.framework */; };
@@ -101,6 +103,7 @@
 		1691F84E2AEADC7500D0AE30 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		1691F8512AEADCD200D0AE30 /* AlertUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertUtility.swift; sourceTree = "<group>"; };
 		1691F8542AEADCF400D0AE30 /* CustomPageControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPageControl.swift; sourceTree = "<group>"; };
+		1691F8572AEADD2D00D0AE30 /* Loader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loader.swift; sourceTree = "<group>"; };
 		1C31DED4DD8BC742FDE1488C /* Pods-NimbleSurvey.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NimbleSurvey.debug.xcconfig"; path = "Target Support Files/Pods-NimbleSurvey/Pods-NimbleSurvey.debug.xcconfig"; sourceTree = "<group>"; };
 		466F709E889635EE1E69F567 /* Pods_NimbleSurveyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NimbleSurveyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6942B8E3CF1A1E99EEFD1F3F /* Pods_NimbleSurvey.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NimbleSurvey.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -194,6 +197,7 @@
 				1691F8082AEAD61100D0AE30 /* Logger.swift */,
 				1691F8512AEADCD200D0AE30 /* AlertUtility.swift */,
 				1691F8542AEADCF400D0AE30 /* CustomPageControl.swift */,
+				1691F8572AEADD2D00D0AE30 /* Loader.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -623,6 +627,7 @@
 				1691F83F2AEADB9600D0AE30 /* UserProfileModel.swift in Sources */,
 				1691F81E2AEAD9B200D0AE30 /* Router.swift in Sources */,
 				1691F82D2AEADA8B00D0AE30 /* ForgotPasswordModel.swift in Sources */,
+				1691F8582AEADD2D00D0AE30 /* Loader.swift in Sources */,
 				1691F8092AEAD61100D0AE30 /* Logger.swift in Sources */,
 				1691F7D32AEAD3EC00D0AE30 /* LoginViewController.swift in Sources */,
 				1691F7CF2AEAD3EC00D0AE30 /* AppDelegate.swift in Sources */,
@@ -653,6 +658,7 @@
 				1691F8332AEADADB00D0AE30 /* SurveyListModel.swift in Sources */,
 				1691F8362AEADB0700D0AE30 /* LoginModel.swift in Sources */,
 				1691F8392AEADB4500D0AE30 /* RefreshTokenModel.swift in Sources */,
+				1691F8592AEADD2D00D0AE30 /* Loader.swift in Sources */,
 				1691F83C2AEADB6800D0AE30 /* LogoutModel.swift in Sources */,
 				1691F81C2AEAD98A00D0AE30 /* RouterEnumeration.swift in Sources */,
 				1691F8222AEADA1A00D0AE30 /* NetworkManager.swift in Sources */,
