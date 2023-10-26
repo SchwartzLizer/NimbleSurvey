@@ -58,3 +58,36 @@ extension LoginViewController: Action {
     }
 }
 
+// MARK: Updated
+
+extension LoginViewController: Updated {
+
+    // MARK: Internal
+
+    internal func onInitialized() {
+        self.onSuccess()
+        self.onFailed()
+    }
+
+    // MARK: Private
+
+    private func onSuccess() {
+        self.viewModel.loginSuccess = {
+            Loader.shared.hideLoader()
+            let homeVC = HomeViewController(viewModel: HomeViewModel())
+            self.navigationController?.pushViewController(homeVC, animated: true)
+        }
+    }
+
+    private func onFailed() {
+        self.viewModel.loginFailed = { message in
+            Loader.shared.hideLoader()
+            AlertUtility.showAlert(title: "Error", message: message)
+        }
+
+        self.viewModel.noRefreshTokenFound = {
+            Loader.shared.hideLoader()
+            AlertUtility.showAlert(title: "Error", message: Constants.Keys.errorNoRefreshTokenFound.localized())
+        }
+    }
+}
