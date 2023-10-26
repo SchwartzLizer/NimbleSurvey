@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		1691F7CF2AEAD3EC00D0AE30 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1691F7CE2AEAD3EC00D0AE30 /* AppDelegate.swift */; };
 		1691F7D12AEAD3EC00D0AE30 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1691F7D02AEAD3EC00D0AE30 /* SceneDelegate.swift */; };
-		1691F7D32AEAD3EC00D0AE30 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1691F7D22AEAD3EC00D0AE30 /* ViewController.swift */; };
-		1691F7D62AEAD3EC00D0AE30 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1691F7D42AEAD3EC00D0AE30 /* Main.storyboard */; };
+		1691F7D32AEAD3EC00D0AE30 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1691F7D22AEAD3EC00D0AE30 /* LoginViewController.swift */; };
+		1691F7D62AEAD3EC00D0AE30 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1691F7D42AEAD3EC00D0AE30 /* Login.storyboard */; };
 		1691F7D92AEAD3EC00D0AE30 /* NimbleSurvey.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1691F7D72AEAD3EC00D0AE30 /* NimbleSurvey.xcdatamodeld */; };
 		1691F7DB2AEAD3ED00D0AE30 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1691F7DA2AEAD3ED00D0AE30 /* Assets.xcassets */; };
 		1691F7DE2AEAD3ED00D0AE30 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1691F7DC2AEAD3ED00D0AE30 /* LaunchScreen.storyboard */; };
@@ -44,8 +44,8 @@
 		1691F7CB2AEAD3EC00D0AE30 /* NimbleSurvey.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NimbleSurvey.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1691F7CE2AEAD3EC00D0AE30 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1691F7D02AEAD3EC00D0AE30 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		1691F7D22AEAD3EC00D0AE30 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		1691F7D52AEAD3EC00D0AE30 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		1691F7D22AEAD3EC00D0AE30 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		1691F7D52AEAD3EC00D0AE30 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Login.storyboard; sourceTree = "<group>"; };
 		1691F7D82AEAD3EC00D0AE30 /* NimbleSurvey.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NimbleSurvey.xcdatamodel; sourceTree = "<group>"; };
 		1691F7DA2AEAD3ED00D0AE30 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1691F7DD2AEAD3ED00D0AE30 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -118,6 +118,7 @@
 		1691F7CD2AEAD3EC00D0AE30 /* NimbleSurvey */ = {
 			isa = PBXGroup;
 			children = (
+				1691F80F2AEAD77700D0AE30 /* Support */,
 				1691F8102AEAD80F00D0AE30 /* Scene */,
 				1691F80A2AEAD62A00D0AE30 /* Router */,
 				1691F8072AEAD60700D0AE30 /* Utility */,
@@ -174,7 +175,6 @@
 				1691F8132AEAD83A00D0AE30 /* ForgotPassword */,
 				1691F8122AEAD82D00D0AE30 /* Home */,
 				1691F8112AEAD81F00D0AE30 /* Login */,
-				1691F80F2AEAD77700D0AE30 /* Support */,
 				1691F8142AEAD84400D0AE30 /* Universal */,
 			);
 			path = Scene;
@@ -183,8 +183,8 @@
 		1691F8112AEAD81F00D0AE30 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				1691F7D22AEAD3EC00D0AE30 /* ViewController.swift */,
-				1691F7D42AEAD3EC00D0AE30 /* Main.storyboard */,
+				1691F7D22AEAD3EC00D0AE30 /* LoginViewController.swift */,
+				1691F7D42AEAD3EC00D0AE30 /* Login.storyboard */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -368,7 +368,7 @@
 			files = (
 				1691F7DE2AEAD3ED00D0AE30 /* LaunchScreen.storyboard in Resources */,
 				1691F7DB2AEAD3ED00D0AE30 /* Assets.xcassets in Resources */,
-				1691F7D62AEAD3EC00D0AE30 /* Main.storyboard in Resources */,
+				1691F7D62AEAD3EC00D0AE30 /* Login.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -497,7 +497,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1691F8092AEAD61100D0AE30 /* Logger.swift in Sources */,
-				1691F7D32AEAD3EC00D0AE30 /* ViewController.swift in Sources */,
+				1691F7D32AEAD3EC00D0AE30 /* LoginViewController.swift in Sources */,
 				1691F7CF2AEAD3EC00D0AE30 /* AppDelegate.swift in Sources */,
 				1691F7D92AEAD3EC00D0AE30 /* NimbleSurvey.xcdatamodeld in Sources */,
 				1691F7D12AEAD3EC00D0AE30 /* SceneDelegate.swift in Sources */,
@@ -537,12 +537,12 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		1691F7D42AEAD3EC00D0AE30 /* Main.storyboard */ = {
+		1691F7D42AEAD3EC00D0AE30 /* Login.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				1691F7D52AEAD3EC00D0AE30 /* Base */,
 			);
-			name = Main.storyboard;
+			name = Login.storyboard;
 			sourceTree = "<group>";
 		};
 		1691F7DC2AEAD3ED00D0AE30 /* LaunchScreen.storyboard */ = {
@@ -688,7 +688,7 @@
 				INFOPLIST_FILE = NimbleSurvey/Support/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = Login;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -718,7 +718,7 @@
 				INFOPLIST_FILE = NimbleSurvey/Support/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = Login;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
