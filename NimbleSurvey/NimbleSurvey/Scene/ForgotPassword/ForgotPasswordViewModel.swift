@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+final class ForgotPasswordViewModel: ViewModel {
+
+    init() { }
+
+}
