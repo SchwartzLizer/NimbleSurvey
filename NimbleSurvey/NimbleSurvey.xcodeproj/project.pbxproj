@@ -103,6 +103,22 @@
 		1691F8AA2AEAE15F00D0AE30 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1691F8A82AEAE15F00D0AE30 /* HomeViewModel.swift */; };
 		1691F8AC2AEAE16B00D0AE30 /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1691F8AB2AEAE16B00D0AE30 /* HomeModel.swift */; };
 		1691F8AD2AEAE16B00D0AE30 /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1691F8AB2AEAE16B00D0AE30 /* HomeModel.swift */; };
+		1691F8B02AEAE1AE00D0AE30 /* RightMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1691F8AE2AEAE1AE00D0AE30 /* RightMenuViewController.swift */; };
+		1691F8B12AEAE1AE00D0AE30 /* RightMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1691F8AE2AEAE1AE00D0AE30 /* RightMenuViewController.swift */; };
+		1691F8B22AEAE1AE00D0AE30 /* RightMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1691F8AF2AEAE1AE00D0AE30 /* RightMenuViewController.xib */; };
+		1691F8B32AEAE1AE00D0AE30 /* RightMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1691F8AF2AEAE1AE00D0AE30 /* RightMenuViewController.xib */; };
+		1691F8B52AEAE1B700D0AE30 /* RightMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1691F8B42AEAE1B700D0AE30 /* RightMenuViewModel.swift */; };
+		1691F8B62AEAE1B700D0AE30 /* RightMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1691F8B42AEAE1B700D0AE30 /* RightMenuViewModel.swift */; };
+		1691F8B82AEAE1C000D0AE30 /* RightMenuModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1691F8B72AEAE1C000D0AE30 /* RightMenuModel.swift */; };
+		1691F8B92AEAE1C000D0AE30 /* RightMenuModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1691F8B72AEAE1C000D0AE30 /* RightMenuModel.swift */; };
+		1691F8BC2AEAE1D500D0AE30 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1691F8BA2AEAE1D500D0AE30 /* NotificationViewController.swift */; };
+		1691F8BD2AEAE1D500D0AE30 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1691F8BA2AEAE1D500D0AE30 /* NotificationViewController.swift */; };
+		1691F8BE2AEAE1D500D0AE30 /* NotificationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1691F8BB2AEAE1D500D0AE30 /* NotificationViewController.xib */; };
+		1691F8BF2AEAE1D500D0AE30 /* NotificationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1691F8BB2AEAE1D500D0AE30 /* NotificationViewController.xib */; };
+		1691F8C12AEAE1DF00D0AE30 /* NotificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1691F8C02AEAE1DF00D0AE30 /* NotificationViewModel.swift */; };
+		1691F8C22AEAE1DF00D0AE30 /* NotificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1691F8C02AEAE1DF00D0AE30 /* NotificationViewModel.swift */; };
+		1691F8C42AEAE1E800D0AE30 /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1691F8C32AEAE1E800D0AE30 /* NotificationModel.swift */; };
+		1691F8C52AEAE1E800D0AE30 /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1691F8C32AEAE1E800D0AE30 /* NotificationModel.swift */; };
 		390504E14DEC605C3BEFE1A0 /* Pods_NimbleSurvey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6942B8E3CF1A1E99EEFD1F3F /* Pods_NimbleSurvey.framework */; };
 		5916B312550746DD8A4F3D82 /* Pods_NimbleSurveyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 466F709E889635EE1E69F567 /* Pods_NimbleSurveyTests.framework */; };
 		5B7AE6F80E5D3DE4FE3A4B92 /* Pods_NimbleSurvey_NimbleSurveyUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E47FA3A6B4E2112B8D1CA790 /* Pods_NimbleSurvey_NimbleSurveyUITests.framework */; };
@@ -182,6 +198,14 @@
 		1691F8A32AEAE15800D0AE30 /* HomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
 		1691F8A82AEAE15F00D0AE30 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		1691F8AB2AEAE16B00D0AE30 /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
+		1691F8AE2AEAE1AE00D0AE30 /* RightMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RightMenuViewController.swift; sourceTree = "<group>"; };
+		1691F8AF2AEAE1AE00D0AE30 /* RightMenuViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RightMenuViewController.xib; sourceTree = "<group>"; };
+		1691F8B42AEAE1B700D0AE30 /* RightMenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RightMenuViewModel.swift; sourceTree = "<group>"; };
+		1691F8B72AEAE1C000D0AE30 /* RightMenuModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RightMenuModel.swift; sourceTree = "<group>"; };
+		1691F8BA2AEAE1D500D0AE30 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
+		1691F8BB2AEAE1D500D0AE30 /* NotificationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationViewController.xib; sourceTree = "<group>"; };
+		1691F8C02AEAE1DF00D0AE30 /* NotificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewModel.swift; sourceTree = "<group>"; };
+		1691F8C32AEAE1E800D0AE30 /* NotificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationModel.swift; sourceTree = "<group>"; };
 		1C31DED4DD8BC742FDE1488C /* Pods-NimbleSurvey.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NimbleSurvey.debug.xcconfig"; path = "Target Support Files/Pods-NimbleSurvey/Pods-NimbleSurvey.debug.xcconfig"; sourceTree = "<group>"; };
 		466F709E889635EE1E69F567 /* Pods_NimbleSurveyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NimbleSurveyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6942B8E3CF1A1E99EEFD1F3F /* Pods_NimbleSurvey.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NimbleSurvey.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -377,6 +401,10 @@
 		1691F8162AEAD85400D0AE30 /* NotificationView */ = {
 			isa = PBXGroup;
 			children = (
+				1691F8C32AEAE1E800D0AE30 /* NotificationModel.swift */,
+				1691F8BA2AEAE1D500D0AE30 /* NotificationViewController.swift */,
+				1691F8C02AEAE1DF00D0AE30 /* NotificationViewModel.swift */,
+				1691F8BB2AEAE1D500D0AE30 /* NotificationViewController.xib */,
 			);
 			path = NotificationView;
 			sourceTree = "<group>";
@@ -384,6 +412,10 @@
 		1691F8172AEAD86200D0AE30 /* RightMenuView */ = {
 			isa = PBXGroup;
 			children = (
+				1691F8B72AEAE1C000D0AE30 /* RightMenuModel.swift */,
+				1691F8AE2AEAE1AE00D0AE30 /* RightMenuViewController.swift */,
+				1691F8B42AEAE1B700D0AE30 /* RightMenuViewModel.swift */,
+				1691F8AF2AEAE1AE00D0AE30 /* RightMenuViewController.xib */,
 			);
 			path = RightMenuView;
 			sourceTree = "<group>";
@@ -625,7 +657,9 @@
 				1691F7D62AEAD3EC00D0AE30 /* Login.storyboard in Resources */,
 				1691F87E2AEADFD700D0AE30 /* NeuzeitSLTStdBook.otf in Resources */,
 				1691F8192AEAD96B00D0AE30 /* RouterBasePath.plist in Resources */,
+				1691F8B22AEAE1AE00D0AE30 /* RightMenuViewController.xib in Resources */,
 				1691F8A62AEAE15800D0AE30 /* HomeViewController.xib in Resources */,
+				1691F8BE2AEAE1D500D0AE30 /* NotificationViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -637,7 +671,9 @@
 				1691F87F2AEADFD700D0AE30 /* NeuzeitSLTStdBook.otf in Resources */,
 				1691F8A72AEAE15800D0AE30 /* HomeViewController.xib in Resources */,
 				1691F8502AEADC7500D0AE30 /* Localizable.xcstrings in Resources */,
+				1691F8B32AEAE1AE00D0AE30 /* RightMenuViewController.xib in Resources */,
 				1691F87D2AEADFD700D0AE30 /* NeuzeitSLTStdBookHeavy.otf in Resources */,
+				1691F8BF2AEAE1D500D0AE30 /* NotificationViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -758,6 +794,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1691F8BC2AEAE1D500D0AE30 /* NotificationViewController.swift in Sources */,
 				1691F8732AEADE5600D0AE30 /* DataManager.swift in Sources */,
 				1691F8262AEADA4B00D0AE30 /* ErrorModel.swift in Sources */,
 				1691F8212AEADA1A00D0AE30 /* NetworkManager.swift in Sources */,
@@ -772,15 +809,18 @@
 				1691F85B2AEADD5000D0AE30 /* CustomRefreshControl.swift in Sources */,
 				1691F82D2AEADA8B00D0AE30 /* ForgotPasswordModel.swift in Sources */,
 				1691F85E2AEADD7400D0AE30 /* AppUtility.swift in Sources */,
+				1691F8B02AEAE1AE00D0AE30 /* RightMenuViewController.swift in Sources */,
 				1691F8582AEADD2D00D0AE30 /* Loader.swift in Sources */,
 				1691F8092AEAD61100D0AE30 /* Logger.swift in Sources */,
 				1691F8A02AEAE13200D0AE30 /* ForgotPasswordViewModel.swift in Sources */,
 				1691F8882AEAE06200D0AE30 /* StyleSheetManager.swift in Sources */,
 				1691F7D32AEAD3EC00D0AE30 /* LoginViewController.swift in Sources */,
 				1691F7CF2AEAD3EC00D0AE30 /* AppDelegate.swift in Sources */,
+				1691F8B82AEAE1C000D0AE30 /* RightMenuModel.swift in Sources */,
 				1691F8382AEADB4500D0AE30 /* RefreshTokenModel.swift in Sources */,
 				1691F8322AEADADB00D0AE30 /* SurveyListModel.swift in Sources */,
 				1691F8352AEADB0700D0AE30 /* LoginModel.swift in Sources */,
+				1691F8B52AEAE1B700D0AE30 /* RightMenuViewModel.swift in Sources */,
 				1691F7D92AEAD3EC00D0AE30 /* NimbleSurvey.xcdatamodeld in Sources */,
 				1691F89B2AEAE12000D0AE30 /* ForgotPasswordViewController.swift in Sources */,
 				1691F8452AEADBFB00D0AE30 /* Protocol+Extension.swift in Sources */,
@@ -789,12 +829,14 @@
 				1691F8812AEAE01100D0AE30 /* FontManager.swift in Sources */,
 				1691F81B2AEAD98A00D0AE30 /* RouterEnumeration.swift in Sources */,
 				1691F8552AEADCF400D0AE30 /* CustomPageControl.swift in Sources */,
+				1691F8C42AEAE1E800D0AE30 /* NotificationModel.swift in Sources */,
 				1691F83B2AEADB6800D0AE30 /* LogoutModel.swift in Sources */,
 				1691F88E2AEAE09300D0AE30 /* LabelPresets.swift in Sources */,
 				1691F8AC2AEAE16B00D0AE30 /* HomeModel.swift in Sources */,
 				1691F8702AEADE4100D0AE30 /* NotificationCenter.swift in Sources */,
 				1691F86D2AEADE1700D0AE30 /* UserDefault.swift in Sources */,
 				1691F8842AEAE03200D0AE30 /* AssetsManager.swift in Sources */,
+				1691F8C12AEAE1DF00D0AE30 /* NotificationViewModel.swift in Sources */,
 				1691F8A42AEAE15800D0AE30 /* HomeViewController.swift in Sources */,
 				1691F8A92AEAE15F00D0AE30 /* HomeViewModel.swift in Sources */,
 				1691F7D12AEAD3EC00D0AE30 /* SceneDelegate.swift in Sources */,
@@ -809,20 +851,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				1691F8852AEAE03200D0AE30 /* AssetsManager.swift in Sources */,
+				1691F8C22AEAE1DF00D0AE30 /* NotificationViewModel.swift in Sources */,
 				1691F89C2AEAE12000D0AE30 /* ForgotPasswordViewController.swift in Sources */,
 				1691F88F2AEAE09300D0AE30 /* LabelPresets.swift in Sources */,
 				1691F8A52AEAE15800D0AE30 /* HomeViewController.swift in Sources */,
 				1691F8272AEADA4B00D0AE30 /* ErrorModel.swift in Sources */,
+				1691F8BD2AEAE1D500D0AE30 /* NotificationViewController.swift in Sources */,
 				1691F81F2AEAD9B200D0AE30 /* Router.swift in Sources */,
 				1691F82E2AEADA8B00D0AE30 /* ForgotPasswordModel.swift in Sources */,
 				1691F86E2AEADE1700D0AE30 /* UserDefault.swift in Sources */,
 				1691F8462AEADBFB00D0AE30 /* Protocol+Extension.swift in Sources */,
+				1691F8B62AEAE1B700D0AE30 /* RightMenuViewModel.swift in Sources */,
 				1691F8532AEADCD200D0AE30 /* AlertUtility.swift in Sources */,
 				1691F8682AEADDC800D0AE30 /* Kingfisher+Extension.swift in Sources */,
 				1691F8332AEADADB00D0AE30 /* SurveyListModel.swift in Sources */,
 				1691F8982AEAE0FD00D0AE30 /* LoginViewModel.swift in Sources */,
 				1691F88C2AEAE07700D0AE30 /* StyleSheets.swift in Sources */,
 				1691F8362AEADB0700D0AE30 /* LoginModel.swift in Sources */,
+				1691F8C52AEAE1E800D0AE30 /* NotificationModel.swift in Sources */,
 				1691F85F2AEADD7400D0AE30 /* AppUtility.swift in Sources */,
 				1691F8652AEADDAC00D0AE30 /* String+Extension.swift in Sources */,
 				1691F8392AEADB4500D0AE30 /* RefreshTokenModel.swift in Sources */,
@@ -842,11 +888,13 @@
 				1691F8712AEADE4100D0AE30 /* NotificationCenter.swift in Sources */,
 				1691F86B2AEADDEF00D0AE30 /* UIImageView+Extension.swift in Sources */,
 				1691F8822AEAE01100D0AE30 /* FontManager.swift in Sources */,
+				1691F8B12AEAE1AE00D0AE30 /* RightMenuViewController.swift in Sources */,
 				1691F8742AEADE5600D0AE30 /* DataManager.swift in Sources */,
 				1691F8AD2AEAE16B00D0AE30 /* HomeModel.swift in Sources */,
 				1691F84D2AEADC4A00D0AE30 /* Constants.swift in Sources */,
 				1691F8402AEADB9600D0AE30 /* UserProfileModel.swift in Sources */,
 				1691F80E2AEAD65300D0AE30 /* RouterConfiguration.swift in Sources */,
+				1691F8B92AEAE1C000D0AE30 /* RightMenuModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
