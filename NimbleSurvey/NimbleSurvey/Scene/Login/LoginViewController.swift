@@ -7,6 +7,8 @@
 
 import UIKit
 
+// MARK: - LoginViewController
+
 class LoginViewController: UIViewController {
 
     // MARK: Lifecycle
@@ -38,5 +40,21 @@ class LoginViewController: UIViewController {
     private lazy var theme = StyleSheetManager.currentTheme()
     private lazy var font = StyleSheetManager.currentFontTheme()
     private var viewModel = LoginViewModel()
+}
+
+// MARK: Action
+
+extension LoginViewController: Action {
+    @IBAction
+    func didSelectForget(_: UIButton) {
+        let forgotPasswordVC = ForgotPasswordViewController(viewModel: ForgotPasswordViewModel())
+        self.navigationController?.pushViewController(forgotPasswordVC, animated: true)
+    }
+
+    @IBAction
+    func didSelectLogin(_: UIButton) {
+        Loader.shared.showLoader(view: self.view)
+        self.viewModel.requestLogin(email: self.emailTextField.text ?? "", password: self.passwordTextField.text ?? "")
+    }
 }
 
