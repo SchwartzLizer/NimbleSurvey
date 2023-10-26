@@ -6,3 +6,14 @@
 //
 
 import Foundation
+
+struct RightMenuModel {
+
+    init(name: String, profileImage: String) {
+        self.name = name
+        self.profileImage = profileImage
+    }
+
+    let name:String
+    let profileImage:String
+}
