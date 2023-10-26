@@ -95,6 +95,14 @@
 		1691F89E2AEAE12000D0AE30 /* ForgotPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1691F89A2AEAE12000D0AE30 /* ForgotPasswordViewController.xib */; };
 		1691F8A02AEAE13200D0AE30 /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1691F89F2AEAE13200D0AE30 /* ForgotPasswordViewModel.swift */; };
 		1691F8A12AEAE13200D0AE30 /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1691F89F2AEAE13200D0AE30 /* ForgotPasswordViewModel.swift */; };
+		1691F8A42AEAE15800D0AE30 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1691F8A22AEAE15800D0AE30 /* HomeViewController.swift */; };
+		1691F8A52AEAE15800D0AE30 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1691F8A22AEAE15800D0AE30 /* HomeViewController.swift */; };
+		1691F8A62AEAE15800D0AE30 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1691F8A32AEAE15800D0AE30 /* HomeViewController.xib */; };
+		1691F8A72AEAE15800D0AE30 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1691F8A32AEAE15800D0AE30 /* HomeViewController.xib */; };
+		1691F8A92AEAE15F00D0AE30 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1691F8A82AEAE15F00D0AE30 /* HomeViewModel.swift */; };
+		1691F8AA2AEAE15F00D0AE30 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1691F8A82AEAE15F00D0AE30 /* HomeViewModel.swift */; };
+		1691F8AC2AEAE16B00D0AE30 /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1691F8AB2AEAE16B00D0AE30 /* HomeModel.swift */; };
+		1691F8AD2AEAE16B00D0AE30 /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1691F8AB2AEAE16B00D0AE30 /* HomeModel.swift */; };
 		390504E14DEC605C3BEFE1A0 /* Pods_NimbleSurvey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6942B8E3CF1A1E99EEFD1F3F /* Pods_NimbleSurvey.framework */; };
 		5916B312550746DD8A4F3D82 /* Pods_NimbleSurveyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 466F709E889635EE1E69F567 /* Pods_NimbleSurveyTests.framework */; };
 		5B7AE6F80E5D3DE4FE3A4B92 /* Pods_NimbleSurvey_NimbleSurveyUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E47FA3A6B4E2112B8D1CA790 /* Pods_NimbleSurvey_NimbleSurveyUITests.framework */; };
@@ -170,6 +178,10 @@
 		1691F8992AEAE12000D0AE30 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		1691F89A2AEAE12000D0AE30 /* ForgotPasswordViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ForgotPasswordViewController.xib; sourceTree = "<group>"; };
 		1691F89F2AEAE13200D0AE30 /* ForgotPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewModel.swift; sourceTree = "<group>"; };
+		1691F8A22AEAE15800D0AE30 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		1691F8A32AEAE15800D0AE30 /* HomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
+		1691F8A82AEAE15F00D0AE30 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		1691F8AB2AEAE16B00D0AE30 /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
 		1C31DED4DD8BC742FDE1488C /* Pods-NimbleSurvey.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NimbleSurvey.debug.xcconfig"; path = "Target Support Files/Pods-NimbleSurvey/Pods-NimbleSurvey.debug.xcconfig"; sourceTree = "<group>"; };
 		466F709E889635EE1E69F567 /* Pods_NimbleSurveyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NimbleSurveyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6942B8E3CF1A1E99EEFD1F3F /* Pods_NimbleSurvey.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NimbleSurvey.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -327,6 +339,10 @@
 		1691F8122AEAD82D00D0AE30 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				1691F8AB2AEAE16B00D0AE30 /* HomeModel.swift */,
+				1691F8A22AEAE15800D0AE30 /* HomeViewController.swift */,
+				1691F8A82AEAE15F00D0AE30 /* HomeViewModel.swift */,
+				1691F8A32AEAE15800D0AE30 /* HomeViewController.xib */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -609,6 +625,7 @@
 				1691F7D62AEAD3EC00D0AE30 /* Login.storyboard in Resources */,
 				1691F87E2AEADFD700D0AE30 /* NeuzeitSLTStdBook.otf in Resources */,
 				1691F8192AEAD96B00D0AE30 /* RouterBasePath.plist in Resources */,
+				1691F8A62AEAE15800D0AE30 /* HomeViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -618,6 +635,7 @@
 			files = (
 				1691F89E2AEAE12000D0AE30 /* ForgotPasswordViewController.xib in Resources */,
 				1691F87F2AEADFD700D0AE30 /* NeuzeitSLTStdBook.otf in Resources */,
+				1691F8A72AEAE15800D0AE30 /* HomeViewController.xib in Resources */,
 				1691F8502AEADC7500D0AE30 /* Localizable.xcstrings in Resources */,
 				1691F87D2AEADFD700D0AE30 /* NeuzeitSLTStdBookHeavy.otf in Resources */,
 			);
@@ -773,9 +791,12 @@
 				1691F8552AEADCF400D0AE30 /* CustomPageControl.swift in Sources */,
 				1691F83B2AEADB6800D0AE30 /* LogoutModel.swift in Sources */,
 				1691F88E2AEAE09300D0AE30 /* LabelPresets.swift in Sources */,
+				1691F8AC2AEAE16B00D0AE30 /* HomeModel.swift in Sources */,
 				1691F8702AEADE4100D0AE30 /* NotificationCenter.swift in Sources */,
 				1691F86D2AEADE1700D0AE30 /* UserDefault.swift in Sources */,
 				1691F8842AEAE03200D0AE30 /* AssetsManager.swift in Sources */,
+				1691F8A42AEAE15800D0AE30 /* HomeViewController.swift in Sources */,
+				1691F8A92AEAE15F00D0AE30 /* HomeViewModel.swift in Sources */,
 				1691F7D12AEAD3EC00D0AE30 /* SceneDelegate.swift in Sources */,
 				1691F80C2AEAD64E00D0AE30 /* RouterConfiguration.swift in Sources */,
 				1691F8972AEAE0FD00D0AE30 /* LoginViewModel.swift in Sources */,
@@ -790,6 +811,7 @@
 				1691F8852AEAE03200D0AE30 /* AssetsManager.swift in Sources */,
 				1691F89C2AEAE12000D0AE30 /* ForgotPasswordViewController.swift in Sources */,
 				1691F88F2AEAE09300D0AE30 /* LabelPresets.swift in Sources */,
+				1691F8A52AEAE15800D0AE30 /* HomeViewController.swift in Sources */,
 				1691F8272AEADA4B00D0AE30 /* ErrorModel.swift in Sources */,
 				1691F81F2AEAD9B200D0AE30 /* Router.swift in Sources */,
 				1691F82E2AEADA8B00D0AE30 /* ForgotPasswordModel.swift in Sources */,
@@ -805,6 +827,7 @@
 				1691F8652AEADDAC00D0AE30 /* String+Extension.swift in Sources */,
 				1691F8392AEADB4500D0AE30 /* RefreshTokenModel.swift in Sources */,
 				1691F8592AEADD2D00D0AE30 /* Loader.swift in Sources */,
+				1691F8AA2AEAE15F00D0AE30 /* HomeViewModel.swift in Sources */,
 				1691F8922AEAE0B000D0AE30 /* ButtonPresets.swift in Sources */,
 				1691F8892AEAE06200D0AE30 /* StyleSheetManager.swift in Sources */,
 				1691F8952AEAE0D200D0AE30 /* ViewPresets.swift in Sources */,
@@ -820,6 +843,7 @@
 				1691F86B2AEADDEF00D0AE30 /* UIImageView+Extension.swift in Sources */,
 				1691F8822AEAE01100D0AE30 /* FontManager.swift in Sources */,
 				1691F8742AEADE5600D0AE30 /* DataManager.swift in Sources */,
+				1691F8AD2AEAE16B00D0AE30 /* HomeModel.swift in Sources */,
 				1691F84D2AEADC4A00D0AE30 /* Constants.swift in Sources */,
 				1691F8402AEADB9600D0AE30 /* UserProfileModel.swift in Sources */,
 				1691F80E2AEAD65300D0AE30 /* RouterConfiguration.swift in Sources */,
