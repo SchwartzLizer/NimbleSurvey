@@ -1,0 +1,24 @@
+PODS:
+  - Kingfisher (6.3.1)
+  - SideMenu (6.5.0)
+  - SkeletonView (1.30.4)
+
+DEPENDENCIES:
+  - Kingfisher (~> 6.3.1)
+  - SideMenu
+  - SkeletonView
+
+SPEC REPOS:
+  trunk:
+    - Kingfisher
+    - SideMenu
+    - SkeletonView
+
+SPEC CHECKSUMS:
+  Kingfisher: 016c8b653a35add51dd34a3aba36b580041acc74
+  SideMenu: f583187d21c5b1dd04c72002be544b555a2627a2
+  SkeletonView: 5a050f6411e697abd4cda0a8d767013399dccd69
+
+PODFILE CHECKSUM: 8eb3132547cf9dbb9b533b1cecbd8af65478701a
+
+COCOAPODS: 1.13.0
