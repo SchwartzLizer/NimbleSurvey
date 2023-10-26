@@ -18,17 +18,17 @@
     <entity name="SurveyListData" representedClassName="SurveyListData" syncable="YES" codeGenerationType="class">
         <attribute name="id" optional="YES" attributeType="String"/>
         <attribute name="type" optional="YES" attributeType="String"/>
-        <relationship name="attributes" optional="YES" maxCount="1" deletionRule="Nullify"/>
-        <relationship name="relationships" optional="YES" maxCount="1" deletionRule="Nullify"/>
+        <relationship name="attributes" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SurveyListAttributes"/>
+        <relationship name="relationships" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SurveyListRelationships"/>
     </entity>
     <entity name="SurveyListQuestions" representedClassName="SurveyListQuestions" syncable="YES" codeGenerationType="class">
-        <relationship name="data" optional="YES" maxCount="1" deletionRule="Nullify"/>
+        <relationship name="data" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SurveyListQuestionsData"/>
     </entity>
     <entity name="SurveyListQuestionsData" representedClassName="SurveyListQuestionsData" syncable="YES" codeGenerationType="class">
         <attribute name="id" optional="YES" attributeType="String"/>
         <attribute name="type" optional="YES" attributeType="String"/>
     </entity>
     <entity name="SurveyListRelationships" representedClassName="SurveyListRelationships" syncable="YES" codeGenerationType="class">
-        <relationship name="questions" optional="YES" maxCount="1" deletionRule="Nullify"/>
+        <relationship name="questions" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SurveyListQuestions"/>
     </entity>
 </model>
