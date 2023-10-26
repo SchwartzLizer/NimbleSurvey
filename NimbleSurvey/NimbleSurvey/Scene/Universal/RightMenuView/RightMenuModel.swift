@@ -6,3 +6,19 @@
 //
 
 import Foundation
+
+// MARK: - RightMenuViewModel
+
+final class RightMenuViewModel: ViewModel {
+
+    // MARK: Lifecycle
+
+    init(model: RightMenuModel) {
+        self.RightMenuModel = model
+    }
+
+    // MARK: Internal
+
+    var RightMenuModel: RightMenuModel
+
+}
