@@ -15,10 +15,13 @@ class LoginViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.onInitialized()
+        self.applyTheme()
     }
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
+        self.onDidDisappear()
     }
 
     // MARK: Internal
@@ -89,6 +92,12 @@ extension LoginViewController: Updated {
             Loader.shared.hideLoader()
             AlertUtility.showAlert(title: "Error", message: Constants.Keys.errorNoRefreshTokenFound.localized())
         }
+    }
+
+    private func onDidDisappear() {
+        self.logoIconImage.transform = CGAffineTransform.identity
+        self.emailTextField.text = ""
+        self.passwordTextField.text = ""
     }
 }
 
