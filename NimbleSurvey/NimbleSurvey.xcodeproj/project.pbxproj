@@ -22,6 +22,8 @@
 		1622EF692AEB63DF00E37506 /* WelcomeSurveyCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1622EF652AEB63DF00E37506 /* WelcomeSurveyCollectionViewCell.xib */; };
 		1622EF6B2AEB641900E37506 /* WelcomeSurveyCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1622EF6A2AEB641900E37506 /* WelcomeSurveyCollectionViewModel.swift */; };
 		1622EF6C2AEB641900E37506 /* WelcomeSurveyCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1622EF6A2AEB641900E37506 /* WelcomeSurveyCollectionViewModel.swift */; };
+		1622EF6E2AEB66E200E37506 /* WelcomeSurveyCollectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1622EF6D2AEB66E200E37506 /* WelcomeSurveyCollectionModel.swift */; };
+		1622EF6F2AEB66E200E37506 /* WelcomeSurveyCollectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1622EF6D2AEB66E200E37506 /* WelcomeSurveyCollectionModel.swift */; };
 		1691F7CF2AEAD3EC00D0AE30 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1691F7CE2AEAD3EC00D0AE30 /* AppDelegate.swift */; };
 		1691F7D12AEAD3EC00D0AE30 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1691F7D02AEAD3EC00D0AE30 /* SceneDelegate.swift */; };
 		1691F7D32AEAD3EC00D0AE30 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1691F7D22AEAD3EC00D0AE30 /* LoginViewController.swift */; };
@@ -173,6 +175,7 @@
 		1622EF642AEB63DF00E37506 /* WelcomeSurveyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeSurveyCollectionViewCell.swift; sourceTree = "<group>"; };
 		1622EF652AEB63DF00E37506 /* WelcomeSurveyCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WelcomeSurveyCollectionViewCell.xib; sourceTree = "<group>"; };
 		1622EF6A2AEB641900E37506 /* WelcomeSurveyCollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeSurveyCollectionViewModel.swift; sourceTree = "<group>"; };
+		1622EF6D2AEB66E200E37506 /* WelcomeSurveyCollectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeSurveyCollectionModel.swift; sourceTree = "<group>"; };
 		1691F7CB2AEAD3EC00D0AE30 /* NimbleSurvey.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NimbleSurvey.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1691F7CE2AEAD3EC00D0AE30 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1691F7D02AEAD3EC00D0AE30 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -289,6 +292,7 @@
 				1622EF642AEB63DF00E37506 /* WelcomeSurveyCollectionViewCell.swift */,
 				1622EF6A2AEB641900E37506 /* WelcomeSurveyCollectionViewModel.swift */,
 				1622EF652AEB63DF00E37506 /* WelcomeSurveyCollectionViewCell.xib */,
+				1622EF6D2AEB66E200E37506 /* WelcomeSurveyCollectionModel.swift */,
 			);
 			path = Survey;
 			sourceTree = "<group>";
@@ -913,6 +917,7 @@
 				1691F81E2AEAD9B200D0AE30 /* Router.swift in Sources */,
 				1691F85B2AEADD5000D0AE30 /* CustomRefreshControl.swift in Sources */,
 				1691F82D2AEADA8B00D0AE30 /* ForgotPasswordModel.swift in Sources */,
+				1622EF6E2AEB66E200E37506 /* WelcomeSurveyCollectionModel.swift in Sources */,
 				1691F85E2AEADD7400D0AE30 /* AppUtility.swift in Sources */,
 				1691F8B02AEAE1AE00D0AE30 /* RightMenuViewController.swift in Sources */,
 				1691F8582AEADD2D00D0AE30 /* Loader.swift in Sources */,
@@ -988,6 +993,7 @@
 				1691F8C52AEAE1E800D0AE30 /* NotificationModel.swift in Sources */,
 				1691F85F2AEADD7400D0AE30 /* AppUtility.swift in Sources */,
 				1691F8652AEADDAC00D0AE30 /* String+Extension.swift in Sources */,
+				1622EF6F2AEB66E200E37506 /* WelcomeSurveyCollectionModel.swift in Sources */,
 				1691F8D72AEAE2ED00D0AE30 /* RightMenuUnitTest.swift in Sources */,
 				1691F8392AEADB4500D0AE30 /* RefreshTokenModel.swift in Sources */,
 				1691F8592AEADD2D00D0AE30 /* Loader.swift in Sources */,

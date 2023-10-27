@@ -64,6 +64,12 @@
                 <constraint firstItem="GLt-5B-bQs" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="20" id="wtf-64-isf"/>
             </constraints>
             <size key="customSize" width="297" height="538"/>
+            <connections>
+                <outlet property="backButtonView" destination="E8c-mN-doy" id="7Iu-Wh-dvj"/>
+                <outlet property="startSuveyButton" destination="2GH-oj-QBI" id="IDG-NO-hHq"/>
+                <outlet property="subtitleLabel" destination="3UG-q2-HHW" id="Wbx-Ts-7vO"/>
+                <outlet property="titleLabel" destination="4Pe-qU-Iw1" id="ynh-jN-Aav"/>
+            </connections>
             <point key="canvasLocation" x="101.5267175572519" y="192.25352112676057"/>
         </collectionViewCell>
     </objects>
