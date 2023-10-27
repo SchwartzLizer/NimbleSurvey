@@ -122,7 +122,7 @@ extension HomeBackgroundCollectionViewCell: Updated {
     // MARK: Private
 
     private func onUpdated() {
-        self.backgroundImage.setImageFromURL(url: self.viewModel?.url)
+        self.backgroundImage.setBackgroundImageFromURL(url: self.viewModel?.url)
     }
 }
 

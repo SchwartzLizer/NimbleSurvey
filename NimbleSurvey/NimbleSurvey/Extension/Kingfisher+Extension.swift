@@ -9,8 +9,8 @@ import Kingfisher
 import UIKit
 
 extension UIImageView {
-    func setImageFromURL(url: URL?, placeholder: UIImage? = nil) {
-        let processor = DownsamplingImageProcessor(size: self.bounds.size)
+    func setBackgroundImageFromURL(url: URL?, placeholder: UIImage? = nil) {
+        let processor = DownsamplingImageProcessor(size: UIScreen.main.bounds.size)
         self.contentMode = .scaleAspectFill
         self.kf.setImage(
             with: url,

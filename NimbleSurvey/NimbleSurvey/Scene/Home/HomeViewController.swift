@@ -127,16 +127,18 @@ extension HomeViewController: Action {
     func handleBacktoHomeNotification(_: Notification) {
         NotificationCenter.default.post(name: .zoomOutBackground, object: nil)
 
+        self.pageControlView.isHidden = false
+        self.surveyCollectionView.isHidden = true
+        self.stackViewTitle.isHidden = false
+        self.stackViewToday.isHidden = false
+        self.backgroundCollectionView.isUserInteractionEnabled = true
+        self.surveyCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .left, animated: true)
         UIView.animate(withDuration: 0.5, animations: {
             self.surveyCollectionView.alpha = 0
             self.stackViewTitle.alpha = 1
             self.stackViewToday.alpha = 1
+            self.pageControlView.alpha = 1
         }, completion: { _ in
-            self.surveyCollectionView.isHidden = true
-            self.stackViewTitle.isHidden = false
-            self.stackViewToday.isHidden = false
-            self.backgroundCollectionView.isUserInteractionEnabled = true
-            self.surveyCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .left, animated: true)
         })
     }
 
@@ -150,7 +152,9 @@ extension HomeViewController: Action {
             self.surveyCollectionView.alpha = 1
             self.stackViewTitle.alpha = 0
             self.stackViewToday.alpha = 0
+            self.pageControlView.alpha = 0
         }, completion: { _ in
+            self.pageControlView.isHidden = true
             self.backgroundCollectionView.isUserInteractionEnabled = false
             self.stackViewTitle.isHidden = true
             self.stackViewToday.isHidden = true
