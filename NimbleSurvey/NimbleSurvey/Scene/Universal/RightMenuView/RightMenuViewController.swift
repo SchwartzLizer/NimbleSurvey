@@ -23,6 +23,8 @@ class RightMenuViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.applyTheme()
+        self.onInitialized()
     }
 
     // MARK: Public
