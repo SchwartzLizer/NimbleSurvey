@@ -114,26 +114,28 @@ extension HomeViewController: Updated {
             self.hideSkeletonView()
             self.pageControl.numberOfPages = self.viewModel.datas.count
             self.pageControl.currentPage = 0
-            pageControl.translatesAutoresizingMaskIntoConstraints = false
+            self.pageControl.translatesAutoresizingMaskIntoConstraints = false
             self.pageControlView.addSubview(self.pageControl)
-            let leadingConstraint = NSLayoutConstraint(item: pageControl,
-                                                      attribute: .leading,
-                                                      relatedBy: .equal,
-                                                      toItem: pageControlView,
-                                                      attribute: .leading,
-                                                      multiplier: 1,
-                                                      constant: 0) // Adjust constant value for left margin
+            let leadingConstraint = NSLayoutConstraint(
+                item: pageControl,
+                attribute: .leading,
+                relatedBy: .equal,
+                toItem: pageControlView,
+                attribute: .leading,
+                multiplier: 1,
+                constant: 0) // Adjust constant value for left margin
 
             // Center pageControl vertically within pageControlView
-            let centerYConstraint = NSLayoutConstraint(item: pageControl,
-                                                      attribute: .centerY,
-                                                      relatedBy: .equal,
-                                                      toItem: pageControlView,
-                                                      attribute: .centerY,
-                                                      multiplier: 1,
-                                                      constant: 0)
+            let centerYConstraint = NSLayoutConstraint(
+                item: pageControl,
+                attribute: .centerY,
+                relatedBy: .equal,
+                toItem: pageControlView,
+                attribute: .centerY,
+                multiplier: 1,
+                constant: 0)
 
-            pageControlView.addConstraints([leadingConstraint, centerYConstraint])
+            self.pageControlView.addConstraints([leadingConstraint, centerYConstraint])
             self.todayLabel.text = Constants.Keys.todaySurvey.localized()
 
             guard
@@ -190,4 +192,26 @@ extension HomeViewController: Updated {
         self.enterSurveyButton.hideSkeleton()
         self.pageControlView.hideSkeleton()
     }
+}
+
+// MARK: ApplyTheme
+
+extension HomeViewController: ApplyTheme {
+
+    // MARK: Internal
+
+    internal func applyTheme() {
+        self.applyThemeLabel()
+    }
+
+    // MARK: Private
+
+    private func applyThemeLabel() {
+        self.titleLabel.applyThemeLabel(font: self.font.surveyTitleFontSize, color: self.theme.textLabelColor)
+        self.subTitleLabel.applyThemeLabel(font: self.font.surveySubtitleFontSize, color: self.theme.textLabelColor)
+        self.todayLabel.applyThemeLabel(font: self.font.surveyTodayFontSize, color: self.theme.textLabelColor)
+        self.dateLabel.applyThemeLabel(font: self.font.surveyDateFontSize, color: self.theme.textLabelColor)
+    }
+
+
 }
