@@ -119,9 +119,7 @@ extension HomeViewController: Action {
     }
 
     @objc
-    func handleBackSurveyNotification(_: Notification) {
-
-    }
+    func handleBackSurveyNotification(_: Notification) { }
 
 }
 
@@ -298,7 +296,8 @@ extension HomeViewController: UserInterfaceSetup, UICollectionViewDelegate, UICo
     // MARK: Private
 
     private func setupCollectionView() {
-        self.cellBackgroundList.forEach { self.backgroundCollectionView.register($0.nib, forCellWithReuseIdentifier: $0.identifier) }
+        self.cellBackgroundList
+            .forEach { self.backgroundCollectionView.register($0.nib, forCellWithReuseIdentifier: $0.identifier) }
         self.backgroundCollectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "emptyCellIdentifier")
         self.backgroundCollectionView.delegate = self
         self.backgroundCollectionView.dataSource = self
@@ -311,6 +310,16 @@ extension HomeViewController: UserInterfaceSetup, UICollectionViewDelegate, UICo
         if #available(iOS 11.0, *) {
             backgroundCollectionView.contentInsetAdjustmentBehavior = .never
         }
+
+        self.cellSurveyList.forEach { self.surveyCollectionView.register($0.nib, forCellWithReuseIdentifier: $0.identifier) }
+        self.surveyCollectionView.delegate = self
+        self.surveyCollectionView.dataSource = self
+        if let layout = surveyCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            layout.scrollDirection = .horizontal
+            layout.minimumLineSpacing = 0
+            layout.minimumInteritemSpacing = 0
+        }
+        self.surveyCollectionView.isPagingEnabled = true
     }
 
     private func setupSkeletonView() {
