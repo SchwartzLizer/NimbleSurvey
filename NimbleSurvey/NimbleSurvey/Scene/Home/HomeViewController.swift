@@ -34,6 +34,7 @@ class HomeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
+        self.surveyCollectionView.isHidden = true
     }
 
     override func viewDidAppear(_: Bool) {
@@ -77,6 +78,7 @@ class HomeViewController: UIViewController {
     private lazy var theme = StyleSheetManager.currentTheme()
     private lazy var font = StyleSheetManager.currentFontTheme()
     private var menu: SideMenuNavigationController?
+    private var pageIndex: Int = 0
 
     private var cellBackgroundList: [(identifier: String, nib: UINib)] {
         return [
@@ -119,7 +121,12 @@ extension HomeViewController: Action {
     }
 
     @objc
-    func handleBackSurveyNotification(_: Notification) { }
+    func handleBacktoHomeNotification(_: Notification) {
+    }
+
+
+    @IBAction func didSelectStartSurvey(_ sender: UIButton) {
+    }
 
 }
 
@@ -243,7 +250,10 @@ extension HomeViewController: UserInterfaceSetup, UICollectionViewDelegate, UICo
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "emptyCellIdentifier", for: indexPath)
             cell.backgroundColor = self.theme.emptyCellBackgroundColor
             return cell
-        } else {
+        }
+
+        switch collectionView {
+        case self.backgroundCollectionView:
             guard
                 let cell = collectionView.dequeueReusableCell(
                     withReuseIdentifier: HomeBackgroundCollectionViewCell.identifier,
@@ -255,6 +265,21 @@ extension HomeViewController: UserInterfaceSetup, UICollectionViewDelegate, UICo
             }
             cell.viewModel = HomeBackgroundCollectionViewModel(url: url)
             return cell
+        case self.surveyCollectionView:
+            guard let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: WelcomeSurveyCollectionViewCell.identifier,
+                for: indexPath) as? WelcomeSurveyCollectionViewCell
+            else {
+                return UICollectionViewCell()
+            }
+                guard let title = self.viewModel.datas[self.pageIndex].attributes?.title else { return UICollectionViewCell() }
+                guard let description = self.viewModel.datas[self.pageIndex].attributes?.description else { return UICollectionViewCell() }
+                let model = WelcomeSurveyCollectionModel(
+                    title: title,
+                    description: description)
+                cell.viewModel = WelcomeSurveyCollectionViewModel(model: model)
+            return cell
+        default: return UICollectionViewCell()
         }
     }
 
@@ -278,7 +303,7 @@ extension HomeViewController: UserInterfaceSetup, UICollectionViewDelegate, UICo
             object: nil)
         NotificationCenter.default.addObserver(
             self,
-            selector: #selector(self.handlePullToRefreshNotification(_:)),
+            selector: #selector(self.handleBacktoHomeNotification(_:)),
             name: .backSurvey,
             object: nil)
     }
@@ -288,6 +313,7 @@ extension HomeViewController: UserInterfaceSetup, UICollectionViewDelegate, UICo
         if self.isRefreshing != true {
             let pageWidth = scrollView.frame.size.width
             let currentPage = Int((scrollView.contentOffset.x + pageWidth / 2) / pageWidth)
+            self.pageIndex = currentPage
             self.pageControl.currentPage = currentPage
             _ = self.viewModel.scrollViewUpdate(page: currentPage)
         }
