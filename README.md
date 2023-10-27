@@ -4,6 +4,7 @@ Information Project:
 - Target iOS 10.0+
 - Cocoa Pods (SkeletonView,Kingfisher(6.3.1),SideMenu)
 - Fastlane (Take a screenshots, Run all unittest,Upload to testflight and appstore)
+- RestAPI
 
 The problem should be known:
 - Fastlane take a screenshots function doesn't start the simulator. Maybe there is a bug in Fastlane, you need to open the simulator manually when running a command, but the function can run normally.
