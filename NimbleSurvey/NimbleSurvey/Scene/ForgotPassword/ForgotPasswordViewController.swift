@@ -236,7 +236,7 @@ extension ForgotPasswordViewController: ApplyTheme {
 
     private func applyThemeNavbar() {
         let backButton = UIButton(type: .custom)
-        let backImage = UIImage(named: "Back")
+        let backImage = UIImage(named: Constants.Assest.back)
         backButton.setImage(backImage, for: .normal)
         backButton.addTarget(self, action: #selector(self.backAction(_:)), for: .touchUpInside)
 

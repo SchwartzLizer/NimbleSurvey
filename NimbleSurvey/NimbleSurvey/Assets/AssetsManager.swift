@@ -12,6 +12,7 @@ extension Constants {
     enum Assest {
         static let action = "Action"
         static let notification = "Notification"
+        static let back = "Back"
     }
     enum SystemImage { }
 }
