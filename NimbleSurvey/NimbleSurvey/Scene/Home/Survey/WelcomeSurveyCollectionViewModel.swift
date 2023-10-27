@@ -9,5 +9,9 @@ import Foundation
 
 final class WelcomeSurveyCollectionViewModel {
 
-    init() { }
+    init(model: WelcomeSurveyCollectionModel) {
+        self.model = model
+    }
+
+    var model: WelcomeSurveyCollectionModel
 }

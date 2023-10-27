@@ -15,11 +15,24 @@ class WelcomeSurveyCollectionViewCell: UICollectionViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.applyTheme()
     }
 
     // MARK: Public
 
-    public var viewModel: WelcomeSurveyCollectionViewCell?
+    public static var nib: UINib {
+        return UINib(nibName: identifier, bundle: nil)
+    }
+
+    public static var identifier: String {
+        return String(describing: self)
+    }
+
+    public var viewModel: WelcomeSurveyCollectionViewModel? {
+        didSet {
+            self.onInitialized()
+        }
+    }
 
     // MARK: Internal
 
@@ -45,6 +58,20 @@ extension WelcomeSurveyCollectionViewCell: Action {
     }
 }
 
+// MARK: Updated
+
+extension WelcomeSurveyCollectionViewCell: Updated {
+    func onInitialized() {
+        self.onUpdated()
+    }
+
+    func onUpdated() {
+        guard let viewModel = self.viewModel else { return }
+        self.titleLabel.text = viewModel.model.title
+        self.subtitleLabel.text = viewModel.model.description
+    }
+}
+
 // MARK: ApplyTheme
 
 extension WelcomeSurveyCollectionViewCell: ApplyTheme {
@@ -53,6 +80,8 @@ extension WelcomeSurveyCollectionViewCell: ApplyTheme {
 
     internal func applyTheme() {
         self.applyThemeLabel()
+        self.applyThemeStartSurveyButton()
+        self.applyThemeBackButton()
     }
 
     // MARK: Private
