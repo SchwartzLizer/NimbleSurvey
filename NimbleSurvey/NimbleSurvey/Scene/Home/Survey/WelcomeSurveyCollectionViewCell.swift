@@ -33,6 +33,16 @@ class WelcomeSurveyCollectionViewCell: UICollectionViewCell {
     private lazy var theme = StyleSheetManager.currentTheme()
     private lazy var font = StyleSheetManager.currentFontTheme()
 
+
+}
+
+// MARK: Action
+
+extension WelcomeSurveyCollectionViewCell: Action {
+    @IBAction
+    func didSelectBack(_: UIButton) {
+        NotificationCenter.default.post(name: .refreshSurvey, object: nil)
+    }
 }
 
 // MARK: ApplyTheme
