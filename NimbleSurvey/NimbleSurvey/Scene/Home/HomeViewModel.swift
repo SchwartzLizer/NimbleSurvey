@@ -35,6 +35,9 @@ final class HomeViewModel: ViewModel {
 // MARK: RequestService
 
 extension HomeViewModel: RequestService {
+
+    // MARK: Public
+
     public func requestData(accessToken:String) {
         let group = DispatchGroup()
 
@@ -75,31 +78,12 @@ extension HomeViewModel: RequestService {
             switch result {
             case .success(let success):
                 guard let data = success.data else { break }
-                let dataManager = DataManager.shared
-                dataManager.saveSurveyToCoreData(surveyList: success)
-                dataManager.fetchAndPrintSurveys()
-                UserDefault().saveSurveyList(data: data)
-                print("Data Saved")
-                print("Show Save Data \(UserDefault().getSurveyList())")
-                FilesManagerHelper.shared?.saveSurveys(surveys: data, withName: "Survey")
-                print("Files Save")
-                print("Read File Save \(FilesManagerHelper.shared?.readSurveys(withName: "Survey"))")
+                self.save(data: success)
                 self.datas = data
                 self.lists = self.processData(data: data)
                 completion()
             case .failure(let error):
-                if case .serverError(let errorResponse) = error {
-                    guard let errors = errorResponse.errors.first?.detail else {
-                        self.onFailed?(error.localizedDescription)
-                        completion()
-                        return
-                    }
-                    self.onFailed?(errors)
-                    completion()
-                } else {
-                    self.onFailed?(error.localizedDescription)
-                    completion()
-                }
+                self.handleFailureError(error)
             }
         }
     }
@@ -114,20 +98,26 @@ extension HomeViewModel: RequestService {
                 self.profileData = data
                 completion()
             case .failure(let error):
-                if case .serverError(let errorResponse) = error {
-                    guard let errors = errorResponse.errors.first?.detail else {
-                        self.onFailed?(error.localizedDescription)
-                        completion()
-                        return
-                    }
-                    self.onFailed?(errors)
-                    completion()
-                } else {
-                    self.onFailed?(error.localizedDescription)
-                    completion()
-                }
+                self.handleFailureError(error)
             }
         }
+    }
+
+    // MARK: Private
+
+    private func handleFailureError(_ error: NetworkError) {
+        let detailedError: Error
+
+        if case .serverError(let errorResponse) = error, let serverMessage = errorResponse.errors.first?.detail {
+            detailedError = NSError(
+                domain: "Server Error",
+                code: 0,
+                userInfo: [NSLocalizedDescriptionKey: serverMessage])
+        } else {
+            detailedError = error
+        }
+
+        self.onFailed?(detailedError.localizedDescription)
     }
 }
 
@@ -151,8 +141,21 @@ extension HomeViewModel: Logic {
         let currentDate = Date()
         let dateFormatter = DateFormatter()
 
-        dateFormatter.dateFormat = "EEEE, MMMM d"
+        dateFormatter.dateFormat = Constants.DateFormat.eeeeMMMMd
         let formattedDate = dateFormatter.string(from: currentDate).uppercased()
         return formattedDate
+    }
+
+    public func save(data: SurveyListModel) {
+        let dataManager = DataManager.shared
+        dataManager.saveSurveyToCoreData(surveyList: data)
+        guard let data = data.data else { return }
+        dataManager.fetchAndPrintSurveys()
+        UserDefault().saveSurveyList(data: data)
+        print("Data Saved")
+        print("Show Save Data \(String(describing: UserDefault().getSurveyList()))")
+        _ = FilesManagerHelper.shared?.saveSurveys(surveys: data, withName: "Survey")
+        print("Files Save")
+        print("Read File Save \(String(describing: FilesManagerHelper.shared?.readSurveys(withName: "Survey")))")
     }
 }

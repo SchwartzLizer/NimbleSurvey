@@ -30,4 +30,8 @@ enum Constants {
         static let key = "ofzl-2h5ympKa0WqqTzqlVJUiRsxmXQmt5tkgrlWnOE"
         static let secrect = "lMQb900L-mTeU-FVTCwyhjsfBwRCxwwbCitPob96cuU"
     }
+
+    enum DateFormat {
+        static let eeeeMMMMd = "EEEE, MMMM d"
+    }
 }
