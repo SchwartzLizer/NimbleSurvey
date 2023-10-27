@@ -52,3 +52,39 @@ class ForgotPasswordViewController: UIViewController {
     private var navbar: CGFloat = 0
 
 }
+
+extension ForgotPasswordViewController: Action {
+    @IBAction
+    func didSelectReset(_: UIButton) {
+        Loader.shared.showLoader(view: self.view)
+        self.ViewModel.requestForgotPassword(email: self.emailTextField.text ?? "")
+    }
+
+    @objc
+    func backAction(_: UIButton) {
+        self.navigationController?.popViewController(animated: true)
+    }
+
+
+    @objc
+    func hideNotification() {
+        // Animate the retraction of the notification view
+        let yPosition = UIApplication.shared.statusBarFrame.height + 62
+        UIView.animate(withDuration: 0.5) {
+            self.notificationView.frame = CGRect(x: 0, y: -abs(yPosition), width: self.view.frame.size.width, height: yPosition)
+        }
+    }
+
+    func showNotification() {
+        // Animate the dropping of the notification view
+        UIView.animate(withDuration: 0.5, animations: {
+            self.notificationView.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 116)
+        }) { completed in
+            if completed {
+                // Automatically dismiss after 3 seconds
+                self.perform(#selector(self.hideNotification), with: nil, afterDelay: 2.0)
+                self.emailTextField.text = ""
+            }
+        }
+    }
+}
