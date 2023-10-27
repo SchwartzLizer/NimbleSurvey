@@ -24,8 +24,15 @@ class ForgotPasswordViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.applyTheme()
+        self.setupUI()
+        self.onInitialized()
     }
 
+    override func viewDidDisappear(_ animated: Bool) {
+        self.emailTextField.text = ""
+    }
+    
     // MARK: Public
 
     public static var nib: UINib {
