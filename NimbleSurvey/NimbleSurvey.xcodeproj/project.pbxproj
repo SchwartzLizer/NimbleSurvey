@@ -289,10 +289,10 @@
 		1622EF632AEB63CB00E37506 /* Survey */ = {
 			isa = PBXGroup;
 			children = (
+				1622EF6D2AEB66E200E37506 /* WelcomeSurveyCollectionModel.swift */,
 				1622EF642AEB63DF00E37506 /* WelcomeSurveyCollectionViewCell.swift */,
 				1622EF6A2AEB641900E37506 /* WelcomeSurveyCollectionViewModel.swift */,
 				1622EF652AEB63DF00E37506 /* WelcomeSurveyCollectionViewCell.xib */,
-				1622EF6D2AEB66E200E37506 /* WelcomeSurveyCollectionModel.swift */,
 			);
 			path = Survey;
 			sourceTree = "<group>";

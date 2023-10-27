@@ -110,6 +110,11 @@ extension HomeViewController: Action {
         self.viewModel.pullToRefresh()
     }
 
+    @objc
+    func handleBackSurveyNotification(_: Notification) {
+
+    }
+
 }
 
 // MARK: Updated
@@ -264,6 +269,11 @@ extension HomeViewController: UserInterfaceSetup, UICollectionViewDelegate, UICo
             self,
             selector: #selector(self.handlePullToRefreshNotification(_:)),
             name: .refreshSurvey,
+            object: nil)
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(self.handlePullToRefreshNotification(_:)),
+            name: .backSurvey,
             object: nil)
     }
 

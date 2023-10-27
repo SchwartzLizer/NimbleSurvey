@@ -9,4 +9,5 @@ import Foundation
 
 extension Notification.Name {
     static let refreshSurvey = Notification.Name("refreshSurvey")
+    static let backSurvey = Notification.Name("backSurvey")
 }
