@@ -41,4 +41,13 @@ enum Result<T> {
     case failure(error: Error)
 }
 
+enum GrantType: String {
+    case password
+    case refreshToken
+
+    var value: String {
+        return self.rawValue
+    }
+}
+
 

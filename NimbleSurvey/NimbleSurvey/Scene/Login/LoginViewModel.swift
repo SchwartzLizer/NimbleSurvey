@@ -15,28 +15,31 @@ final class LoginViewModel: ViewModel {
 
     init() { }
 
-    // MARK: Internal
+    // MARK: Public
 
-    var loginSuccess: (() -> Void)?
-    var loginFailed: ((_ message: String) -> Void)?
-    var noRefreshTokenFound: (() -> Void)?
-    var noAccessTokenFound: (() -> Void)?
+    public var loginSuccess: (() -> Void)?
+    public var loginFailure: ((String) -> Void)?
+    public var noRefreshTokenFound: (() -> Void)?
+    public var noAccessTokenFound: (() -> Void)?
 
 }
 
 // MARK: RequestService
 
 extension LoginViewModel: RequestService {
+
+    // MARK: Public
+
     public func requestLogin(email: String, password: String) {
         let router = Router.signIn(
-            grantType: "password",
+            grantType: GrantType.password.rawValue,
             email: email,
             password: password,
             clientID: Constants.ServiceKeys.key,
             clientSecret: Constants.ServiceKeys.secrect)
 
         NetworkManager.shared.request(router: router) { [weak self] (result: NetworkResult<LoginModel, NetworkError>) in
-            guard let strongSelf = self else { return }
+            guard let self = self else { return }
 
             switch result {
             case .success(let model):
@@ -47,22 +50,28 @@ extension LoginViewModel: RequestService {
                     UserDefault().saveAccessToken(data: accessToken)
                     UserDefault().saveRefreshToken(data: refreshToken)
                     TokenRefresher.shared.startTimer()
-                    strongSelf.loginSuccess?()
+                    self.loginSuccess?()
 
                 } else {
-                    strongSelf.noRefreshTokenFound?()
-                    strongSelf.noAccessTokenFound?()
+                    self.noRefreshTokenFound?()
+                    self.noAccessTokenFound?()
                 }
 
             case .failure(let error):
-                switch error {
-                case .serverError(let errorResponse):
-                    let errorMessage = errorResponse.errors.first?.detail ?? error.localizedDescription
-                    strongSelf.loginFailed?(errorMessage)
-                default:
-                    strongSelf.loginFailed?(error.localizedDescription)
-                }
+                let errorMessage = self.errorMessage(from: error)
+                self.loginFailure?(errorMessage)
             }
+        }
+    }
+
+    // MARK: Private
+
+    private func errorMessage(from error: NetworkError) -> String {
+        switch error {
+        case .serverError(let errorResponse):
+            return errorResponse.errors.first?.detail ?? "An unknown server error occurred."
+        default:
+            return error.localizedDescription
         }
     }
 }

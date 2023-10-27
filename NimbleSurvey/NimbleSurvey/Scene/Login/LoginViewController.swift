@@ -16,6 +16,7 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.onInitialized()
+        self.setupUI()
         self.applyTheme()
     }
 
@@ -48,21 +49,40 @@ class LoginViewController: UIViewController {
 // MARK: Action
 
 extension LoginViewController: Action {
+
+    // MARK: Internal
+
     @IBAction
     func didSelectForget(_: UIButton) {
-        let forgotPasswordVC = ForgotPasswordViewController(viewModel: ForgotPasswordViewModel())
-        self.navigationController?.pushViewController(forgotPasswordVC, animated: true)
+        self.endEditTextField()
+        self.navigationController?.pushViewController(
+            ForgotPasswordViewController(viewModel: ForgotPasswordViewModel()),
+            animated: true)
     }
 
     @IBAction
     func didSelectLogin(_: UIButton) {
+        self.endEditTextField()
         Loader.shared.showLoader(view: self.view)
         self.viewModel.requestLogin(email: self.emailTextField.text ?? "", password: self.passwordTextField.text ?? "")
     }
 
+    // MARK: Private
+
     private func clearTextField() {
         self.emailTextField.text = ""
         self.passwordTextField.text = ""
+    }
+
+    private func showAlertAndClearText(message: String) {
+        AlertUtility.showAlert(title: Constants.Keys.appName.localized(), message: message) { [weak self] in
+            self?.clearTextField()
+        }
+    }
+
+    private func endEditTextField() {
+        self.passwordTextField.endEditing(true)
+        self.emailTextField.endEditing(true)
     }
 }
 
@@ -80,26 +100,28 @@ extension LoginViewController: Updated {
     // MARK: Private
 
     private func onSuccess() {
-        self.viewModel.loginSuccess = {
-            Loader.shared.hideLoader()
-            let homeVC = HomeViewController(viewModel: HomeViewModel())
-            self.navigationController?.pushViewController(homeVC, animated: true)
+        self.viewModel.loginSuccess = { [weak self] in
+            guard let self = self else { return }
+            DispatchQueue.main.async {
+                Loader.shared.hideLoader()
+                self.navigationController?.pushViewController(HomeViewController(viewModel: HomeViewModel()), animated: true)
+            }
         }
     }
 
     private func onFailed() {
-        self.viewModel.loginFailed = { message in
-            Loader.shared.hideLoader()
-            AlertUtility.showAlert(title: Constants.Keys.appName.localized(), message: message) {
-                self.clearTextField()
+        let errorHandler: (String) -> Void = { [weak self] message in
+            guard let self = self else { return }
+
+            DispatchQueue.main.async {
+                Loader.shared.hideLoader()
+                self.showAlertAndClearText(message: message)
             }
         }
 
+        self.viewModel.loginFailure = errorHandler
         self.viewModel.noRefreshTokenFound = {
-            Loader.shared.hideLoader()
-            AlertUtility.showAlert(title: Constants.Keys.appName.localized(), message: Constants.Keys.errorNoRefreshTokenFound.localized()) {
-                self.clearTextField()
-            }
+            errorHandler(Constants.Keys.errorNoRefreshTokenFound.localized())
         }
     }
 
@@ -109,13 +131,13 @@ extension LoginViewController: Updated {
     }
 }
 
-// MARK: ApplyTheme
+// MARK: UserInterfaceSetup
 
-extension LoginViewController: ApplyTheme {
+extension LoginViewController:UserInterfaceSetup {
 
     // MARK: Internal
 
-    internal func applyTheme() {
+    func setupUI() {
         self.stackView.isHidden = true
         self.stackView.alpha = 0
 
@@ -128,9 +150,18 @@ extension LoginViewController: ApplyTheme {
                 self.stackView.alpha = 1
             }
         }
-        self.applyThemeBackgroundTextField()
-        self.applyThemeSubmitButton()
-        self.applyThemeForgetButton()
+
+        self.textFieldBackgroundView.forEach { view in
+            view.applyThemeView(background: self.theme.textfieldBackgroundColor, radius: Constants.Radius.cornerRadiusCard)
+            let blurredEffectView = self.createBlurredEffectView(
+                withStyle: .light,
+                for: view.bounds,
+                cornerRadius: Constants.Radius.cornerRadiusCard)
+            view.addSubview(blurredEffectView)
+        }
+
+        self.configurePasswordTextField()
+        self.configureEmailTextField()
     }
 
     // MARK: Private
@@ -148,47 +179,71 @@ extension LoginViewController: ApplyTheme {
         })
     }
 
-    private func blurBackgroundImage() {
-        let blurEffect = UIBlurEffect(style: .dark)
+    private func configurePasswordTextField() {
+        self.passwordTextField.attributedPlaceholder = NSAttributedString(
+            string: Constants.Keys.passwordTF.localized(),
+            attributes: [NSAttributedString.Key.foregroundColor: self.theme.placeholderLabelColor])
+        self.passwordTextField.isSecureTextEntry = true
+        self.passwordTextField.accessibilityIdentifier = Constants.AccessibilityID.passwordLoginTextField
+    }
+
+    private func configureEmailTextField() {
+        self.emailTextField.attributedPlaceholder = NSAttributedString(
+            string: Constants.Keys.emailTF.localized(),
+            attributes: [NSAttributedString.Key.foregroundColor: self.theme.placeholderLabelColor])
+        self.emailTextField.accessibilityIdentifier = Constants.AccessibilityID.emailLoginTextField
+    }
+
+    private func createBlurredEffectView(
+        withStyle style: UIBlurEffect.Style,
+        for bounds: CGRect,
+        cornerRadius: CGFloat = 0)
+        -> UIVisualEffectView
+    {
+        let blurEffect = UIBlurEffect(style: style)
         let blurredEffectView = UIVisualEffectView(effect: blurEffect)
-        blurredEffectView.frame = self.backgroundImageView.bounds
+        blurredEffectView.translatesAutoresizingMaskIntoConstraints = false
+        blurredEffectView.frame = bounds
         blurredEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        blurredEffectView.alpha = 0
+        blurredEffectView.alpha = 1
+        blurredEffectView.clipsToBounds = true
+
+        if cornerRadius > 0 {
+            blurredEffectView.layer.cornerRadius = cornerRadius
+        }
+
+        return blurredEffectView
+    }
+
+    private func blurBackgroundImage() {
+        let blurredEffectView = self.createBlurredEffectView(withStyle: .dark, for: self.backgroundImageView.bounds)
         self.backgroundImageView.addSubview(blurredEffectView)
+
         UIView.animate(withDuration: 1.0) {
             blurredEffectView.alpha = 1
         }
     }
 
-    private func applyThemeBackgroundTextField() {
-        for view in self.textFieldBackgroundView {
-            view.applyThemeView(background: self.theme.textfieldBackgroundColor, radius: Constants.Radius.cornerRadiusCard)
-            let blurEffect = UIBlurEffect(style: .light)
-            let blurredEffectView = UIVisualEffectView(effect: blurEffect)
-            blurredEffectView.translatesAutoresizingMaskIntoConstraints = false
-            blurredEffectView.layer.cornerRadius = Constants.Radius.cornerRadiusCard
-            blurredEffectView.alpha = 1
-            blurredEffectView.clipsToBounds = true
-            blurredEffectView.frame = view.bounds
-            blurredEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-            view.addSubview(blurredEffectView)
-        }
-        self.passwordTextField.borderStyle = .none
-        self.passwordTextField.isSecureTextEntry = true
-        self.passwordTextField.attributedPlaceholder = NSAttributedString(
-            string: Constants.Keys.passwordTF.localized(),
-            attributes: [NSAttributedString.Key.foregroundColor: self.theme.placeholderLabelColor])
-        self.passwordTextField.font = self.font.textLabelFontSize
-        self.passwordTextField.textColor = self.theme.textfieldLabelColor
-        self.passwordTextField.accessibilityIdentifier = Constants.AccessibilityID.passwordLoginTextField
+}
 
-        self.emailTextField.borderStyle = .none
-        self.emailTextField.attributedPlaceholder = NSAttributedString(
-            string: Constants.Keys.emailTF.localized(),
-            attributes: [NSAttributedString.Key.foregroundColor: self.theme.placeholderLabelColor])
-        self.emailTextField.font = self.font.textLabelFontSize
-        self.emailTextField.textColor = self.theme.textfieldLabelColor
-        self.emailTextField.accessibilityIdentifier = Constants.AccessibilityID.emailLoginTextField
+
+// MARK: ApplyTheme
+
+extension LoginViewController: ApplyTheme {
+
+    // MARK: Internal
+
+    internal func applyTheme() {
+        self.applyThemeBackgroundTextField()
+        self.applyThemeSubmitButton()
+        self.applyThemeForgetButton()
+    }
+
+    // MARK: Private
+
+    private func applyThemeBackgroundTextField() {
+        self.passwordTextField.applyThemeTextField()
+        self.emailTextField.applyThemeTextField()
     }
 
     private func applyThemeSubmitButton() {
@@ -207,5 +262,6 @@ extension LoginViewController: ApplyTheme {
             font: self.font.forgotFontSize,
             color: self.theme.forgotTextColor)
     }
+
 }
 
