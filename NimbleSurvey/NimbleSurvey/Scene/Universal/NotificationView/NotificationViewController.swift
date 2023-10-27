@@ -69,3 +69,26 @@ extension NotificationViewController: UserInterfaceSetup {
     }
 
 }
+
+// MARK: ApplyTheme
+
+extension NotificationViewController: ApplyTheme {
+
+    // MARK: Internal
+
+    internal func applyTheme() {
+        self.applyThemeView()
+        self.applyThemeLabel()
+    }
+
+    // MARK: Private
+
+    private func applyThemeView() {
+        self.view.backgroundColor = .clear
+    }
+
+    private func applyThemeLabel() {
+        self.titleLabel.applyThemeLabel(font: self.font.titleNotificationFontSize, color: self.theme.textLabelColor)
+        self.subtitleLabel.applyThemeLabel(font: self.font.subtitleNotificationFontSize, color: self.theme.textLabelColor)
+    }
+}
