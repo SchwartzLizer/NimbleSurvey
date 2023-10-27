@@ -80,7 +80,7 @@ extension ForgotPasswordViewController: Action {
     @objc
     func hideNotification() {
         // Animate the retraction of the notification view
-        let yPosition = UIApplication.shared.statusBarFrame.height + 62
+        let yPosition = 116.00 // Navbar from iPhone Notch + NotificationView height
         UIView.animate(withDuration: 0.5) {
             self.notificationView.frame = CGRect(x: 0, y: -abs(yPosition), width: self.view.frame.size.width, height: yPosition)
         }
@@ -143,8 +143,7 @@ extension ForgotPasswordViewController: UserInterfaceSetup {
 
     private func setupNotificationView() {
         // Initialize the view and off-screen positioning
-        self.navbar = UIApplication.shared.statusBarFrame.height
-        let yPosition = UIApplication.shared.statusBarFrame.height + 62
+        let yPosition = 116.00 // Navbar from iPhone Notch + NotificationView height
         self.notificationView = UIView(frame: CGRect(
             x: 0,
             y: -abs(yPosition),
