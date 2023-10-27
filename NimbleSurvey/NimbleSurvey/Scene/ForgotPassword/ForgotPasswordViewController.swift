@@ -88,3 +88,31 @@ extension ForgotPasswordViewController: Action {
         }
     }
 }
+
+extension ForgotPasswordViewController: Updated {
+
+    // MARK: Internal
+
+    internal func onInitialized() {
+        self.onSuccess()
+        self.onFailure()
+    }
+
+    // MARK: Private
+
+    private func onSuccess() {
+        self.ViewModel.resetSuccess = {
+            Loader.shared.hideLoader()
+            self.showNotification()
+        }
+    }
+
+    private func onFailure() {
+        self.ViewModel.resetFailed = { message in
+            Loader.shared.hideLoader()
+            AlertUtility.showAlert(title: "Error", message: message)
+        }
+    }
+
+}
+
