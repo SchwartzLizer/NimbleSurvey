@@ -215,6 +215,7 @@ extension ForgotPasswordViewController: ApplyTheme {
         blurredEffectView.translatesAutoresizingMaskIntoConstraints = false
         blurredEffectView.layer.cornerRadius = Constants.Radius.cornerRadiusCard
         blurredEffectView.clipsToBounds = true
+        blurredEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         blurredEffectView.frame = self.textFieldBackgroundView.bounds
         self.textFieldBackgroundView.addSubview(blurredEffectView)
         self.emailTextField.borderStyle = .none
