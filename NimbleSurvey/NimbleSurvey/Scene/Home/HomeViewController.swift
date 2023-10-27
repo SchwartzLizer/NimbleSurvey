@@ -8,6 +8,8 @@
 import UIKit
 import SideMenu
 
+// MARK: - HomeViewController
+
 class HomeViewController: UIViewController {
 
     // MARK: Lifecycle
@@ -56,12 +58,37 @@ class HomeViewController: UIViewController {
     private lazy var theme = StyleSheetManager.currentTheme()
     private lazy var font = StyleSheetManager.currentFontTheme()
     private var menu: SideMenuNavigationController?
+
     private var cellList: [(identifier: String, nib: UINib)] {
         return [
             (
                 identifier: HomeBackgroundViewController.identifier,
                 nib: HomeBackgroundViewController.nib),
         ]
+    }
+
+}
+
+// MARK: Action
+
+extension HomeViewController: Action {
+    @IBAction
+    func didSelectProfile(_: UIButton) {
+        guard let menu = self.menu else { return }
+        present(menu, animated: true, completion: nil)
+    }
+
+    @objc
+    func handlePullToRefreshNotification(_: Notification) {
+        self.isRefreshing = true
+        self.showSkeletonView()
+        if self.collectionView.numberOfItems(inSection: 0) > 0 {
+            let firstItemIndexPath = IndexPath(item: 0, section: 0)
+            self.collectionView.scrollToItem(at: firstItemIndexPath, at: .left, animated: true)
+        }
+        self.viewModel.clearData()
+        self.collectionView.reloadData()
+        self.viewModel.pullToRefresh()
     }
 
 }
