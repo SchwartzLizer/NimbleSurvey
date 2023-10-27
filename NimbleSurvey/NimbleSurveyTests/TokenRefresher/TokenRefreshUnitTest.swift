@@ -6,30 +6,89 @@
 //
 
 import XCTest
+@testable import NimbleSurvey
 
-final class TokenRefreshUnitTest: XCTestCase {
+class TokenRefresherTests: XCTestCase {
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    var tokenRefresher: TokenRefresher!
+
+    override func setUp() {
+        super.setUp()
+        self.tokenRefresher = TokenRefresher.shared
+        self.prepareRefreshToken()
     }
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    override func tearDown() {
+        self.tokenRefresher.stopTimer()
+        self.tokenRefresher = nil
+        super.tearDown()
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
-    }
+    // MARK: Initalize
+    func prepareRefreshToken() {
+        let expectation = self.expectation(description: "Test Sign-In success")
+        let grantType = "password"
+        let email = "dev@nimblehq.co"
+        let password = "12345678"
+        let clientID = Constants.ServiceKeys.key
+        let clientSecret = Constants.ServiceKeys.secrect
 
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+        let router = Router.signIn(
+            grantType: grantType,
+            email: email,
+            password: password,
+            clientID: clientID,
+            clientSecret: clientSecret)
+
+        NetworkManager.shared.request(router: router) { (result: NetworkResult<LoginModel, NetworkError>) in
+            switch result {
+            case .success(let value):
+                Logger.print("Data \(value)")
+                guard let refreshToken = value.data?.attributes?.refreshToken
+                else { return XCTFail("Error, no token in response") }
+                UserDefault().saveRefreshToken(data: refreshToken)
+                expectation.fulfill()
+            case .failure(let error):
+                XCTFail("Login request failed with error: \(error)")
+            }
+        }
+
+        self.waitForExpectations(timeout: 10.0) { error in
+            if let error = error {
+                XCTFail("Expectation failed with error: \(error)")
+            }
         }
     }
 
+    func testStartTimer() {
+        self.tokenRefresher.startTimer()
+        XCTAssertNotNil(self.tokenRefresher.refreshTokenTimer, "Timer should be set")
+    }
+
+    func testStopTimer() {
+        self.tokenRefresher.startTimer()
+        self.tokenRefresher.stopTimer()
+        XCTAssertNil(self.tokenRefresher.refreshTokenTimer, "Timer should be nil after stopping")
+    }
+
+    func testRefreshTokenSuccess() {
+        let expectation = self.expectation(description: "Token should be refreshed")
+        self.tokenRefresher.onSuccess = {
+            expectation.fulfill()
+        }
+        self.tokenRefresher.refreshToken()
+        waitForExpectations(timeout: 1.0, handler: nil)
+    }
+
+    func testRefreshTokenFailure() {
+        let expectation = self.expectation(description: "Token refresh should fail")
+        self.tokenRefresher.onFailed = {
+            expectation.fulfill()
+        }
+        UserDefault().saveRefreshToken(data: "")
+        self.tokenRefresher.refreshToken()
+        waitForExpectations(timeout: 1.0, handler: nil)
+    }
+
 }
+
