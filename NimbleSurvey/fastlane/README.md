@@ -15,13 +15,29 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 ## iOS
 
-### ios screenshots
+### ios Take_a_screenshots
 
 ```sh
-[bundle exec] fastlane ios screenshots
+[bundle exec] fastlane ios Take_a_screenshots
 ```
 
-Generate new localized screenshots
+Generate new screenshots
+
+### ios Run_UnitTest
+
+```sh
+[bundle exec] fastlane ios Run_UnitTest
+```
+
+Run all unit test
+
+### ios local_install
+
+```sh
+[bundle exec] fastlane ios local_install
+```
+
+Sign and install build on local device
 
 ----
 

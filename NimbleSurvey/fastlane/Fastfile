@@ -16,8 +16,81 @@
 default_platform(:ios)
 
 platform :ios do
-  desc "Generate new localized screenshots"
-  lane :screenshots do
+  # ENV File
+  ENV["FASTLANE_USER"] = ""
+  ENV["FASTLANE_PASSWORD"] = ""
+
+  desc "Generate new screenshots"
+  lane :Take_a_screenshots do
     capture_screenshots(workspace: "NimbleSurvey.xcworkspace", scheme: "NimbleSurvey")
   end
+
+  # Slack_url, slack_channel, slack_username, slack_icon_url, slack_message
+  desc "Run all unit test"
+  lane :Run_UnitTest do
+    run_tests(
+      workspace: "NimbleSurvey.xcworkspace",
+      device: "iPhone 15 Pro Max",
+      scheme: "NimbleSurvey")
+  end
+
+  desc "Sign and install build on local device"
+  lane :local_install do
+    match(git_url: "repository.git", type: "adhoc")
+    gym(scheme: "NimbleSurvey",workspace: "NimbleSurvey.xcworkspace")
+    install_on_device(ipa: "NimbleSurvey.ipa")
+  end
+
+  desc "Build and upload to TestFlight can't deploy to App Store"
+  lane :beta do
+    build_app(scheme: "NimbleSurvey",
+              workspace: "NimbleSurvey.xcworkspace",
+              include_bitcode: true)
+  end
+
+  desc "Build and upload to App Store"
+  lane :release do
+    build_app(scheme: "NimbleSurvey",
+              workspace: "NimbleSurvey.xcworkspace",
+              include_bitcode: true)
+  end
+  
+  # WebHook
+  # desc "Test Mattermost Bot"
+  # lane :mattermost_test do
+  #   mattermost(
+  #       url: "mattermostWebHook", 
+  #       text: " Noot-Noot 🐧", 
+  #       username: "Pengu Bot", 
+  #       icon_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQv3Q1Uv0SMWvNlzG0-_mWah9kbVuSIaPgtp5C3NNk8tjwrfSGC7JWKrXuJ7KIuf4ARCB0&usqp=CAU"
+  #     )
+  # end
+  
+  # Upload to Firebase App Distribution
+  # desc "Upload Application to Firebase App Distribution"
+  # lane :distribution do
+  #   match(
+  #     git_url: "repository.git",
+  #     type: "adhoc",
+  #     git_branch: "build/FastlaneFirebase",
+  #     verbose: true
+  #   )
+
+  #   gym(scheme: "NimbleSurvey",
+  #     workspace: "NimbleSurvey.xcworkspace"
+  #   )
+    
+  #   firebase_app_distribution(
+  #         app: "1:1007228000705:ios:62625f3fbde3732ee97740",
+  #         testers: "emailTester",
+  #         release_notes: "First Time Distribution🎉"
+  #   )
+
+  #   mattermost(
+  #   url: "mattermostWebHook",        # mandatory
+  #   text: "I'm already upload NimbleSurvey (iOS)on Firebase App Distribute Noot-Noot 🐧, Please check your inbox 📬 if you did not get email ✉️ please contact developer",                                                        # mandatory
+  #   username: "Pengu Bot",                                            # optional
+  #   icon_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQv3Q1Uv0SMWvNlzG0-_mWah9kbVuSIaPgtp5C3NNk8tjwrfSGC7JWKrXuJ7KIuf4ARCB0&usqp=CAU"  # optional
+  # )
+  # end
 end
