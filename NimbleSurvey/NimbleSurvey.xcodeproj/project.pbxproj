@@ -148,6 +148,7 @@
 		16C16AA02AEB9F5B00FB58AC /* Accessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C16A9F2AEB9F5B00FB58AC /* Accessibility.swift */; };
 		16C16AA12AEB9F5B00FB58AC /* Accessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C16A9F2AEB9F5B00FB58AC /* Accessibility.swift */; };
 		16C16AA22AEB9F5B00FB58AC /* Accessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C16A9F2AEB9F5B00FB58AC /* Accessibility.swift */; };
+		16C16AA32AEBA06500FB58AC /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1691F84B2AEADC4A00D0AE30 /* Constants.swift */; };
 		390504E14DEC605C3BEFE1A0 /* Pods_NimbleSurvey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6942B8E3CF1A1E99EEFD1F3F /* Pods_NimbleSurvey.framework */; };
 		5916B312550746DD8A4F3D82 /* Pods_NimbleSurveyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 466F709E889635EE1E69F567 /* Pods_NimbleSurveyTests.framework */; };
 		5B7AE6F80E5D3DE4FE3A4B92 /* Pods_NimbleSurvey_NimbleSurveyUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E47FA3A6B4E2112B8D1CA790 /* Pods_NimbleSurvey_NimbleSurveyUITests.framework */; };
@@ -1041,6 +1042,7 @@
 				1622EF5B2AEB54F800E37506 /* NimbleSurveyUITests.swift in Sources */,
 				16C16AA22AEB9F5B00FB58AC /* Accessibility.swift in Sources */,
 				16C16A9E2AEB97D100FB58AC /* SnapshotHelper.swift in Sources */,
+				16C16AA32AEBA06500FB58AC /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

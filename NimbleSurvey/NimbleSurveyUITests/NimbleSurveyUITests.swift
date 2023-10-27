@@ -18,17 +18,70 @@ final class NimbleSurveyUITests: XCTestCase {
         continueAfterFailure = false
     }
 
-    func testTakeScreenshots() throws {
-        // UI tests must launch the application that they test.
+    func takeLoginScreenShots() throws {
         let app = XCUIApplication()
+        snapshot("LoginScreen")
+        print("Take screenshot LoginScreen")
+        print("LoginScreen Done")
+    }
 
-        // Navigate to the screen you want to take a screenshot of
-        // ... your UI navigation code goes here ...
+    func testForgotPasswordScreenshots() throws {
+        let app = XCUIApplication()
+        XCUIApplication().staticTexts["Forgot?"].tap()
+        snapshot("ForgotPasswordScreen")
+        print("Take screenshot ForgotPasswordScreen")
+        sleep(1)
 
-        // Take a screenshot with a specific name
-        snapshot("01FirstScreen") // The argument is used to name the screenshot
+        app.textFields["Email"].tap()
+        app.staticTexts["Reset"].tap()
+        snapshot("ForgotPasswordScreen - Empty")
+        print("Take screenshot ForgotPasswordScreen - Empty")
 
-        // Continue with other test operations and screenshots
+        let emailForgotPasswordTextfield = app.textFields[Constants.AccessibilityID.emailForgetPasswordTextField]
+        XCTAssertTrue(emailForgotPasswordTextfield.exists, "The expected text field does not exist.")
+        emailForgotPasswordTextfield.tap()
+        emailForgotPasswordTextfield.typeText("dev@nimblehq.co")
+
+        app.buttons["Reset"].tap()
+        sleep(1)
+        snapshot("ForgotPasswordScreen - Success")
+        print("Take screenshot ForgotPasswordScreen - Success")
+
+        emailForgotPasswordTextfield.tap()
+        emailForgotPasswordTextfield.typeText("")
+        app.buttons["Reset"].tap()
+        snapshot("ForgotPasswordScreen - Failed")
+        print("Take screenshot ForgotPasswordScreen - Failed")
+
+        XCUIApplication().navigationBars["NimbleSurvey.ForgotPasswordView"].buttons["Back"].tap()
+        print("ForgotPasswordScreen Done")
+        sleep(1)
+    }
+
+    func testLoginStateScreenShot() throws {
+        let app = XCUIApplication()
+        let emailLoginTextfield = app.textFields[Constants.AccessibilityID.emailLoginTextField]
+        XCTAssertTrue(emailLoginTextfield.exists, "The expected text field does not exist.")
+        let passwordLoginTextfield = app.secureTextFields[Constants.AccessibilityID.passwordLoginTextField]
+        XCTAssertTrue(passwordLoginTextfield.exists, "The expected text field does not exist.")
+
+        emailLoginTextfield.tap()
+        emailLoginTextfield.typeText("ABC@Email.com")
+        passwordLoginTextfield.tap()
+        passwordLoginTextfield.typeText("12345678")
+        app.buttons["Login"].tap()
+
+        sleep(1)
+        snapshot("LoginScreen - Failed")
+        print("Take screenshot LoginScreen - Failed")
+
+        emailLoginTextfield.tap()
+        emailLoginTextfield.typeText("dev@nimblehq.co")
+        passwordLoginTextfield.tap()
+        passwordLoginTextfield.typeText("12345678")
+        app.buttons["Login"].tap()
+        print("LoginScreen Done")
+        sleep(1)
     }
 
 }

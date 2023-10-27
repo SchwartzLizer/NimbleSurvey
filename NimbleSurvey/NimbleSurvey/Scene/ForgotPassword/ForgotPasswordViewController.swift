@@ -123,7 +123,9 @@ extension ForgotPasswordViewController: Updated {
     private func onFailure() {
         self.ViewModel.resetFailed = { message in
             Loader.shared.hideLoader()
-            AlertUtility.showAlert(title: Constants.Keys.appName.localized(), message: message)
+            AlertUtility.showAlert(title: Constants.Keys.appName.localized(), message: message) {
+                self.clearTextField()
+            }
         }
     }
 

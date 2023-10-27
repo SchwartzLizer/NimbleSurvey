@@ -59,6 +59,11 @@ extension LoginViewController: Action {
         Loader.shared.showLoader(view: self.view)
         self.viewModel.requestLogin(email: self.emailTextField.text ?? "", password: self.passwordTextField.text ?? "")
     }
+
+    private func clearTextField() {
+        self.emailTextField.text = ""
+        self.passwordTextField.text = ""
+    }
 }
 
 // MARK: Updated
@@ -85,19 +90,22 @@ extension LoginViewController: Updated {
     private func onFailed() {
         self.viewModel.loginFailed = { message in
             Loader.shared.hideLoader()
-            AlertUtility.showAlert(title: "Error", message: message)
+            AlertUtility.showAlert(title: Constants.Keys.appName.localized(), message: message) {
+                self.clearTextField()
+            }
         }
 
         self.viewModel.noRefreshTokenFound = {
             Loader.shared.hideLoader()
-            AlertUtility.showAlert(title: "Error", message: Constants.Keys.errorNoRefreshTokenFound.localized())
+            AlertUtility.showAlert(title: Constants.Keys.appName.localized(), message: Constants.Keys.errorNoRefreshTokenFound.localized()) {
+                self.clearTextField()
+            }
         }
     }
 
     private func onDidDisappear() {
         self.logoIconImage.transform = CGAffineTransform.identity
-        self.emailTextField.text = ""
-        self.passwordTextField.text = ""
+        self.clearTextField()
     }
 }
 
