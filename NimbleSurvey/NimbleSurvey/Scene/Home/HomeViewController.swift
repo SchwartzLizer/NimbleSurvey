@@ -70,6 +70,9 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var profileButtonView: UIButton!
 
+    @IBOutlet weak var stackViewToday: UIStackView!
+    @IBOutlet weak var stackViewTitle: UIStackView!
+
     // MARK: Private
 
     private var pageControl = CustomPageControl()
@@ -78,7 +81,7 @@ class HomeViewController: UIViewController {
     private lazy var theme = StyleSheetManager.currentTheme()
     private lazy var font = StyleSheetManager.currentFontTheme()
     private var menu: SideMenuNavigationController?
-    private var pageIndex: Int = 0
+    private var pageIndex = 0
 
     private var cellBackgroundList: [(identifier: String, nib: UINib)] {
         return [
@@ -121,11 +124,19 @@ extension HomeViewController: Action {
     }
 
     @objc
-    func handleBacktoHomeNotification(_: Notification) {
-    }
+    func handleBacktoHomeNotification(_: Notification) { }
 
 
-    @IBAction func didSelectStartSurvey(_ sender: UIButton) {
+    @IBAction
+    func didSelectStartSurvey(_: UIButton) {
+        self.surveyCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .left, animated: true)
+        self.surveyCollectionView.reloadData()
+
+        self.backgroundCollectionView.isUserInteractionEnabled = false
+
+        self.stackViewTitle.isHidden = true
+        self.stackViewToday.isHidden = true
+        self.surveyCollectionView.isHidden = false
     }
 
 }
@@ -238,58 +249,80 @@ extension HomeViewController: UserInterfaceSetup, UICollectionViewDelegate, UICo
 
     // MARK: Internal
 
-    func collectionView(_: UICollectionView, numberOfItemsInSection _: Int) -> Int {
-        if self.viewModel.datas.isEmpty {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection _: Int) -> Int {
+        switch collectionView {
+        case self.backgroundCollectionView:
+            if self.viewModel.datas.isEmpty {
+                return 1
+            }
+            return self.viewModel.datas.count
+        case self.surveyCollectionView:
             return 1
+        default: return 0
         }
-        return self.viewModel.datas.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if self.viewModel.datas.isEmpty {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "emptyCellIdentifier", for: indexPath)
-            cell.backgroundColor = self.theme.emptyCellBackgroundColor
-            return cell
-        }
-
         switch collectionView {
         case self.backgroundCollectionView:
-            guard
-                let cell = collectionView.dequeueReusableCell(
-                    withReuseIdentifier: HomeBackgroundCollectionViewCell.identifier,
-                    for: indexPath) as? HomeBackgroundCollectionViewCell,
-                let path = self.viewModel.datas[indexPath.row].attributes?.coverImageURL,
-                let url = URL(string: path + "l") // "l" for high resolution
-            else {
-                return UICollectionViewCell()
+            if self.viewModel.datas.isEmpty {
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "emptyCellIdentifier", for: indexPath)
+                cell.backgroundColor = self.theme.emptyCellBackgroundColor
+                return cell
+            } else {
+                guard
+                    let cell = collectionView.dequeueReusableCell(
+                        withReuseIdentifier: HomeBackgroundCollectionViewCell.identifier,
+                        for: indexPath) as? HomeBackgroundCollectionViewCell,
+                    let path = self.viewModel.datas[indexPath.row].attributes?.coverImageURL,
+                    let url = URL(string: path + "l") // "l" for high resolution
+                else {
+                    return UICollectionViewCell()
+                }
+                cell.viewModel = HomeBackgroundCollectionViewModel(url: url)
+                return cell
             }
-            cell.viewModel = HomeBackgroundCollectionViewModel(url: url)
-            return cell
         case self.surveyCollectionView:
-            guard let cell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: WelcomeSurveyCollectionViewCell.identifier,
-                for: indexPath) as? WelcomeSurveyCollectionViewCell
-            else {
-                return UICollectionViewCell()
-            }
-                guard let title = self.viewModel.datas[self.pageIndex].attributes?.title else { return UICollectionViewCell() }
-                guard let description = self.viewModel.datas[self.pageIndex].attributes?.description else { return UICollectionViewCell() }
+            if self.viewModel.datas.isEmpty {
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "emptyCellIdentifier", for: indexPath)
+                cell.backgroundColor = .clear
+                return cell
+            } else {
+                guard
+                    let cell = collectionView.dequeueReusableCell(
+                        withReuseIdentifier: WelcomeSurveyCollectionViewCell.identifier,
+                        for: indexPath) as? WelcomeSurveyCollectionViewCell
+                else {
+                    return UICollectionViewCell()
+                }
+                guard let title = self.viewModel.datas[self.pageIndex].attributes?.title
+                else { return UICollectionViewCell() }
+                guard let description = self.viewModel.datas[self.pageIndex].attributes?.description
+                else { return UICollectionViewCell() }
                 let model = WelcomeSurveyCollectionModel(
                     title: title,
                     description: description)
+                cell.contentView.backgroundColor = .clear
+                cell.backgroundColor = .clear
                 cell.viewModel = WelcomeSurveyCollectionViewModel(model: model)
-            return cell
+                return cell
+            }
         default: return UICollectionViewCell()
         }
     }
 
     func collectionView(
-        _: UICollectionView,
+        _ collectionView: UICollectionView,
         layout _: UICollectionViewLayout,
         sizeForItemAt _: IndexPath)
         -> CGSize
     {
-        return CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+        switch collectionView {
+            case self.backgroundCollectionView: return CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+            case self.surveyCollectionView: return CGSize(width: self.surveyCollectionView.bounds.width, height: self.surveyCollectionView.bounds.height)
+            default: return CGSize(width: 0, height: 0)
+        }
+
     }
 
     internal func setupUI() {
@@ -338,6 +371,7 @@ extension HomeViewController: UserInterfaceSetup, UICollectionViewDelegate, UICo
         }
 
         self.cellSurveyList.forEach { self.surveyCollectionView.register($0.nib, forCellWithReuseIdentifier: $0.identifier) }
+        self.surveyCollectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "emptyCellIdentifier")
         self.surveyCollectionView.delegate = self
         self.surveyCollectionView.dataSource = self
         if let layout = surveyCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
@@ -345,6 +379,7 @@ extension HomeViewController: UserInterfaceSetup, UICollectionViewDelegate, UICo
             layout.minimumLineSpacing = 0
             layout.minimumInteritemSpacing = 0
         }
+        self.surveyCollectionView.backgroundColor = .clear
         self.surveyCollectionView.isPagingEnabled = true
     }
 

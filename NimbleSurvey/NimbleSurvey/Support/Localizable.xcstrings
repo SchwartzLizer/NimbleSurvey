@@ -144,7 +144,7 @@
         }
       }
     },
-    "startSurveyBTN" : {
+    "StartSurveyBTN_Key" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {

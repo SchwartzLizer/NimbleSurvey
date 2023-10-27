@@ -54,7 +54,7 @@ class WelcomeSurveyCollectionViewCell: UICollectionViewCell {
 extension WelcomeSurveyCollectionViewCell: Action {
     @IBAction
     func didSelectBack(_: UIButton) {
-        NotificationCenter.default.post(name: .refreshSurvey, object: nil)
+        NotificationCenter.default.post(name: .backSurvey, object: nil)
     }
 }
 
@@ -102,9 +102,8 @@ extension WelcomeSurveyCollectionViewCell: ApplyTheme {
     }
 
     private func applyThemeBackButton() {
-        let backButton = UIButton(type: .custom)
         let backImage = UIImage(named: Constants.Assest.back)
-        backButton.setImage(backImage, for: .normal)
+        self.backButtonView.setImage(backImage, for: .normal)
     }
 
 

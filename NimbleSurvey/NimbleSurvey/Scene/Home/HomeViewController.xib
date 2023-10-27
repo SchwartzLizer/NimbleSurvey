@@ -17,6 +17,8 @@
                 <outlet property="pageControlView" destination="J4c-JR-JBX" id="KMS-iV-m8M"/>
                 <outlet property="profileButtonView" destination="UPZ-YM-mjr" id="uiH-Ki-R78"/>
                 <outlet property="profileImageView" destination="Md9-w3-Gzv" id="tEo-rh-qb5"/>
+                <outlet property="stackViewTitle" destination="aok-6F-Ooj" id="3Gd-i2-VQE"/>
+                <outlet property="stackViewToday" destination="aSl-8P-jOD" id="yBx-0y-51L"/>
                 <outlet property="subTitleLabel" destination="QOx-8v-P4s" id="OGL-fW-zlt"/>
                 <outlet property="surveyCollectionView" destination="kth-8l-hFX" id="rPY-su-rmy"/>
                 <outlet property="titleLabel" destination="3Z2-fe-1sc" id="y6G-S3-ZaF"/>
@@ -114,7 +116,7 @@
                         </stackView>
                     </subviews>
                 </stackView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J4c-JR-JBX">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J4c-JR-JBX" userLabel="PageControl">
                     <rect key="frame" x="20" y="634" width="353" height="30"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
