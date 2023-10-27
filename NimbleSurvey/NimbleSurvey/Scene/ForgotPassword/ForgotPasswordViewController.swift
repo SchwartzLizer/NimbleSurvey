@@ -34,8 +34,21 @@ class ForgotPasswordViewController: UIViewController {
         return String(describing: self)
     }
 
+    // MARK: Internal
+
+    @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var textFieldBackgroundView: UIView!
+    @IBOutlet weak var backgroundImageView: UIImageView!
+    @IBOutlet weak var iconImageView: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var resetButtonView: UIButton!
+
     // MARK: Private
 
+    private var notificationView: UIView!
+    private lazy var theme = StyleSheetManager.currentTheme()
+    private lazy var font = StyleSheetManager.currentFontTheme()
     private var ViewModel: ForgotPasswordViewModel
+    private var navbar: CGFloat = 0
 
 }
