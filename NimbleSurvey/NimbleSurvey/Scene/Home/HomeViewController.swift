@@ -83,12 +83,12 @@ extension HomeViewController: Action {
     func handlePullToRefreshNotification(_: Notification) {
         self.isRefreshing = true
         self.showSkeletonView()
-        if self.collectionView.numberOfItems(inSection: 0) > 0 {
+        if self.backgroundCollectionView.numberOfItems(inSection: 0) > 0 {
             let firstItemIndexPath = IndexPath(item: 0, section: 0)
-            self.collectionView.scrollToItem(at: firstItemIndexPath, at: .left, animated: true)
+            self.backgroundCollectionView.scrollToItem(at: firstItemIndexPath, at: .left, animated: true)
         }
         self.viewModel.clearData()
-        self.collectionView.reloadData()
+        self.backgroundCollectionView.reloadData()
         self.viewModel.pullToRefresh()
     }
 
@@ -110,7 +110,7 @@ extension HomeViewController: Updated {
     private func onUpdated() {
         self.viewModel.onUpdated = { [weak self] in
             guard let self = self else { return }
-            self.collectionView.reloadData()
+            self.backgroundCollectionView.reloadData()
             self.hideSkeletonView()
             self.pageControl.numberOfPages = self.viewModel.datas.count
             self.pageControl.currentPage = 0
