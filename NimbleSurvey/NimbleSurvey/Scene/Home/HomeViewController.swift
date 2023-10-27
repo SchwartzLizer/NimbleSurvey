@@ -26,6 +26,24 @@ class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.applyTheme()
+        self.onInitialized()
+        self.setupUI()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+
+    override func viewDidAppear(_: Bool) {
+        super.viewDidAppear(true)
+        showSkeletonView()
+        self.viewModel.requestData(accessToken: UserDefault().getAccessToken() ?? "")
+    }
+
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 
     // MARK: Public
