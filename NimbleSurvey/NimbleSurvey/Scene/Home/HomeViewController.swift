@@ -180,58 +180,70 @@ extension HomeViewController: Updated {
     private func onUpdated() {
         self.viewModel.onUpdated = { [weak self] in
             guard let self = self else { return }
-            self.backgroundCollectionView.reloadData()
             self.hideSkeletonView()
-            self.pageControl.numberOfPages = self.viewModel.datas.count
-            self.pageControl.currentPage = 0
-            self.pageControl.translatesAutoresizingMaskIntoConstraints = false
-            self.pageControlView.addSubview(self.pageControl)
-            let leadingConstraint = NSLayoutConstraint(
-                item: pageControl,
-                attribute: .leading,
-                relatedBy: .equal,
-                toItem: pageControlView,
-                attribute: .leading,
-                multiplier: 1,
-                constant: 0) // Adjust constant value for left margin
-
-            // Center pageControl vertically within pageControlView
-            let centerYConstraint = NSLayoutConstraint(
-                item: pageControl,
-                attribute: .centerY,
-                relatedBy: .equal,
-                toItem: pageControlView,
-                attribute: .centerY,
-                multiplier: 1,
-                constant: 0)
-
-            self.pageControlView.addConstraints([leadingConstraint, centerYConstraint])
-            self.todayLabel.text = Constants.Keys.todaySurvey.localized()
-
-            guard
-                let title = self.viewModel.lists.first?.title,
-                let subTitle = self.viewModel.lists.first?.subTitle
-            else { return }
-            self.titleLabel.text = title
-            self.subTitleLabel.text = subTitle
-
-            self.dateLabel.text = self.viewModel.processDate()
-            guard let avatarPath = self.viewModel.profileData.avatarURL else { return }
-            guard let avatarURL = URL(string: avatarPath) else { return }
-            self.profileImageView.setProfileFromURL(url: avatarURL)
-            self.enterSurveyButton.setImage(UIImage(named: Constants.Assest.action), for: .normal)
-            self.profileButtonView.isUserInteractionEnabled = true
-
-            if self.menu == nil {
-                guard let name = self.viewModel.profileData.name else { return }
-                guard let profileURL = self.viewModel.profileData.avatarURL else { return }
-                let rightMenuModel = RightMenuModel(name: name, profileImage: profileURL)
-                let rightMenuViewModel = RightMenuViewModel(model: rightMenuModel)
-                let rightMenuVC = RightMenuViewController(viewModel: rightMenuViewModel)
-                self.menu = SideMenuNavigationController(rootViewController: rightMenuVC)
-                self.menu?.presentationStyle = .menuSlideIn
-            }
+            self.pageControlOnUpdate()
+            self.labelOnUpdate()
+            self.buttonOnUpdate()
+            self.rightMenuOnUpdate()
             self.isRefreshing = false
+        }
+    }
+
+    private func pageControlOnUpdate() {
+        self.pageControl.numberOfPages = self.viewModel.datas.count
+        self.pageControl.currentPage = 0
+        self.pageControl.translatesAutoresizingMaskIntoConstraints = false
+        self.pageControlView.addSubview(self.pageControl)
+        let leadingConstraint = NSLayoutConstraint(
+            item: pageControl,
+            attribute: .leading,
+            relatedBy: .equal,
+            toItem: pageControlView,
+            attribute: .leading,
+            multiplier: 1,
+            constant: 0)
+        let centerYConstraint = NSLayoutConstraint(
+            item: pageControl,
+            attribute: .centerY,
+            relatedBy: .equal,
+            toItem: pageControlView,
+            attribute: .centerY,
+            multiplier: 1,
+            constant: 0)
+        self.pageControlView.addConstraints([leadingConstraint, centerYConstraint])
+    }
+
+    private func labelOnUpdate() {
+        self.todayLabel.text = Constants.Keys.todaySurvey.localized()
+        guard
+            let title = self.viewModel.lists.first?.title,
+            let subTitle = self.viewModel.lists.first?.subTitle
+        else { return }
+        self.titleLabel.text = title
+        self.subTitleLabel.text = subTitle
+        self.dateLabel.text = self.viewModel.processDate()
+    }
+
+    private func buttonOnUpdate() {
+        guard
+            let avatarPath = self.viewModel.profileData.avatarURL,
+            let avatarURL = URL(string: avatarPath)
+        else { return }
+        self.profileImageView.setProfileFromURL(url: avatarURL)
+        self.profileButtonView.isUserInteractionEnabled = true
+        self.backgroundCollectionView.reloadData()
+        self.enterSurveyButton.setImage(UIImage(named: Constants.Assest.action), for: .normal)
+    }
+
+    private func rightMenuOnUpdate() {
+        if self.menu == nil {
+            guard let name = self.viewModel.profileData.name else { return }
+            guard let profileURL = self.viewModel.profileData.avatarURL else { return }
+            let rightMenuModel = RightMenuModel(name: name, profileImage: profileURL)
+            let rightMenuViewModel = RightMenuViewModel(model: rightMenuModel)
+            let rightMenuVC = RightMenuViewController(viewModel: rightMenuViewModel)
+            self.menu = SideMenuNavigationController(rootViewController: rightMenuVC)
+            self.menu?.presentationStyle = .menuSlideIn
         }
     }
 
@@ -341,11 +353,14 @@ extension HomeViewController: UserInterfaceSetup, UICollectionViewDelegate, UICo
         -> CGSize
     {
         switch collectionView {
-            case self.backgroundCollectionView: return CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
-            case self.surveyCollectionView: return CGSize(width: self.surveyCollectionView.bounds.width, height: self.surveyCollectionView.bounds.height)
-            default: return CGSize(width: 0, height: 0)
+        case self.backgroundCollectionView: return CGSize(
+                width: UIScreen.main.bounds.width,
+                height: UIScreen.main.bounds.height)
+        case self.surveyCollectionView: return CGSize(
+                width: self.surveyCollectionView.bounds.width,
+                height: self.surveyCollectionView.bounds.height)
+        default: return CGSize(width: 0, height: 0)
         }
-
     }
 
     internal func setupUI() {
