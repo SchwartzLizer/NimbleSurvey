@@ -11,7 +11,6 @@
 		1622EF552AEB53E000E37506 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1691F7CE2AEAD3EC00D0AE30 /* AppDelegate.swift */; };
 		1622EF562AEB53F700E37506 /* NimbleSurvey.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1691F7D72AEAD3EC00D0AE30 /* NimbleSurvey.xcdatamodeld */; };
 		1622EF5B2AEB54F800E37506 /* NimbleSurveyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1622EF592AEB54F800E37506 /* NimbleSurveyUITests.swift */; };
-		1622EF5C2AEB54F800E37506 /* NimbleSurveyUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1622EF5A2AEB54F800E37506 /* NimbleSurveyUITestsLaunchTests.swift */; };
 		1622EF5F2AEB5DF300E37506 /* HomeBackgroundCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1622EF5D2AEB5DF300E37506 /* HomeBackgroundCollectionViewCell.swift */; };
 		1622EF602AEB5DF300E37506 /* HomeBackgroundCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1622EF5D2AEB5DF300E37506 /* HomeBackgroundCollectionViewCell.swift */; };
 		1622EF612AEB5DF300E37506 /* HomeBackgroundCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1622EF5E2AEB5DF300E37506 /* HomeBackgroundCollectionViewCell.xib */; };
@@ -170,7 +169,6 @@
 
 /* Begin PBXFileReference section */
 		1622EF592AEB54F800E37506 /* NimbleSurveyUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NimbleSurveyUITests.swift; sourceTree = "<group>"; };
-		1622EF5A2AEB54F800E37506 /* NimbleSurveyUITestsLaunchTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NimbleSurveyUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		1622EF5D2AEB5DF300E37506 /* HomeBackgroundCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBackgroundCollectionViewCell.swift; sourceTree = "<group>"; };
 		1622EF5E2AEB5DF300E37506 /* HomeBackgroundCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeBackgroundCollectionViewCell.xib; sourceTree = "<group>"; };
 		1622EF642AEB63DF00E37506 /* WelcomeSurveyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeSurveyCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -351,7 +349,6 @@
 			isa = PBXGroup;
 			children = (
 				1622EF592AEB54F800E37506 /* NimbleSurveyUITests.swift */,
-				1622EF5A2AEB54F800E37506 /* NimbleSurveyUITestsLaunchTests.swift */,
 				16C16A9D2AEB97D100FB58AC /* SnapshotHelper.swift */,
 			);
 			path = NimbleSurveyUITests;
@@ -1035,7 +1032,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1622EF5B2AEB54F800E37506 /* NimbleSurveyUITests.swift in Sources */,
-				1622EF5C2AEB54F800E37506 /* NimbleSurveyUITestsLaunchTests.swift in Sources */,
 				16C16A9E2AEB97D100FB58AC /* SnapshotHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
