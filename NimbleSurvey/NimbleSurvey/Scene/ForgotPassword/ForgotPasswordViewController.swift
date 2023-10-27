@@ -29,10 +29,10 @@ class ForgotPasswordViewController: UIViewController {
         self.onInitialized()
     }
 
-    override func viewDidDisappear(_ animated: Bool) {
-        self.emailTextField.text = ""
+    override func viewDidDisappear(_: Bool) {
+        self.clearTextField()
     }
-    
+
     // MARK: Public
 
     public static var nib: UINib {
@@ -94,7 +94,7 @@ extension ForgotPasswordViewController: Action {
             if completed {
                 // Automatically dismiss after 3 seconds
                 self.perform(#selector(self.hideNotification), with: nil, afterDelay: 2.0)
-                self.emailTextField.text = ""
+                self.clearTextField()
             }
         }
     }
@@ -123,7 +123,7 @@ extension ForgotPasswordViewController: Updated {
     private func onFailure() {
         self.ViewModel.resetFailed = { message in
             Loader.shared.hideLoader()
-            AlertUtility.showAlert(title: "Error", message: message)
+            AlertUtility.showAlert(title: Constants.Keys.appName.localized(), message: message)
         }
     }
 
@@ -174,8 +174,14 @@ extension ForgotPasswordViewController: UserInterfaceSetup {
         self.navigationController?.view.addSubview(self.notificationView)
     }
 
+    private func clearTextField() {
+        self.emailTextField.text = ""
+    }
+
 }
 
+
+// MARK: ApplyTheme
 
 extension ForgotPasswordViewController: ApplyTheme {
 
@@ -216,7 +222,7 @@ extension ForgotPasswordViewController: ApplyTheme {
             string: Constants.Keys.emailTF.localized(),
             attributes: [NSAttributedString.Key.foregroundColor: self.theme.placeholderLabelColor])
         self.emailTextField.font = self.font.textLabelFontSize
-        self.emailTextField.textColor = theme.textfieldLabelColor
+        self.emailTextField.textColor = self.theme.textfieldLabelColor
     }
 
     private func applyThemeResetButton() {

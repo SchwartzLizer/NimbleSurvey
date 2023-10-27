@@ -22,6 +22,7 @@ enum Constants {
         static let errorNoAccessTokenFound = "Error_NoAccessTokenFound"
         static let notificationResetEmailTitle = "Notification_ResetEmailTitle"
         static let notificationResetEmailMessage = "Notification_ResetEmailMessage"
+        static let appName = "AppName_Key"
     }
 
     enum ServiceKeys {

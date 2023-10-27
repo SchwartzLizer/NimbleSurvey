@@ -1,6 +1,17 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "AppName_Key" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nimble Survey"
+          }
+        }
+      }
+    },
     "emailTF_Key" : {
       "extractionState" : "manual",
       "localizations" : {
