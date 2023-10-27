@@ -145,6 +145,7 @@
 		1691F8DD2AEAE38C00D0AE30 /* ForgotPasswordUnitTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1691F8DC2AEAE38C00D0AE30 /* ForgotPasswordUnitTest.swift */; };
 		1691F8DF2AEAE53100D0AE30 /* TokenRefresher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1691F8DE2AEAE53100D0AE30 /* TokenRefresher.swift */; };
 		1691F8E02AEAE53100D0AE30 /* TokenRefresher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1691F8DE2AEAE53100D0AE30 /* TokenRefresher.swift */; };
+		16C16A9E2AEB97D100FB58AC /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C16A9D2AEB97D100FB58AC /* SnapshotHelper.swift */; };
 		390504E14DEC605C3BEFE1A0 /* Pods_NimbleSurvey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6942B8E3CF1A1E99EEFD1F3F /* Pods_NimbleSurvey.framework */; };
 		5916B312550746DD8A4F3D82 /* Pods_NimbleSurveyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 466F709E889635EE1E69F567 /* Pods_NimbleSurveyTests.framework */; };
 		5B7AE6F80E5D3DE4FE3A4B92 /* Pods_NimbleSurvey_NimbleSurveyUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E47FA3A6B4E2112B8D1CA790 /* Pods_NimbleSurvey_NimbleSurveyUITests.framework */; };
@@ -247,6 +248,7 @@
 		1691F8DA2AEAE31F00D0AE30 /* LoginUnitTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUnitTest.swift; sourceTree = "<group>"; };
 		1691F8DC2AEAE38C00D0AE30 /* ForgotPasswordUnitTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordUnitTest.swift; sourceTree = "<group>"; };
 		1691F8DE2AEAE53100D0AE30 /* TokenRefresher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenRefresher.swift; sourceTree = "<group>"; };
+		16C16A9D2AEB97D100FB58AC /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotHelper.swift; path = fastlane/SnapshotHelper.swift; sourceTree = SOURCE_ROOT; };
 		1C31DED4DD8BC742FDE1488C /* Pods-NimbleSurvey.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NimbleSurvey.debug.xcconfig"; path = "Target Support Files/Pods-NimbleSurvey/Pods-NimbleSurvey.debug.xcconfig"; sourceTree = "<group>"; };
 		466F709E889635EE1E69F567 /* Pods_NimbleSurveyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NimbleSurveyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6942B8E3CF1A1E99EEFD1F3F /* Pods_NimbleSurvey.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NimbleSurvey.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -350,6 +352,7 @@
 			children = (
 				1622EF592AEB54F800E37506 /* NimbleSurveyUITests.swift */,
 				1622EF5A2AEB54F800E37506 /* NimbleSurveyUITestsLaunchTests.swift */,
+				16C16A9D2AEB97D100FB58AC /* SnapshotHelper.swift */,
 			);
 			path = NimbleSurveyUITests;
 			sourceTree = "<group>";
@@ -1033,6 +1036,7 @@
 			files = (
 				1622EF5B2AEB54F800E37506 /* NimbleSurveyUITests.swift in Sources */,
 				1622EF5C2AEB54F800E37506 /* NimbleSurveyUITestsLaunchTests.swift in Sources */,
+				16C16A9E2AEB97D100FB58AC /* SnapshotHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
