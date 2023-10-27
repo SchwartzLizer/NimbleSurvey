@@ -10,16 +10,16 @@ import Foundation
 // MARK: - HomeModel
 
 struct HomeModel: Codable {
-    let data: [SurveyHomeModel]?
+    let data: [HomeDataModel]?
 
-    init(data: [SurveyHomeModel]?) {
+    init(data: [HomeDataModel]?) {
         self.data = data
     }
 }
 
-// MARK: - SurveyHomeModel
+// MARK: - HomeDataModel
 
-struct SurveyHomeModel: Codable, Equatable {
+struct HomeDataModel: Codable, Equatable {
     let title: String?
     let subTitle: String?
 
@@ -28,3 +28,4 @@ struct SurveyHomeModel: Codable, Equatable {
         self.subTitle = subTitle
     }
 }
+
