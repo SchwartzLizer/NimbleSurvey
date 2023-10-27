@@ -17,6 +17,16 @@ class HomeBackgroundCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         applyTheme()
         setupUI()
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(self.handleZoomInNotification(_:)),
+            name: .zoomInBackground,
+            object: nil)
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(self.handleZoomOutNotification(_:)),
+            name: .zoomOutBackground,
+            object: nil)
     }
 
     // MARK: Public
@@ -67,6 +77,22 @@ extension HomeBackgroundCollectionViewCell: Action,UIScrollViewDelegate {
             self.scrollView.contentOffset.y = -59 // protect scroll down
         }
     }
+
+    @objc
+    func handleZoomInNotification(_: Notification) {
+        let zoomScale: CGFloat = 1.30 // 100% + 30%
+        UIView.animate(withDuration: 0.5, animations: {
+            self.backgroundImage.transform = CGAffineTransform(scaleX: zoomScale, y: zoomScale)
+        })
+    }
+
+    @objc
+    func handleZoomOutNotification(_: Notification) {
+        UIView.animate(withDuration: 0.5, animations: {
+            self.backgroundImage.transform = CGAffineTransform.identity
+        })
+    }
+
 
     // MARK: Private
 

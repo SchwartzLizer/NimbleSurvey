@@ -125,6 +125,7 @@ extension HomeViewController: Action {
 
     @objc
     func handleBacktoHomeNotification(_: Notification) { 
+        NotificationCenter.default.post(name: .zoomOutBackground, object: nil)
         self.surveyCollectionView.isHidden = true
         self.backgroundCollectionView.isUserInteractionEnabled = true
 
@@ -137,6 +138,7 @@ extension HomeViewController: Action {
 
     @IBAction
     func didSelectStartSurvey(_: UIButton) {
+        NotificationCenter.default.post(name: .zoomInBackground, object: nil)
         self.surveyCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .left, animated: true)
         self.surveyCollectionView.reloadData()
 
