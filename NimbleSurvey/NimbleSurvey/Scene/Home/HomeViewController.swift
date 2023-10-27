@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SkeletonView
 import SideMenu
 
 // MARK: - HomeViewController
@@ -91,4 +92,102 @@ extension HomeViewController: Action {
         self.viewModel.pullToRefresh()
     }
 
+}
+
+// MARK: Updated
+
+extension HomeViewController: Updated {
+
+    // MARK: Internal
+
+    internal func onInitialized() {
+        self.onUpdated()
+        self.onScrollUpdated()
+    }
+
+    // MARK: Private
+
+    private func onUpdated() {
+        self.viewModel.onUpdated = { [weak self] in
+            guard let self = self else { return }
+            self.collectionView.reloadData()
+            self.hideSkeletonView()
+            self.pageControl.numberOfPages = self.viewModel.datas.count
+            self.pageControl.currentPage = 0
+            pageControl.translatesAutoresizingMaskIntoConstraints = false
+            self.pageControlView.addSubview(self.pageControl)
+            let leadingConstraint = NSLayoutConstraint(item: pageControl,
+                                                      attribute: .leading,
+                                                      relatedBy: .equal,
+                                                      toItem: pageControlView,
+                                                      attribute: .leading,
+                                                      multiplier: 1,
+                                                      constant: 0) // Adjust constant value for left margin
+
+            // Center pageControl vertically within pageControlView
+            let centerYConstraint = NSLayoutConstraint(item: pageControl,
+                                                      attribute: .centerY,
+                                                      relatedBy: .equal,
+                                                      toItem: pageControlView,
+                                                      attribute: .centerY,
+                                                      multiplier: 1,
+                                                      constant: 0)
+
+            pageControlView.addConstraints([leadingConstraint, centerYConstraint])
+            self.todayLabel.text = Constants.Keys.todaySurvey.localized()
+
+            guard
+                let title = self.viewModel.lists.first?.title,
+                let subTitle = self.viewModel.lists.first?.subTitle
+            else { return }
+            self.titleLabel.text = title
+            self.subTitleLabel.text = subTitle
+
+            self.dateLabel.text = self.viewModel.processDate()
+            guard let avatarPath = self.viewModel.profileData.avatarURL else { return }
+            guard let avatarURL = URL(string: avatarPath) else { return }
+            self.profileImageView.setProfileFromURL(url: avatarURL)
+            self.enterSurveyButton.setImage(UIImage(named: Constants.Assest.action), for: .normal)
+            self.profileButtonView.isUserInteractionEnabled = true
+
+            if self.menu == nil {
+                guard let name = self.viewModel.profileData.name else { return }
+                guard let profileURL = self.viewModel.profileData.avatarURL else { return }
+                let rightMenuModel = RightMenuModel(name: name, profileImage: profileURL)
+                let rightMenuViewModel = RightMenuViewModel(model: rightMenuModel)
+                let rightMenuVC = RightMenuViewController(viewModel: rightMenuViewModel)
+                self.menu = SideMenuNavigationController(rootViewController: rightMenuVC)
+                self.menu?.presentationStyle = .menuSlideIn
+            }
+            self.isRefreshing = false
+        }
+    }
+
+    private func onScrollUpdated() {
+        self.viewModel.onScrollUpdated = { [weak self] data in
+            guard let self = self else { return }
+            self.titleLabel.text = data.title
+            self.subTitleLabel.text = data.subTitle
+        }
+    }
+
+    private func showSkeletonView() {
+        self.titleLabel.showGradientSkeleton()
+        self.subTitleLabel.showAnimatedGradientSkeleton()
+        self.todayLabel.showAnimatedGradientSkeleton()
+        self.dateLabel.showAnimatedGradientSkeleton()
+        self.profileImageView.showAnimatedGradientSkeleton()
+        self.enterSurveyButton.showAnimatedGradientSkeleton()
+        self.pageControlView.showAnimatedGradientSkeleton()
+    }
+
+    private func hideSkeletonView() {
+        self.titleLabel.hideSkeleton()
+        self.subTitleLabel.hideSkeleton()
+        self.todayLabel.hideSkeleton()
+        self.dateLabel.hideSkeleton()
+        self.profileImageView.hideSkeleton()
+        self.enterSurveyButton.hideSkeleton()
+        self.pageControlView.hideSkeleton()
+    }
 }
