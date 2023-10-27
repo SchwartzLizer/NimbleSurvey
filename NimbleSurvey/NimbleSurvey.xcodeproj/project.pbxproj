@@ -10,6 +10,8 @@
 		1622EF542AEB53D200E37506 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1691F7D22AEAD3EC00D0AE30 /* LoginViewController.swift */; };
 		1622EF552AEB53E000E37506 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1691F7CE2AEAD3EC00D0AE30 /* AppDelegate.swift */; };
 		1622EF562AEB53F700E37506 /* NimbleSurvey.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1691F7D72AEAD3EC00D0AE30 /* NimbleSurvey.xcdatamodeld */; };
+		1622EF5B2AEB54F800E37506 /* NimbleSurveyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1622EF592AEB54F800E37506 /* NimbleSurveyUITests.swift */; };
+		1622EF5C2AEB54F800E37506 /* NimbleSurveyUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1622EF5A2AEB54F800E37506 /* NimbleSurveyUITestsLaunchTests.swift */; };
 		1691F7CF2AEAD3EC00D0AE30 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1691F7CE2AEAD3EC00D0AE30 /* AppDelegate.swift */; };
 		1691F7D12AEAD3EC00D0AE30 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1691F7D02AEAD3EC00D0AE30 /* SceneDelegate.swift */; };
 		1691F7D32AEAD3EC00D0AE30 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1691F7D22AEAD3EC00D0AE30 /* LoginViewController.swift */; };
@@ -158,6 +160,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1622EF592AEB54F800E37506 /* NimbleSurveyUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NimbleSurveyUITests.swift; sourceTree = "<group>"; };
+		1622EF5A2AEB54F800E37506 /* NimbleSurveyUITestsLaunchTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NimbleSurveyUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		1691F7CB2AEAD3EC00D0AE30 /* NimbleSurvey.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NimbleSurvey.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1691F7CE2AEAD3EC00D0AE30 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1691F7D02AEAD3EC00D0AE30 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -321,6 +325,8 @@
 		1691F7F12AEAD3ED00D0AE30 /* NimbleSurveyUITests */ = {
 			isa = PBXGroup;
 			children = (
+				1622EF592AEB54F800E37506 /* NimbleSurveyUITests.swift */,
+				1622EF5A2AEB54F800E37506 /* NimbleSurveyUITestsLaunchTests.swift */,
 			);
 			path = NimbleSurveyUITests;
 			sourceTree = "<group>";
@@ -694,6 +700,7 @@
 					};
 					1691F7ED2AEAD3ED00D0AE30 = {
 						CreatedOnToolsVersion = 15.0.1;
+						LastSwiftMigration = 1500;
 						TestTargetID = 1691F7CA2AEAD3EC00D0AE30;
 					};
 				};
@@ -992,6 +999,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1622EF5B2AEB54F800E37506 /* NimbleSurveyUITests.swift in Sources */,
+				1622EF5C2AEB54F800E37506 /* NimbleSurveyUITestsLaunchTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1256,6 +1265,7 @@
 			baseConfigurationReference = D2F89D95B1B22DCE631B058B /* Pods-NimbleSurvey-NimbleSurveyUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = V7YAHHBGTK;
@@ -1264,6 +1274,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.tanatip.NimbleSurveyUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = NimbleSurvey;
@@ -1275,6 +1286,7 @@
 			baseConfigurationReference = CBB878301DB48F0AFA046779 /* Pods-NimbleSurvey-NimbleSurveyUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = V7YAHHBGTK;
