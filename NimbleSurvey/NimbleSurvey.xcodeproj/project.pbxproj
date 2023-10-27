@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1622EF542AEB53D200E37506 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1691F7D22AEAD3EC00D0AE30 /* LoginViewController.swift */; };
+		1622EF552AEB53E000E37506 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1691F7CE2AEAD3EC00D0AE30 /* AppDelegate.swift */; };
+		1622EF562AEB53F700E37506 /* NimbleSurvey.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1691F7D72AEAD3EC00D0AE30 /* NimbleSurvey.xcdatamodeld */; };
 		1691F7CF2AEAD3EC00D0AE30 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1691F7CE2AEAD3EC00D0AE30 /* AppDelegate.swift */; };
 		1691F7D12AEAD3EC00D0AE30 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1691F7D02AEAD3EC00D0AE30 /* SceneDelegate.swift */; };
 		1691F7D32AEAD3EC00D0AE30 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1691F7D22AEAD3EC00D0AE30 /* LoginViewController.swift */; };
@@ -926,6 +929,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1622EF542AEB53D200E37506 /* LoginViewController.swift in Sources */,
 				1691F8E02AEAE53100D0AE30 /* TokenRefresher.swift in Sources */,
 				1691F8DB2AEAE31F00D0AE30 /* LoginUnitTest.swift in Sources */,
 				1691F8852AEAE03200D0AE30 /* AssetsManager.swift in Sources */,
@@ -939,6 +943,7 @@
 				1691F8D92AEAE30800D0AE30 /* HomeUnitTest.swift in Sources */,
 				1691F8BD2AEAE1D500D0AE30 /* NotificationViewController.swift in Sources */,
 				1691F81F2AEAD9B200D0AE30 /* Router.swift in Sources */,
+				1622EF562AEB53F700E37506 /* NimbleSurvey.xcdatamodeld in Sources */,
 				1691F82E2AEADA8B00D0AE30 /* ForgotPasswordModel.swift in Sources */,
 				1691F86E2AEADE1700D0AE30 /* UserDefault.swift in Sources */,
 				1691F8462AEADBFB00D0AE30 /* Protocol+Extension.swift in Sources */,
@@ -958,6 +963,7 @@
 				1691F8592AEADD2D00D0AE30 /* Loader.swift in Sources */,
 				1691F8AA2AEAE15F00D0AE30 /* HomeViewModel.swift in Sources */,
 				1691F8922AEAE0B000D0AE30 /* ButtonPresets.swift in Sources */,
+				1622EF552AEB53E000E37506 /* AppDelegate.swift in Sources */,
 				1691F8892AEAE06200D0AE30 /* StyleSheetManager.swift in Sources */,
 				1691F8952AEAE0D200D0AE30 /* ViewPresets.swift in Sources */,
 				1691F8772AEADF1D00D0AE30 /* FilesManagerHelper.swift in Sources */,

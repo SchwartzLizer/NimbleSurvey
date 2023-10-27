@@ -6,8 +6,6 @@
 //
 
 import XCTest
-
-import XCTest
 @testable import NimbleSurvey
 
 final class LoginUnitTest: XCTestCase {

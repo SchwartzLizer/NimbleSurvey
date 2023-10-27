@@ -9,27 +9,78 @@ import XCTest
 
 final class ForgotPasswordUnitTest: XCTestCase {
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    var viewModel: ForgotPasswordViewModel!
+
+    override func setUp() {
+        super.setUp()
+        self.viewModel = ForgotPasswordViewModel()
     }
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    override func tearDown() {
+        self.viewModel = nil
+        super.tearDown()
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
-    }
+    // MARK: 403 - invalid client
+    func testSignInInvaildClient() {
+        let expectation = self.expectation(description: "Test Forgot Passwrod invalid client")
+        let email = "dev@nimblehq.co"
+        let clientID = ""
+        let clientSecret = ""
 
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+        let router = Router.forgotPassword(email: email, clientID: clientID, clientSecret: clientSecret)
+
+
+        NetworkManager.shared.request(router: router) { (result: NetworkResult<LoginModel, NetworkError>) in
+            switch result {
+            case .success:
+                XCTFail("Expected failure for 'invalid grant' but got success.")
+                expectation.fulfill()
+            case .failure(let error):
+                if case .serverError(let errorResponse) = error {
+                    XCTAssertFalse(errorResponse.errors.isEmpty, "Expected non-empty errors list")
+                    let detail = errorResponse.errors.first?.detail ?? ""
+                    Logger.print(detail)
+                    XCTAssertEqual(
+                        detail,
+                        "Client authentication failed due to unknown client, no client authentication included, or unsupported authentication method.")
+                } else {
+                    XCTFail("Expected server error with detail, got different error: \(error)")
+                }
+                expectation.fulfill()
+            }
+        }
+
+        self.waitForExpectations(timeout: 10.0) { error in
+            if let error = error {
+                XCTFail("Expectation failed with error: \(error)")
+            }
         }
     }
 
+    // MARK: 200 - success
+    func testFogotPasswordSuccess() {
+        let expectation = self.expectation(description: "Test Forgot Password success")
+        let email = "dev@nimblehq.co"
+        let clientID = Constants.ServiceKeys.key
+        let clientSecret = Constants.ServiceKeys.secrect
+
+        let router = Router.forgotPassword(email: email, clientID: clientID, clientSecret: clientSecret)
+
+        NetworkManager.shared.request(router: router) { (result: NetworkResult<LoginModel, NetworkError>) in
+            switch result {
+                case .success(_):
+                expectation.fulfill()
+            case .failure(let error):
+                XCTFail("Forgot Password request failed with error: \(error)")
+            }
+        }
+
+        self.waitForExpectations(timeout: 10.0) { error in
+            if let error = error {
+                XCTFail("Expectation failed with error: \(error)")
+            }
+        }
+    }
 }
+
