@@ -172,6 +172,7 @@ extension LoginViewController: ApplyTheme {
             attributes: [NSAttributedString.Key.foregroundColor: self.theme.placeholderLabelColor])
         self.passwordTextField.font = self.font.textLabelFontSize
         self.passwordTextField.textColor = self.theme.textfieldLabelColor
+        self.passwordTextField.accessibilityIdentifier = Constants.AccessibilityID.passwordLoginTextField
 
         self.emailTextField.borderStyle = .none
         self.emailTextField.attributedPlaceholder = NSAttributedString(
@@ -179,6 +180,7 @@ extension LoginViewController: ApplyTheme {
             attributes: [NSAttributedString.Key.foregroundColor: self.theme.placeholderLabelColor])
         self.emailTextField.font = self.font.textLabelFontSize
         self.emailTextField.textColor = self.theme.textfieldLabelColor
+        self.emailTextField.accessibilityIdentifier = Constants.AccessibilityID.emailLoginTextField
     }
 
     private func applyThemeSubmitButton() {

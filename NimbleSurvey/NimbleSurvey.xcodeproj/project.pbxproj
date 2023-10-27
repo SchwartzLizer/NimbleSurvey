@@ -145,6 +145,9 @@
 		1691F8DF2AEAE53100D0AE30 /* TokenRefresher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1691F8DE2AEAE53100D0AE30 /* TokenRefresher.swift */; };
 		1691F8E02AEAE53100D0AE30 /* TokenRefresher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1691F8DE2AEAE53100D0AE30 /* TokenRefresher.swift */; };
 		16C16A9E2AEB97D100FB58AC /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C16A9D2AEB97D100FB58AC /* SnapshotHelper.swift */; };
+		16C16AA02AEB9F5B00FB58AC /* Accessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C16A9F2AEB9F5B00FB58AC /* Accessibility.swift */; };
+		16C16AA12AEB9F5B00FB58AC /* Accessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C16A9F2AEB9F5B00FB58AC /* Accessibility.swift */; };
+		16C16AA22AEB9F5B00FB58AC /* Accessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C16A9F2AEB9F5B00FB58AC /* Accessibility.swift */; };
 		390504E14DEC605C3BEFE1A0 /* Pods_NimbleSurvey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6942B8E3CF1A1E99EEFD1F3F /* Pods_NimbleSurvey.framework */; };
 		5916B312550746DD8A4F3D82 /* Pods_NimbleSurveyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 466F709E889635EE1E69F567 /* Pods_NimbleSurveyTests.framework */; };
 		5B7AE6F80E5D3DE4FE3A4B92 /* Pods_NimbleSurvey_NimbleSurveyUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E47FA3A6B4E2112B8D1CA790 /* Pods_NimbleSurvey_NimbleSurveyUITests.framework */; };
@@ -247,6 +250,7 @@
 		1691F8DC2AEAE38C00D0AE30 /* ForgotPasswordUnitTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordUnitTest.swift; sourceTree = "<group>"; };
 		1691F8DE2AEAE53100D0AE30 /* TokenRefresher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenRefresher.swift; sourceTree = "<group>"; };
 		16C16A9D2AEB97D100FB58AC /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotHelper.swift; path = fastlane/SnapshotHelper.swift; sourceTree = SOURCE_ROOT; };
+		16C16A9F2AEB9F5B00FB58AC /* Accessibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Accessibility.swift; sourceTree = "<group>"; };
 		1C31DED4DD8BC742FDE1488C /* Pods-NimbleSurvey.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NimbleSurvey.debug.xcconfig"; path = "Target Support Files/Pods-NimbleSurvey/Pods-NimbleSurvey.debug.xcconfig"; sourceTree = "<group>"; };
 		466F709E889635EE1E69F567 /* Pods_NimbleSurveyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NimbleSurveyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6942B8E3CF1A1E99EEFD1F3F /* Pods_NimbleSurvey.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NimbleSurvey.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -392,6 +396,7 @@
 				1691F86F2AEADE4100D0AE30 /* NotificationCenter.swift */,
 				1691F8722AEADE5600D0AE30 /* DataManager.swift */,
 				1691F8752AEADF1D00D0AE30 /* FilesManagerHelper.swift */,
+				16C16A9F2AEB9F5B00FB58AC /* Accessibility.swift */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -925,6 +930,7 @@
 				1691F8DF2AEAE53100D0AE30 /* TokenRefresher.swift in Sources */,
 				1691F8A02AEAE13200D0AE30 /* ForgotPasswordViewModel.swift in Sources */,
 				1691F8882AEAE06200D0AE30 /* StyleSheetManager.swift in Sources */,
+				16C16AA02AEB9F5B00FB58AC /* Accessibility.swift in Sources */,
 				1691F7D32AEAD3EC00D0AE30 /* LoginViewController.swift in Sources */,
 				1622EF662AEB63DF00E37506 /* WelcomeSurveyCollectionViewCell.swift in Sources */,
 				1691F7CF2AEAD3EC00D0AE30 /* AppDelegate.swift in Sources */,
@@ -987,6 +993,7 @@
 				1691F8682AEADDC800D0AE30 /* Kingfisher+Extension.swift in Sources */,
 				1691F8332AEADADB00D0AE30 /* SurveyListModel.swift in Sources */,
 				1691F8982AEAE0FD00D0AE30 /* LoginViewModel.swift in Sources */,
+				16C16AA12AEB9F5B00FB58AC /* Accessibility.swift in Sources */,
 				1691F88C2AEAE07700D0AE30 /* StyleSheets.swift in Sources */,
 				1691F8CE2AEAE23B00D0AE30 /* HomeBackgroundCollectionViewModel.swift in Sources */,
 				1691F8362AEADB0700D0AE30 /* LoginModel.swift in Sources */,
@@ -1032,6 +1039,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1622EF5B2AEB54F800E37506 /* NimbleSurveyUITests.swift in Sources */,
+				16C16AA22AEB9F5B00FB58AC /* Accessibility.swift in Sources */,
 				16C16A9E2AEB97D100FB58AC /* SnapshotHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

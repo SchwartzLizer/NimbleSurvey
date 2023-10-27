@@ -223,6 +223,7 @@ extension ForgotPasswordViewController: ApplyTheme {
             attributes: [NSAttributedString.Key.foregroundColor: self.theme.placeholderLabelColor])
         self.emailTextField.font = self.font.textLabelFontSize
         self.emailTextField.textColor = self.theme.textfieldLabelColor
+        self.emailTextField.accessibilityIdentifier = Constants.AccessibilityID.emailForgetPasswordTextField
     }
 
     private func applyThemeResetButton() {
