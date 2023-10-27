@@ -48,5 +48,24 @@ class NotificationViewController: UIViewController {
     private lazy var theme = StyleSheetManager.currentTheme()
     private lazy var font = StyleSheetManager.currentFontTheme()
 
+}
+
+// MARK: UserInterfaceSetup
+
+extension NotificationViewController: UserInterfaceSetup {
+
+    // MARK: Internal
+
+    internal func setupUI() {
+        self.setUpView()
+    }
+
+    // MARK: Private
+
+    private func setUpView() {
+        self.titleLabel.text = self.viewModel.model.title
+        self.subtitleLabel.text = self.viewModel.model.message
+        self.imageView.image = UIImage(named: self.viewModel.model.image ?? "")
+    }
 
 }
