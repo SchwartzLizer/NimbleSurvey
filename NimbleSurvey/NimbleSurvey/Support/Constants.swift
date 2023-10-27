@@ -23,6 +23,7 @@ enum Constants {
         static let notificationResetEmailTitle = "Notification_ResetEmailTitle"
         static let notificationResetEmailMessage = "Notification_ResetEmailMessage"
         static let appName = "AppName_Key"
+        static let startSurveyBTN = "StartSurveyBTN_Key"
     }
 
     enum ServiceKeys {
