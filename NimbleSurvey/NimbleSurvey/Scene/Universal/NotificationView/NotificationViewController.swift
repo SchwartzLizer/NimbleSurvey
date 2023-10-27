@@ -38,6 +38,15 @@ class NotificationViewController: UIViewController {
 
     // MARK: Internal
 
-    var viewModel: NotificationViewModel
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var subtitleLabel: UILabel!
+
+    // MARK: Private
+
+    private var viewModel: NotificationViewModel
+    private lazy var theme = StyleSheetManager.currentTheme()
+    private lazy var font = StyleSheetManager.currentFontTheme()
+
 
 }
