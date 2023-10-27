@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SideMenu
 
 class HomeViewController: UIViewController {
 
@@ -36,7 +37,31 @@ class HomeViewController: UIViewController {
 
     // MARK: Internal
 
-    var viewModel: HomeViewModel
+    @IBOutlet weak var enterSurveyButton: UIButton!
+    @IBOutlet weak var pageControlView: UIView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var subTitleLabel: UILabel!
+    @IBOutlet weak var backgroundCollectionView: UICollectionView!
+    @IBOutlet weak var surveyCollectionView: UICollectionView!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var todayLabel: UILabel!
+    @IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet weak var profileButtonView: UIButton!
 
+    // MARK: Private
+
+    private var pageControl = CustomPageControl()
+    private var viewModel: HomeViewModel
+    private var isRefreshing = false
+    private lazy var theme = StyleSheetManager.currentTheme()
+    private lazy var font = StyleSheetManager.currentFontTheme()
+    private var menu: SideMenuNavigationController?
+    private var cellList: [(identifier: String, nib: UINib)] {
+        return [
+            (
+                identifier: HomeBackgroundViewController.identifier,
+                nib: HomeBackgroundViewController.nib),
+        ]
+    }
 
 }
