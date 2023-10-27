@@ -23,8 +23,6 @@ class RightMenuViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
 
     // MARK: Public
@@ -37,8 +35,32 @@ class RightMenuViewController: UIViewController {
         return String(describing: self)
     }
 
+    // MARK: Internal
+
+    @IBOutlet weak var logoutButtonView: UIButton!
+    @IBOutlet weak var versionLabel: UILabel!
+    @IBOutlet weak var dividerLine: UIView!
+    @IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet weak var profileLabel: UILabel!
+
     // MARK: Private
 
     private var viewModel: RightMenuViewModel
+    private lazy var theme = StyleSheetManager.currentTheme()
+    private lazy var font = StyleSheetManager.currentFontTheme()
 
+}
+
+// MARK: Action
+
+extension RightMenuViewController: Action {
+    @IBAction
+    func didSelectProfile(_: UIButton) {
+        self.dismiss(animated: true, completion: nil)
+    }
+
+    @IBAction
+    func didSelectLogout(_: UIButton) {
+        self.viewModel.requestLogout()
+    }
 }
