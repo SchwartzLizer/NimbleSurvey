@@ -1,5 +1,5 @@
 //
-//  HomeBackgroundViewController.swift
+//  HomeBackgroundCollectionViewCell.swift
 //  NimbleSurvey
 //
 //  Created by Tanatip Denduangchai on 10/27/23.
@@ -7,14 +7,13 @@
 
 import UIKit
 
-class HomeBackgroundViewController: UIViewController {
+class HomeBackgroundCollectionViewCell: UICollectionViewCell {
 
     // MARK: Lifecycle
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        // Initialization code
     }
 
     // MARK: Public
@@ -27,9 +26,6 @@ class HomeBackgroundViewController: UIViewController {
         return String(describing: self)
     }
 
-    // MARK: Internal
-
-    var viewModel: HomeBackgroundViewModel?
-
+    var viewModel: HomeBackgroundCollectionViewModel?
 
 }

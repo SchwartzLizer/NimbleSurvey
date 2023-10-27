@@ -81,8 +81,8 @@ class HomeViewController: UIViewController {
     private var cellList: [(identifier: String, nib: UINib)] {
         return [
             (
-                identifier: HomeBackgroundViewController.identifier,
-                nib: HomeBackgroundViewController.nib),
+                identifier: HomeBackgroundCollectionViewCell.identifier,
+                nib: HomeBackgroundCollectionViewCell.nib),
         ]
     }
 
@@ -210,6 +210,101 @@ extension HomeViewController: Updated {
         self.enterSurveyButton.hideSkeleton()
         self.pageControlView.hideSkeleton()
     }
+}
+
+// MARK: UserInterfaceSetup, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
+
+extension HomeViewController: UserInterfaceSetup, UICollectionViewDelegate, UICollectionViewDataSource,
+    UICollectionViewDelegateFlowLayout
+{
+
+    // MARK: Internal
+
+    func collectionView(_: UICollectionView, numberOfItemsInSection _: Int) -> Int {
+        if self.viewModel.datas.isEmpty {
+            return 1
+        }
+        return self.viewModel.datas.count
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if self.viewModel.datas.isEmpty {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "emptyCellIdentifier", for: indexPath)
+            cell.backgroundColor = self.theme.emptyCellBackgroundColor
+            return cell
+        } else {
+            guard
+                let cell = collectionView.dequeueReusableCell(
+                    withReuseIdentifier: HomeBackgroundCollectionViewCell.identifier,
+                    for: indexPath) as? HomeBackgroundCollectionViewCell,
+                let path = self.viewModel.datas[indexPath.row].attributes?.coverImageURL,
+                let url = URL(string: path + "l") // "l" for high resolution
+            else {
+                return UICollectionViewCell()
+            }
+            cell.viewModel = HomeBackgroundCollectionViewModel(url: url)
+            return cell
+        }
+    }
+
+    func collectionView(
+        _: UICollectionView,
+        layout _: UICollectionViewLayout,
+        sizeForItemAt _: IndexPath)
+        -> CGSize
+    {
+        return CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+    }
+
+    internal func setupUI() {
+        self.setupCollectionView()
+        self.setupSkeletonView()
+        self.profileButtonView.isUserInteractionEnabled = false
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(self.handlePullToRefreshNotification(_:)),
+            name: .refreshSurvey,
+            object: nil)
+    }
+
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if self.isRefreshing != true {
+            let pageWidth = scrollView.frame.size.width
+            let currentPage = Int((scrollView.contentOffset.x + pageWidth / 2) / pageWidth)
+            self.pageControl.currentPage = currentPage
+            _ = self.viewModel.scrollViewUpdate(page: currentPage)
+        }
+    }
+
+    // MARK: Private
+
+    private func setupCollectionView() {
+        self.cellList.forEach { self.backgroundCollectionView.register($0.nib, forCellWithReuseIdentifier: $0.identifier) }
+        self.backgroundCollectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "emptyCellIdentifier")
+        self.backgroundCollectionView.delegate = self
+        self.backgroundCollectionView.dataSource = self
+        if let layout = backgroundCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            layout.scrollDirection = .horizontal
+            layout.minimumLineSpacing = 0
+            layout.minimumInteritemSpacing = 0
+        }
+        self.backgroundCollectionView.isPagingEnabled = true
+        if #available(iOS 11.0, *) {
+            backgroundCollectionView.contentInsetAdjustmentBehavior = .never
+        }
+    }
+
+    private func setupSkeletonView() {
+        self.titleLabel.isSkeletonable = true
+        self.subTitleLabel.isSkeletonable = true
+        self.todayLabel.isSkeletonable = true
+        self.dateLabel.isSkeletonable = true
+        self.profileImageView.isSkeletonable = true
+        self.enterSurveyButton.isSkeletonable = true
+        self.pageControlView.isSkeletonable = true
+    }
+
 }
 
 // MARK: ApplyTheme

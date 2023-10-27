@@ -7,7 +7,7 @@
 
 import Foundation
 
-class HomeBackgroundViewModel: ViewModel {
+class HomeBackgroundCollectionViewModel: ViewModel {
 
     init(url: URL) {
         self.url = url

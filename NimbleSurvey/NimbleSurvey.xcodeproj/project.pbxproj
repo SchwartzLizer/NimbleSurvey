@@ -12,6 +12,10 @@
 		1622EF562AEB53F700E37506 /* NimbleSurvey.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1691F7D72AEAD3EC00D0AE30 /* NimbleSurvey.xcdatamodeld */; };
 		1622EF5B2AEB54F800E37506 /* NimbleSurveyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1622EF592AEB54F800E37506 /* NimbleSurveyUITests.swift */; };
 		1622EF5C2AEB54F800E37506 /* NimbleSurveyUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1622EF5A2AEB54F800E37506 /* NimbleSurveyUITestsLaunchTests.swift */; };
+		1622EF5F2AEB5DF300E37506 /* HomeBackgroundCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1622EF5D2AEB5DF300E37506 /* HomeBackgroundCollectionViewCell.swift */; };
+		1622EF602AEB5DF300E37506 /* HomeBackgroundCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1622EF5D2AEB5DF300E37506 /* HomeBackgroundCollectionViewCell.swift */; };
+		1622EF612AEB5DF300E37506 /* HomeBackgroundCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1622EF5E2AEB5DF300E37506 /* HomeBackgroundCollectionViewCell.xib */; };
+		1622EF622AEB5DF300E37506 /* HomeBackgroundCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1622EF5E2AEB5DF300E37506 /* HomeBackgroundCollectionViewCell.xib */; };
 		1691F7CF2AEAD3EC00D0AE30 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1691F7CE2AEAD3EC00D0AE30 /* AppDelegate.swift */; };
 		1691F7D12AEAD3EC00D0AE30 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1691F7D02AEAD3EC00D0AE30 /* SceneDelegate.swift */; };
 		1691F7D32AEAD3EC00D0AE30 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1691F7D22AEAD3EC00D0AE30 /* LoginViewController.swift */; };
@@ -124,12 +128,8 @@
 		1691F8C22AEAE1DF00D0AE30 /* NotificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1691F8C02AEAE1DF00D0AE30 /* NotificationViewModel.swift */; };
 		1691F8C42AEAE1E800D0AE30 /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1691F8C32AEAE1E800D0AE30 /* NotificationModel.swift */; };
 		1691F8C52AEAE1E800D0AE30 /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1691F8C32AEAE1E800D0AE30 /* NotificationModel.swift */; };
-		1691F8C82AEAE23400D0AE30 /* HomeBackgroundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1691F8C62AEAE23400D0AE30 /* HomeBackgroundViewController.swift */; };
-		1691F8C92AEAE23400D0AE30 /* HomeBackgroundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1691F8C62AEAE23400D0AE30 /* HomeBackgroundViewController.swift */; };
-		1691F8CA2AEAE23400D0AE30 /* HomeBackgroundViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1691F8C72AEAE23400D0AE30 /* HomeBackgroundViewController.xib */; };
-		1691F8CB2AEAE23400D0AE30 /* HomeBackgroundViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1691F8C72AEAE23400D0AE30 /* HomeBackgroundViewController.xib */; };
-		1691F8CD2AEAE23B00D0AE30 /* HomeBackgroundViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1691F8CC2AEAE23B00D0AE30 /* HomeBackgroundViewModel.swift */; };
-		1691F8CE2AEAE23B00D0AE30 /* HomeBackgroundViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1691F8CC2AEAE23B00D0AE30 /* HomeBackgroundViewModel.swift */; };
+		1691F8CD2AEAE23B00D0AE30 /* HomeBackgroundCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1691F8CC2AEAE23B00D0AE30 /* HomeBackgroundCollectionViewModel.swift */; };
+		1691F8CE2AEAE23B00D0AE30 /* HomeBackgroundCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1691F8CC2AEAE23B00D0AE30 /* HomeBackgroundCollectionViewModel.swift */; };
 		1691F8D52AEAE29A00D0AE30 /* TokenRefreshUnitTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1691F8D42AEAE29A00D0AE30 /* TokenRefreshUnitTest.swift */; };
 		1691F8D72AEAE2ED00D0AE30 /* RightMenuUnitTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1691F8D62AEAE2ED00D0AE30 /* RightMenuUnitTest.swift */; };
 		1691F8D92AEAE30800D0AE30 /* HomeUnitTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1691F8D82AEAE30800D0AE30 /* HomeUnitTest.swift */; };
@@ -162,6 +162,8 @@
 /* Begin PBXFileReference section */
 		1622EF592AEB54F800E37506 /* NimbleSurveyUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NimbleSurveyUITests.swift; sourceTree = "<group>"; };
 		1622EF5A2AEB54F800E37506 /* NimbleSurveyUITestsLaunchTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NimbleSurveyUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		1622EF5D2AEB5DF300E37506 /* HomeBackgroundCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBackgroundCollectionViewCell.swift; sourceTree = "<group>"; };
+		1622EF5E2AEB5DF300E37506 /* HomeBackgroundCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeBackgroundCollectionViewCell.xib; sourceTree = "<group>"; };
 		1691F7CB2AEAD3EC00D0AE30 /* NimbleSurvey.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NimbleSurvey.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1691F7CE2AEAD3EC00D0AE30 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1691F7D02AEAD3EC00D0AE30 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -226,9 +228,7 @@
 		1691F8BB2AEAE1D500D0AE30 /* NotificationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationViewController.xib; sourceTree = "<group>"; };
 		1691F8C02AEAE1DF00D0AE30 /* NotificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewModel.swift; sourceTree = "<group>"; };
 		1691F8C32AEAE1E800D0AE30 /* NotificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationModel.swift; sourceTree = "<group>"; };
-		1691F8C62AEAE23400D0AE30 /* HomeBackgroundViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBackgroundViewController.swift; sourceTree = "<group>"; };
-		1691F8C72AEAE23400D0AE30 /* HomeBackgroundViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeBackgroundViewController.xib; sourceTree = "<group>"; };
-		1691F8CC2AEAE23B00D0AE30 /* HomeBackgroundViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBackgroundViewModel.swift; sourceTree = "<group>"; };
+		1691F8CC2AEAE23B00D0AE30 /* HomeBackgroundCollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBackgroundCollectionViewModel.swift; sourceTree = "<group>"; };
 		1691F8D42AEAE29A00D0AE30 /* TokenRefreshUnitTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenRefreshUnitTest.swift; sourceTree = "<group>"; };
 		1691F8D62AEAE2ED00D0AE30 /* RightMenuUnitTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RightMenuUnitTest.swift; sourceTree = "<group>"; };
 		1691F8D82AEAE30800D0AE30 /* HomeUnitTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeUnitTest.swift; sourceTree = "<group>"; };
@@ -431,9 +431,9 @@
 		1691F8152AEAD84B00D0AE30 /* HomeBackgroundView */ = {
 			isa = PBXGroup;
 			children = (
-				1691F8C62AEAE23400D0AE30 /* HomeBackgroundViewController.swift */,
-				1691F8CC2AEAE23B00D0AE30 /* HomeBackgroundViewModel.swift */,
-				1691F8C72AEAE23400D0AE30 /* HomeBackgroundViewController.xib */,
+				1691F8CC2AEAE23B00D0AE30 /* HomeBackgroundCollectionViewModel.swift */,
+				1622EF5D2AEB5DF300E37506 /* HomeBackgroundCollectionViewCell.swift */,
+				1622EF5E2AEB5DF300E37506 /* HomeBackgroundCollectionViewCell.xib */,
 			);
 			path = HomeBackgroundView;
 			sourceTree = "<group>";
@@ -735,8 +735,8 @@
 				1691F87C2AEADFD700D0AE30 /* NeuzeitSLTStdBookHeavy.otf in Resources */,
 				1691F84F2AEADC7500D0AE30 /* Localizable.xcstrings in Resources */,
 				1691F7DB2AEAD3ED00D0AE30 /* Assets.xcassets in Resources */,
+				1622EF612AEB5DF300E37506 /* HomeBackgroundCollectionViewCell.xib in Resources */,
 				1691F7D62AEAD3EC00D0AE30 /* Login.storyboard in Resources */,
-				1691F8CA2AEAE23400D0AE30 /* HomeBackgroundViewController.xib in Resources */,
 				1691F87E2AEADFD700D0AE30 /* NeuzeitSLTStdBook.otf in Resources */,
 				1691F8192AEAD96B00D0AE30 /* RouterBasePath.plist in Resources */,
 				1691F8B22AEAE1AE00D0AE30 /* RightMenuViewController.xib in Resources */,
@@ -751,10 +751,10 @@
 			files = (
 				1691F89E2AEAE12000D0AE30 /* ForgotPasswordViewController.xib in Resources */,
 				1691F87F2AEADFD700D0AE30 /* NeuzeitSLTStdBook.otf in Resources */,
-				1691F8CB2AEAE23400D0AE30 /* HomeBackgroundViewController.xib in Resources */,
 				1691F8A72AEAE15800D0AE30 /* HomeViewController.xib in Resources */,
 				1691F8502AEADC7500D0AE30 /* Localizable.xcstrings in Resources */,
 				1691F8B32AEAE1AE00D0AE30 /* RightMenuViewController.xib in Resources */,
+				1622EF622AEB5DF300E37506 /* HomeBackgroundCollectionViewCell.xib in Resources */,
 				1691F87D2AEADFD700D0AE30 /* NeuzeitSLTStdBookHeavy.otf in Resources */,
 				1691F8BF2AEAE1D500D0AE30 /* NotificationViewController.xib in Resources */,
 			);
@@ -909,8 +909,7 @@
 				1691F89B2AEAE12000D0AE30 /* ForgotPasswordViewController.swift in Sources */,
 				1691F8452AEADBFB00D0AE30 /* Protocol+Extension.swift in Sources */,
 				1691F8642AEADDAC00D0AE30 /* String+Extension.swift in Sources */,
-				1691F8CD2AEAE23B00D0AE30 /* HomeBackgroundViewModel.swift in Sources */,
-				1691F8C82AEAE23400D0AE30 /* HomeBackgroundViewController.swift in Sources */,
+				1691F8CD2AEAE23B00D0AE30 /* HomeBackgroundCollectionViewModel.swift in Sources */,
 				1691F8522AEADCD200D0AE30 /* AlertUtility.swift in Sources */,
 				1691F8812AEAE01100D0AE30 /* FontManager.swift in Sources */,
 				1691F81B2AEAD98A00D0AE30 /* RouterEnumeration.swift in Sources */,
@@ -923,6 +922,7 @@
 				1691F86D2AEADE1700D0AE30 /* UserDefault.swift in Sources */,
 				1691F8842AEAE03200D0AE30 /* AssetsManager.swift in Sources */,
 				1691F8C12AEAE1DF00D0AE30 /* NotificationViewModel.swift in Sources */,
+				1622EF5F2AEB5DF300E37506 /* HomeBackgroundCollectionViewCell.swift in Sources */,
 				1691F8A42AEAE15800D0AE30 /* HomeViewController.swift in Sources */,
 				1691F8A92AEAE15F00D0AE30 /* HomeViewModel.swift in Sources */,
 				1691F7D12AEAD3EC00D0AE30 /* SceneDelegate.swift in Sources */,
@@ -945,7 +945,6 @@
 				1691F88F2AEAE09300D0AE30 /* LabelPresets.swift in Sources */,
 				1691F8A52AEAE15800D0AE30 /* HomeViewController.swift in Sources */,
 				1691F8D52AEAE29A00D0AE30 /* TokenRefreshUnitTest.swift in Sources */,
-				1691F8C92AEAE23400D0AE30 /* HomeBackgroundViewController.swift in Sources */,
 				1691F8272AEADA4B00D0AE30 /* ErrorModel.swift in Sources */,
 				1691F8D92AEAE30800D0AE30 /* HomeUnitTest.swift in Sources */,
 				1691F8BD2AEAE1D500D0AE30 /* NotificationViewController.swift in Sources */,
@@ -960,7 +959,7 @@
 				1691F8332AEADADB00D0AE30 /* SurveyListModel.swift in Sources */,
 				1691F8982AEAE0FD00D0AE30 /* LoginViewModel.swift in Sources */,
 				1691F88C2AEAE07700D0AE30 /* StyleSheets.swift in Sources */,
-				1691F8CE2AEAE23B00D0AE30 /* HomeBackgroundViewModel.swift in Sources */,
+				1691F8CE2AEAE23B00D0AE30 /* HomeBackgroundCollectionViewModel.swift in Sources */,
 				1691F8362AEADB0700D0AE30 /* LoginModel.swift in Sources */,
 				1691F8C52AEAE1E800D0AE30 /* NotificationModel.swift in Sources */,
 				1691F85F2AEADD7400D0AE30 /* AppUtility.swift in Sources */,
@@ -986,6 +985,7 @@
 				1691F8822AEAE01100D0AE30 /* FontManager.swift in Sources */,
 				1691F8B12AEAE1AE00D0AE30 /* RightMenuViewController.swift in Sources */,
 				1691F8742AEADE5600D0AE30 /* DataManager.swift in Sources */,
+				1622EF602AEB5DF300E37506 /* HomeBackgroundCollectionViewCell.swift in Sources */,
 				1691F8AD2AEAE16B00D0AE30 /* HomeModel.swift in Sources */,
 				1691F84D2AEADC4A00D0AE30 /* Constants.swift in Sources */,
 				1691F8402AEADB9600D0AE30 /* UserProfileModel.swift in Sources */,
