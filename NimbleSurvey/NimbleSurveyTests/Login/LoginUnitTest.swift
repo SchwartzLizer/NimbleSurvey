@@ -23,7 +23,7 @@ final class LoginUnitTest: XCTestCase {
     }
 
     // MARK: 400 - incorrect password
-    func testSignInCorrectEmailOrPassword() {
+    func testLoginInCorrectEmailOrPassword() {
         let expectation = self.expectation(description: "Test Sign-In incorrect email or password")
         let grantType = "password"
         let email = "dev@nimblehq.co"
@@ -66,7 +66,7 @@ final class LoginUnitTest: XCTestCase {
     }
 
     // MARK: 400 - invalid grant
-    func testSignInInvalidGrant() {
+    func testLoginInvalidGrant() {
         let expectation = self.expectation(description: "Test Sign-In invalid grant")
         let grantType = "passwordd"
         let email = "dev@nimblehq.co"
@@ -110,7 +110,7 @@ final class LoginUnitTest: XCTestCase {
     }
 
     // MARK: 403 - invalid client
-    func testSignInInvaildClient() {
+    func testLoginInvaildClient() {
         let expectation = self.expectation(description: "Test Sign-In invalid client")
         let grantType = "password"
         let email = "dev@nimblehq.co"
@@ -128,7 +128,7 @@ final class LoginUnitTest: XCTestCase {
         NetworkManager.shared.request(router: router) { (result: NetworkResult<LoginModel, NetworkError>) in
             switch result {
             case .success:
-                XCTFail("Expected failure for 'invalid grant' but got success.")
+                XCTFail("Expected failure for 'invalid client' but got success.")
                 expectation.fulfill()
             case .failure(let error):
                 if case .serverError(let errorResponse) = error {
