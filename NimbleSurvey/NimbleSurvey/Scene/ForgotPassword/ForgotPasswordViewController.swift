@@ -7,6 +7,8 @@
 
 import UIKit
 
+// MARK: - ForgotPasswordViewController
+
 class ForgotPasswordViewController: UIViewController {
 
     // MARK: Lifecycle
@@ -53,6 +55,8 @@ class ForgotPasswordViewController: UIViewController {
 
 }
 
+// MARK: Action
+
 extension ForgotPasswordViewController: Action {
     @IBAction
     func didSelectReset(_: UIButton) {
@@ -89,6 +93,8 @@ extension ForgotPasswordViewController: Action {
     }
 }
 
+// MARK: Updated
+
 extension ForgotPasswordViewController: Updated {
 
     // MARK: Internal
@@ -112,6 +118,54 @@ extension ForgotPasswordViewController: Updated {
             Loader.shared.hideLoader()
             AlertUtility.showAlert(title: "Error", message: message)
         }
+    }
+
+}
+
+// MARK: UserInterfaceSetup
+
+extension ForgotPasswordViewController: UserInterfaceSetup {
+
+    // MARK: Internal
+
+    internal func setupUI() {
+        self.setupNotificationView()
+    }
+
+    // MARK: Private
+
+    private func setupNotificationView() {
+        // Initialize the view and off-screen positioning
+        self.navbar = UIApplication.shared.statusBarFrame.height
+        let yPosition = UIApplication.shared.statusBarFrame.height + 62
+        self.notificationView = UIView(frame: CGRect(
+            x: 0,
+            y: -abs(yPosition),
+            width: self.view.frame.size.width,
+            height: yPosition))
+        self.notificationView.backgroundColor = .clear
+
+        // BlurView
+        let blurEffect = UIBlurEffect(style: .light)
+        let blurredEffectView = UIVisualEffectView(effect: blurEffect)
+        blurredEffectView.translatesAutoresizingMaskIntoConstraints = false
+        blurredEffectView.clipsToBounds = true
+        blurredEffectView.frame = self.notificationView.bounds
+        self.notificationView.addSubview(blurredEffectView)
+
+        // NotificationView
+        let view = UIView(frame: CGRect(x: 0, y: 60, width: self.view.frame.size.width, height: 56))
+        let notificationModel = NotificationModel(
+            title: Constants.Keys.notificationResetEmailTitle.localized(),
+            message: Constants.Keys.notificationResetEmailMessage.localized(),
+            image: Constants.Assest.notification.localized())
+        let notificationVC = NotificationViewController(viewModel: NotificationViewModel(model: notificationModel))
+        view.addSubview(notificationVC.view)
+        notificationVC.view.frame = view.bounds
+        self.notificationView.addSubview(view)
+
+        // Add the notification view to the navigation controller's view
+        self.navigationController?.view.addSubview(self.notificationView)
     }
 
 }
