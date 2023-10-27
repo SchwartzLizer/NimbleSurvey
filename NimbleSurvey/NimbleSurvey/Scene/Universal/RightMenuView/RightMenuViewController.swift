@@ -102,3 +102,41 @@ extension RightMenuViewController: Updated {
         }
     }
 }
+
+// MARK: ApplyTheme
+
+extension RightMenuViewController: ApplyTheme {
+
+    // MARK: Internal
+
+    internal func applyTheme() {
+        self.applyThemeBackground()
+        self.applyThemeDivider()
+        self.applyThemeLogout()
+        self.applyThemeLabel()
+    }
+
+    // MARK: Private
+
+    private func applyThemeBackground() {
+        self.view.backgroundColor = self.theme.backgroundRightMenuColor
+    }
+
+    private func applyThemeDivider() {
+        self.dividerLine.backgroundColor = self.theme.dividerLineColor
+    }
+
+    private func applyThemeLogout() {
+        self.logoutButtonView.applyThemeButton(
+            text: Constants.Keys.logoutBTN,
+            font: self.font.logoutFontSize,
+            color: self.theme.logoutTextColor)
+    }
+
+    private func applyThemeLabel() {
+        self.profileLabel.applyThemeLabel(font: self.font.surveyTodayFontSize, color: self.theme.textLabelColor)
+        self.versionLabel.applyThemeLabel(font: self.font.versionFontSize, color: self.theme.versionTextColor)
+    }
+
+}
+
