@@ -52,6 +52,22 @@ extension WelcomeSurveyCollectionViewCell: ApplyTheme {
         self.subtitleLabel.applyThemeLabel(font: self.font.surveySubtitleFontSize, color: self.theme.textLabelColor)
     }
 
+    private func applyThemeStartSurveyButton() {
+        self.startSuveyButton.applyThemeButton(
+            text: Constants.Keys.startSurveyBTN,
+            font: self.font.buttonFontSize,
+            color: self.theme.buttonTextColor,
+            round: Constants.Radius.cornerRadiusCard,
+            backgroundColor: self.theme.buttonBackgroundColor,
+            borderColor: self.theme.buttonBackgroundColor)
+    }
+
+    private func applyThemeBackButton() {
+        let backButton = UIButton(type: .custom)
+        let backImage = UIImage(named: Constants.Assest.back)
+        backButton.setImage(backImage, for: .normal)
+    }
+
 
 }
 
