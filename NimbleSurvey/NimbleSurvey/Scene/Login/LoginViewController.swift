@@ -150,7 +150,7 @@ extension LoginViewController:UserInterfaceSetup {
                 self.stackView.alpha = 1
             }
         }
-
+        
         self.textFieldBackgroundView.forEach { view in
             view.applyThemeView(background: self.theme.textfieldBackgroundColor, radius: Constants.Radius.cornerRadiusCard)
             let blurredEffectView = self.createBlurredEffectView(

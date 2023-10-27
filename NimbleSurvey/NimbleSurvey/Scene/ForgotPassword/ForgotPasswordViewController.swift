@@ -65,38 +65,54 @@ class ForgotPasswordViewController: UIViewController {
 // MARK: Action
 
 extension ForgotPasswordViewController: Action {
+
+    // MARK: Internal
+
     @IBAction
     func didSelectReset(_: UIButton) {
+        self.endEditing()
         Loader.shared.showLoader(view: self.view)
         self.ViewModel.requestForgotPassword(email: self.emailTextField.text ?? "")
     }
 
     @objc
     func backAction(_: UIButton) {
+        self.endEditing()
         self.navigationController?.popViewController(animated: true)
     }
 
 
     @objc
     func hideNotification() {
-        // Animate the retraction of the notification view
         let yPosition = 116.00 // Navbar from iPhone Notch + NotificationView height
         UIView.animate(withDuration: 0.5) {
-            self.notificationView.frame = CGRect(x: 0, y: -abs(yPosition), width: UIScreen.main.bounds.size.width, height: yPosition)
+            self.notificationView.frame = CGRect(
+                x: 0,
+                y: -abs(yPosition),
+                width: UIScreen.main.bounds.size.width,
+                height: yPosition)
         }
     }
 
-    func showNotification() {
-        // Animate the dropping of the notification view
+    // MARK: Private
+
+    private func showNotification() {
         UIView.animate(withDuration: 0.5, animations: {
             self.notificationView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: 116)
         }) { completed in
             if completed {
-                // Automatically dismiss after 3 seconds
                 self.perform(#selector(self.hideNotification), with: nil, afterDelay: 2.0)
                 self.clearTextField()
             }
         }
+    }
+
+    private func clearTextField() {
+        self.emailTextField.text = ""
+    }
+
+    private func endEditing() {
+        self.emailTextField.endEditing(true)
     }
 }
 
@@ -114,14 +130,16 @@ extension ForgotPasswordViewController: Updated {
     // MARK: Private
 
     private func onSuccess() {
-        self.ViewModel.resetSuccess = {
+        self.ViewModel.resetSuccess = { [weak self] in
+            guard let self = self else { return }
             Loader.shared.hideLoader()
             self.showNotification()
         }
     }
 
     private func onFailure() {
-        self.ViewModel.resetFailed = { message in
+        self.ViewModel.resetFailed = { [weak self] message in
+            guard let self = self else { return }
             Loader.shared.hideLoader()
             AlertUtility.showAlert(title: Constants.Keys.appName.localized(), message: message) {
                 self.clearTextField()
@@ -139,12 +157,14 @@ extension ForgotPasswordViewController: UserInterfaceSetup {
 
     internal func setupUI() {
         self.setupNotificationView()
+        self.blurBackgroundImage()
+        self.setupNavbar()
+        self.setupTextfieldView()
     }
 
     // MARK: Private
 
     private func setupNotificationView() {
-        // Initialize the view and off-screen positioning
         let yPosition = 116.00 // Navbar from iPhone Notch + NotificationView height
         self.notificationView = UIView(frame: CGRect(
             x: 0,
@@ -175,8 +195,34 @@ extension ForgotPasswordViewController: UserInterfaceSetup {
         self.navigationController?.view.addSubview(self.notificationView)
     }
 
-    private func clearTextField() {
-        self.emailTextField.text = ""
+    private func blurBackgroundImage() {
+        let blurEffect = UIBlurEffect(style: .dark)
+        let blurredEffectView = UIVisualEffectView(effect: blurEffect)
+        blurredEffectView.frame = self.backgroundImageView.bounds
+        blurredEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        self.backgroundImageView.addSubview(blurredEffectView)
+    }
+
+    private func setupNavbar() {
+        let backButton = UIButton(type: .custom)
+        let backImage = UIImage(named: Constants.Assest.back)
+        backButton.setImage(backImage, for: .normal)
+        backButton.addTarget(self, action: #selector(self.backAction(_:)), for: .touchUpInside)
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
+    }
+
+    private func setupTextfieldView() {
+        self.textFieldBackgroundView.applyThemeView(
+            background: self.theme.textfieldBackgroundColor,
+            radius: Constants.Radius.cornerRadiusCard)
+        let blurEffect = UIBlurEffect(style: .light)
+        let blurredEffectView = UIVisualEffectView(effect: blurEffect)
+        blurredEffectView.translatesAutoresizingMaskIntoConstraints = false
+        blurredEffectView.layer.cornerRadius = Constants.Radius.cornerRadiusCard
+        blurredEffectView.clipsToBounds = true
+        blurredEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        blurredEffectView.frame = self.textFieldBackgroundView.bounds
+        self.textFieldBackgroundView.addSubview(blurredEffectView)
     }
 
 }
@@ -189,42 +235,18 @@ extension ForgotPasswordViewController: ApplyTheme {
     // MARK: Internal
 
     internal func applyTheme() {
-        self.blurBackgroundImage()
         self.applyThemeBackgroundTextField()
         self.applyThemeResetButton()
         self.applyThemeTitleLabel()
-        self.applyThemeNavbar()
     }
 
     // MARK: Private
 
-    private func blurBackgroundImage() {
-        // Create the effect and effect view.
-        let blurEffect = UIBlurEffect(style: .dark) // The style determines the maximum intensity.
-        let blurredEffectView = UIVisualEffectView(effect: blurEffect)
-        blurredEffectView.frame = self.backgroundImageView.bounds
-        blurredEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        self.backgroundImageView.addSubview(blurredEffectView)
-    }
-
     private func applyThemeBackgroundTextField() {
-        self.textFieldBackgroundView.applyThemeView(
-            background: self.theme.textfieldBackgroundColor,
-            radius: Constants.Radius.cornerRadiusCard)
-        let blurEffect = UIBlurEffect(style: .light)
-        let blurredEffectView = UIVisualEffectView(effect: blurEffect)
-        blurredEffectView.translatesAutoresizingMaskIntoConstraints = false
-        blurredEffectView.layer.cornerRadius = Constants.Radius.cornerRadiusCard
-        blurredEffectView.clipsToBounds = true
-        blurredEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        blurredEffectView.frame = self.textFieldBackgroundView.bounds
-        self.textFieldBackgroundView.addSubview(blurredEffectView)
-        self.emailTextField.borderStyle = .none
+        self.emailTextField.applyThemeTextField()
         self.emailTextField.attributedPlaceholder = NSAttributedString(
             string: Constants.Keys.emailTF.localized(),
             attributes: [NSAttributedString.Key.foregroundColor: self.theme.placeholderLabelColor])
-        self.emailTextField.font = self.font.textLabelFontSize
-        self.emailTextField.textColor = self.theme.textfieldLabelColor
         self.emailTextField.accessibilityIdentifier = Constants.AccessibilityID.emailForgetPasswordTextField
     }
 
@@ -243,12 +265,5 @@ extension ForgotPasswordViewController: ApplyTheme {
         self.titleLabel.applyThemeLabel(font: self.font.textLabelFontSize, color: self.theme.textLabelColor)
     }
 
-    private func applyThemeNavbar() {
-        let backButton = UIButton(type: .custom)
-        let backImage = UIImage(named: Constants.Assest.back)
-        backButton.setImage(backImage, for: .normal)
-        backButton.addTarget(self, action: #selector(self.backAction(_:)), for: .touchUpInside)
 
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
-    }
 }
