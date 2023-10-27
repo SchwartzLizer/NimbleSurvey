@@ -78,11 +78,19 @@ class HomeViewController: UIViewController {
     private lazy var font = StyleSheetManager.currentFontTheme()
     private var menu: SideMenuNavigationController?
 
-    private var cellList: [(identifier: String, nib: UINib)] {
+    private var cellBackgroundList: [(identifier: String, nib: UINib)] {
         return [
             (
                 identifier: HomeBackgroundCollectionViewCell.identifier,
                 nib: HomeBackgroundCollectionViewCell.nib),
+        ]
+    }
+
+    private var cellSurveyList: [(identifier: String, nib: UINib)] {
+        return [
+            (
+                identifier: WelcomeSurveyCollectionViewCell.identifier,
+                nib: WelcomeSurveyCollectionViewCell.nib),
         ]
     }
 
@@ -290,7 +298,7 @@ extension HomeViewController: UserInterfaceSetup, UICollectionViewDelegate, UICo
     // MARK: Private
 
     private func setupCollectionView() {
-        self.cellList.forEach { self.backgroundCollectionView.register($0.nib, forCellWithReuseIdentifier: $0.identifier) }
+        self.cellBackgroundList.forEach { self.backgroundCollectionView.register($0.nib, forCellWithReuseIdentifier: $0.identifier) }
         self.backgroundCollectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "emptyCellIdentifier")
         self.backgroundCollectionView.delegate = self
         self.backgroundCollectionView.dataSource = self
