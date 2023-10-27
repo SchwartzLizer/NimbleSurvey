@@ -164,9 +164,75 @@ extension ForgotPasswordViewController: UserInterfaceSetup {
         notificationVC.view.frame = view.bounds
         self.notificationView.addSubview(view)
 
-        // Add the notification view to the navigation controller's view
         self.navigationController?.view.addSubview(self.notificationView)
     }
 
 }
 
+
+extension ForgotPasswordViewController: ApplyTheme {
+
+    // MARK: Internal
+
+    internal func applyTheme() {
+        self.blurBackgroundImage()
+        self.applyThemeBackgroundTextField()
+        self.applyThemeResetButton()
+        self.applyThemeTitleLabel()
+        self.applyThemeNavbar()
+    }
+
+    // MARK: Private
+
+    private func blurBackgroundImage() {
+        // Create the effect and effect view.
+        let blurEffect = UIBlurEffect(style: .dark) // The style determines the maximum intensity.
+        let blurredEffectView = UIVisualEffectView(effect: blurEffect)
+        blurredEffectView.frame = self.backgroundImageView.bounds
+        blurredEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        self.backgroundImageView.addSubview(blurredEffectView)
+    }
+
+    private func applyThemeBackgroundTextField() {
+        self.textFieldBackgroundView.applyThemeView(
+            background: self.theme.textfieldBackgroundColor,
+            radius: Constants.Radius.cornerRadiusCard)
+        let blurEffect = UIBlurEffect(style: .light)
+        let blurredEffectView = UIVisualEffectView(effect: blurEffect)
+        blurredEffectView.translatesAutoresizingMaskIntoConstraints = false
+        blurredEffectView.layer.cornerRadius = Constants.Radius.cornerRadiusCard
+        blurredEffectView.clipsToBounds = true
+        blurredEffectView.frame = self.textFieldBackgroundView.bounds
+        self.textFieldBackgroundView.addSubview(blurredEffectView)
+        self.emailTextField.borderStyle = .none
+        self.emailTextField.attributedPlaceholder = NSAttributedString(
+            string: Constants.Keys.emailTF.localized(),
+            attributes: [NSAttributedString.Key.foregroundColor: self.theme.placeholderLabelColor])
+        self.emailTextField.font = self.font.textLabelFontSize
+        self.emailTextField.textColor = theme.textfieldLabelColor
+    }
+
+    private func applyThemeResetButton() {
+        self.resetButtonView.applyThemeButton(
+            text: Constants.Keys.resetBTN,
+            font: self.font.buttonFontSize,
+            color: self.theme.buttonTextColor,
+            round: Constants.Radius.cornerRadiusCard,
+            backgroundColor: self.theme.buttonBackgroundColor,
+            borderColor: self.theme.buttonBackgroundColor)
+    }
+
+    private func applyThemeTitleLabel() {
+        self.titleLabel.text = Constants.Keys.resetPasswordDescription.localized()
+        self.titleLabel.applyThemeLabel(font: self.font.textLabelFontSize, color: self.theme.textLabelColor)
+    }
+
+    private func applyThemeNavbar() {
+        let backButton = UIButton(type: .custom)
+        let backImage = UIImage(named: "Back")
+        backButton.setImage(backImage, for: .normal)
+        backButton.addTarget(self, action: #selector(self.backAction(_:)), for: .touchUpInside)
+
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
+    }
+}
