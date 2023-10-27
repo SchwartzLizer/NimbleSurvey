@@ -100,7 +100,7 @@ extension RightMenuViewController: Updated {
 
     private func onLogoutFailed() {
         self.viewModel.onLogoutFailed = { message in
-            AlertUtility.showAlert(title: "Error", message: message)
+            AlertUtility.showAlert(title: Constants.Keys.appName.localized(), message: message)
         }
     }
 }
