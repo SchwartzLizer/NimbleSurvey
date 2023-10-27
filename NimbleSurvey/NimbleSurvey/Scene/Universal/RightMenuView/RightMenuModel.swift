@@ -7,18 +7,13 @@
 
 import Foundation
 
-// MARK: - RightMenuViewModel
+struct RightMenuModel {
 
-final class RightMenuViewModel: ViewModel {
-
-    // MARK: Lifecycle
-
-    init(model: RightMenuModel) {
-        self.RightMenuModel = model
+    init(name: String, profileImage: String) {
+        self.name = name
+        self.profileImage = profileImage
     }
 
-    // MARK: Internal
-
-    var RightMenuModel: RightMenuModel
-
+    let name:String
+    let profileImage:String
 }
