@@ -162,6 +162,7 @@ extension LoginViewController: ApplyTheme {
             blurredEffectView.alpha = 1
             blurredEffectView.clipsToBounds = true
             blurredEffectView.frame = view.bounds
+            blurredEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
             view.addSubview(blurredEffectView)
         }
         self.passwordTextField.borderStyle = .none
