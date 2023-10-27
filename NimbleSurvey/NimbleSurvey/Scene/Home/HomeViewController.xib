@@ -29,7 +29,7 @@
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="BIA-3L-UZp">
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="BIA-3L-UZp" userLabel="Background Collection View">
                     <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="62J-xH-pzj">
@@ -39,8 +39,8 @@
                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                     </collectionViewFlowLayout>
                 </collectionView>
-                <collectionView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="kth-8l-hFX">
-                    <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                <collectionView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="kth-8l-hFX" userLabel="Survey Collection View">
+                    <rect key="frame" x="0.0" y="59" width="393" height="759"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="NdM-SB-239">
                         <size key="itemSize" width="128" height="128"/>
@@ -177,7 +177,6 @@
             <constraints>
                 <constraint firstItem="J4c-JR-JBX" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="6p6-wN-b54"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="aSl-8P-jOD" secondAttribute="trailing" constant="20" id="7uI-80-EqZ"/>
-                <constraint firstItem="kth-8l-hFX" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="CJa-Qb-TeB"/>
                 <constraint firstItem="aSl-8P-jOD" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="16" id="FBK-zP-uMw"/>
                 <constraint firstItem="BIA-3L-UZp" firstAttribute="trailing" secondItem="i5M-Pr-FkT" secondAttribute="trailing" id="JR8-vd-Hgc"/>
                 <constraint firstItem="aSl-8P-jOD" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="Lny-sJ-P7s"/>
@@ -185,10 +184,11 @@
                 <constraint firstItem="BIA-3L-UZp" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="TOm-IJ-JQd"/>
                 <constraint firstItem="aok-6F-Ooj" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="Y3c-JK-GZR"/>
                 <constraint firstItem="BIA-3L-UZp" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="ZPW-8U-HdY"/>
+                <constraint firstItem="kth-8l-hFX" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="cgI-nM-EFN"/>
                 <constraint firstItem="kth-8l-hFX" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="dXn-FB-mW8"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="aok-6F-Ooj" secondAttribute="bottom" constant="20" id="gXw-3C-Bhn"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="kth-8l-hFX" secondAttribute="bottom" id="jPH-Ey-Joa"/>
                 <constraint firstItem="aok-6F-Ooj" firstAttribute="top" secondItem="J4c-JR-JBX" secondAttribute="bottom" constant="8" id="jtZ-Bv-90P"/>
-                <constraint firstAttribute="bottom" secondItem="kth-8l-hFX" secondAttribute="bottom" id="kPd-ln-eYX"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="J4c-JR-JBX" secondAttribute="trailing" constant="20" id="kva-2F-OVw"/>
                 <constraint firstItem="kth-8l-hFX" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="xLY-1Y-ni5"/>
                 <constraint firstAttribute="bottom" secondItem="BIA-3L-UZp" secondAttribute="bottom" id="znI-0K-e0k"/>

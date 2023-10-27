@@ -16,6 +16,12 @@
 		1622EF602AEB5DF300E37506 /* HomeBackgroundCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1622EF5D2AEB5DF300E37506 /* HomeBackgroundCollectionViewCell.swift */; };
 		1622EF612AEB5DF300E37506 /* HomeBackgroundCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1622EF5E2AEB5DF300E37506 /* HomeBackgroundCollectionViewCell.xib */; };
 		1622EF622AEB5DF300E37506 /* HomeBackgroundCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1622EF5E2AEB5DF300E37506 /* HomeBackgroundCollectionViewCell.xib */; };
+		1622EF662AEB63DF00E37506 /* WelcomeSurveyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1622EF642AEB63DF00E37506 /* WelcomeSurveyCollectionViewCell.swift */; };
+		1622EF672AEB63DF00E37506 /* WelcomeSurveyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1622EF642AEB63DF00E37506 /* WelcomeSurveyCollectionViewCell.swift */; };
+		1622EF682AEB63DF00E37506 /* WelcomeSurveyCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1622EF652AEB63DF00E37506 /* WelcomeSurveyCollectionViewCell.xib */; };
+		1622EF692AEB63DF00E37506 /* WelcomeSurveyCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1622EF652AEB63DF00E37506 /* WelcomeSurveyCollectionViewCell.xib */; };
+		1622EF6B2AEB641900E37506 /* WelcomeSurveyCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1622EF6A2AEB641900E37506 /* WelcomeSurveyCollectionViewModel.swift */; };
+		1622EF6C2AEB641900E37506 /* WelcomeSurveyCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1622EF6A2AEB641900E37506 /* WelcomeSurveyCollectionViewModel.swift */; };
 		1691F7CF2AEAD3EC00D0AE30 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1691F7CE2AEAD3EC00D0AE30 /* AppDelegate.swift */; };
 		1691F7D12AEAD3EC00D0AE30 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1691F7D02AEAD3EC00D0AE30 /* SceneDelegate.swift */; };
 		1691F7D32AEAD3EC00D0AE30 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1691F7D22AEAD3EC00D0AE30 /* LoginViewController.swift */; };
@@ -164,6 +170,9 @@
 		1622EF5A2AEB54F800E37506 /* NimbleSurveyUITestsLaunchTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NimbleSurveyUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		1622EF5D2AEB5DF300E37506 /* HomeBackgroundCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBackgroundCollectionViewCell.swift; sourceTree = "<group>"; };
 		1622EF5E2AEB5DF300E37506 /* HomeBackgroundCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeBackgroundCollectionViewCell.xib; sourceTree = "<group>"; };
+		1622EF642AEB63DF00E37506 /* WelcomeSurveyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeSurveyCollectionViewCell.swift; sourceTree = "<group>"; };
+		1622EF652AEB63DF00E37506 /* WelcomeSurveyCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WelcomeSurveyCollectionViewCell.xib; sourceTree = "<group>"; };
+		1622EF6A2AEB641900E37506 /* WelcomeSurveyCollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeSurveyCollectionViewModel.swift; sourceTree = "<group>"; };
 		1691F7CB2AEAD3EC00D0AE30 /* NimbleSurvey.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NimbleSurvey.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1691F7CE2AEAD3EC00D0AE30 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1691F7D02AEAD3EC00D0AE30 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -274,6 +283,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1622EF632AEB63CB00E37506 /* Survey */ = {
+			isa = PBXGroup;
+			children = (
+				1622EF642AEB63DF00E37506 /* WelcomeSurveyCollectionViewCell.swift */,
+				1622EF6A2AEB641900E37506 /* WelcomeSurveyCollectionViewModel.swift */,
+				1622EF652AEB63DF00E37506 /* WelcomeSurveyCollectionViewCell.xib */,
+			);
+			path = Survey;
+			sourceTree = "<group>";
+		};
 		1691F7C22AEAD3EC00D0AE30 = {
 			isa = PBXGroup;
 			children = (
@@ -400,6 +419,7 @@
 		1691F8122AEAD82D00D0AE30 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				1622EF632AEB63CB00E37506 /* Survey */,
 				1691F8AB2AEAE16B00D0AE30 /* HomeModel.swift */,
 				1691F8A22AEAE15800D0AE30 /* HomeViewController.swift */,
 				1691F8A82AEAE15F00D0AE30 /* HomeViewModel.swift */,
@@ -739,6 +759,7 @@
 				1691F7D62AEAD3EC00D0AE30 /* Login.storyboard in Resources */,
 				1691F87E2AEADFD700D0AE30 /* NeuzeitSLTStdBook.otf in Resources */,
 				1691F8192AEAD96B00D0AE30 /* RouterBasePath.plist in Resources */,
+				1622EF682AEB63DF00E37506 /* WelcomeSurveyCollectionViewCell.xib in Resources */,
 				1691F8B22AEAE1AE00D0AE30 /* RightMenuViewController.xib in Resources */,
 				1691F8A62AEAE15800D0AE30 /* HomeViewController.xib in Resources */,
 				1691F8BE2AEAE1D500D0AE30 /* NotificationViewController.xib in Resources */,
@@ -752,6 +773,7 @@
 				1691F89E2AEAE12000D0AE30 /* ForgotPasswordViewController.xib in Resources */,
 				1691F87F2AEADFD700D0AE30 /* NeuzeitSLTStdBook.otf in Resources */,
 				1691F8A72AEAE15800D0AE30 /* HomeViewController.xib in Resources */,
+				1622EF692AEB63DF00E37506 /* WelcomeSurveyCollectionViewCell.xib in Resources */,
 				1691F8502AEADC7500D0AE30 /* Localizable.xcstrings in Resources */,
 				1691F8B32AEAE1AE00D0AE30 /* RightMenuViewController.xib in Resources */,
 				1622EF622AEB5DF300E37506 /* HomeBackgroundCollectionViewCell.xib in Resources */,
@@ -899,6 +921,7 @@
 				1691F8A02AEAE13200D0AE30 /* ForgotPasswordViewModel.swift in Sources */,
 				1691F8882AEAE06200D0AE30 /* StyleSheetManager.swift in Sources */,
 				1691F7D32AEAD3EC00D0AE30 /* LoginViewController.swift in Sources */,
+				1622EF662AEB63DF00E37506 /* WelcomeSurveyCollectionViewCell.swift in Sources */,
 				1691F7CF2AEAD3EC00D0AE30 /* AppDelegate.swift in Sources */,
 				1691F8B82AEAE1C000D0AE30 /* RightMenuModel.swift in Sources */,
 				1691F8382AEADB4500D0AE30 /* RefreshTokenModel.swift in Sources */,
@@ -911,6 +934,7 @@
 				1691F8642AEADDAC00D0AE30 /* String+Extension.swift in Sources */,
 				1691F8CD2AEAE23B00D0AE30 /* HomeBackgroundCollectionViewModel.swift in Sources */,
 				1691F8522AEADCD200D0AE30 /* AlertUtility.swift in Sources */,
+				1622EF6B2AEB641900E37506 /* WelcomeSurveyCollectionViewModel.swift in Sources */,
 				1691F8812AEAE01100D0AE30 /* FontManager.swift in Sources */,
 				1691F81B2AEAD98A00D0AE30 /* RouterEnumeration.swift in Sources */,
 				1691F8552AEADCF400D0AE30 /* CustomPageControl.swift in Sources */,
@@ -969,6 +993,7 @@
 				1691F8592AEADD2D00D0AE30 /* Loader.swift in Sources */,
 				1691F8AA2AEAE15F00D0AE30 /* HomeViewModel.swift in Sources */,
 				1691F8922AEAE0B000D0AE30 /* ButtonPresets.swift in Sources */,
+				1622EF672AEB63DF00E37506 /* WelcomeSurveyCollectionViewCell.swift in Sources */,
 				1622EF552AEB53E000E37506 /* AppDelegate.swift in Sources */,
 				1691F8892AEAE06200D0AE30 /* StyleSheetManager.swift in Sources */,
 				1691F8952AEAE0D200D0AE30 /* ViewPresets.swift in Sources */,
@@ -990,6 +1015,7 @@
 				1691F84D2AEADC4A00D0AE30 /* Constants.swift in Sources */,
 				1691F8402AEADB9600D0AE30 /* UserProfileModel.swift in Sources */,
 				1691F80E2AEAD65300D0AE30 /* RouterConfiguration.swift in Sources */,
+				1622EF6C2AEB641900E37506 /* WelcomeSurveyCollectionViewModel.swift in Sources */,
 				1691F8B92AEAE1C000D0AE30 /* RightMenuModel.swift in Sources */,
 				1691F8DD2AEAE38C00D0AE30 /* ForgotPasswordUnitTest.swift in Sources */,
 			);
