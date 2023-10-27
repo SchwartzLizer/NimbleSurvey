@@ -124,7 +124,15 @@ extension HomeViewController: Action {
     }
 
     @objc
-    func handleBacktoHomeNotification(_: Notification) { }
+    func handleBacktoHomeNotification(_: Notification) { 
+        self.surveyCollectionView.isHidden = true
+        self.backgroundCollectionView.isUserInteractionEnabled = true
+
+        self.stackViewTitle.isHidden = false
+        self.stackViewToday.isHidden = false
+
+        self.surveyCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .left, animated: true)
+    }
 
 
     @IBAction
