@@ -64,3 +64,41 @@ extension RightMenuViewController: Action {
         self.viewModel.requestLogout()
     }
 }
+
+// MARK: Updated
+
+extension RightMenuViewController: Updated {
+
+    // MARK: Internal
+
+    func onInitialized() {
+        self.onUpdated()
+        self.onLogoutSuccess()
+        self.onLogoutFailed()
+    }
+
+    // MARK: Private
+
+    private func onUpdated() {
+        guard let url = URL(string: self.viewModel.RightMenuModel.profileImage) else { return }
+        self.profileImageView.setProfileFromURL(url: url)
+        self.profileLabel.text = self.viewModel.RightMenuModel.name
+        guard let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String else { return }
+        guard let build = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String else { return }
+        self.versionLabel.text = "v\(version) (\(build))"
+    }
+
+    private func onLogoutSuccess() {
+        self.viewModel.onLogoutSuccess = { [weak self] in
+            guard let self = self else { return }
+            TokenRefresher.shared.stopTimer()
+            AppUtility().loginScene()
+        }
+    }
+
+    private func onLogoutFailed() {
+        self.viewModel.onLogoutFailed = { message in
+            AlertUtility.showAlert(title: "Error", message: message)
+        }
+    }
+}
