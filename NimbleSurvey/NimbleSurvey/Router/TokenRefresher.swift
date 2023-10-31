@@ -12,7 +12,13 @@ class TokenRefresher {
     // MARK: Lifecycle
 
     // Private initializer to prevent creating different instances.
-    private init() { }
+    private init() {
+        self.setupNotificationObservers()
+    }
+
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
 
     // MARK: Public
 
@@ -27,14 +33,13 @@ class TokenRefresher {
     public func refreshToken() {
         let router = Router.refreshToken(
             grantType: GrantType.refreshToken.rawValue,
-            refreshToken: Keychain.shared.getRefreshToken() ?? "",
+            refreshToken: Keychain.shared.getRefreshToken(),
             clientID: Constants.ServiceKeys.key,
             clientSecret: Constants.ServiceKeys.secrect)
 
         NetworkManager.shared.request(router: router) { (result: NetworkResult<LoginModel, NetworkError>) in
             switch result {
             case .success(let data):
-                self.onSuccess?()
                 guard let data = data.data?.attributes?.refreshToken else { return AlertUtility.showAlert(
                     title: Constants.Keys.appName.localized(),
                     message: Constants.Keys.refresherTokenError.localized())
@@ -42,12 +47,12 @@ class TokenRefresher {
                     AppUtility().loginScene()
                 }
                 }
-                    Keychain.shared.saveRefreshToken(data: data)
+                self.startTimer()
+                _ = Keychain.shared.saveRefreshToken(data: data)
+                NotificationCenter.default.post(name: .refresherTokenOnSuccess, object: nil)
             case .failure:
-                self.onFailed?()
-                AlertUtility.showAlert(title: Constants.Keys.appName.localized(), message: Constants.Keys.refresherTokenError.localized()) {
-                    AppUtility().loginScene()
-                }
+                self.stopTimer()
+                NotificationCenter.default.post(name: .refresherTokenOnFailure, object: nil)
             }
         }
     }
@@ -56,9 +61,6 @@ class TokenRefresher {
 
     // Singleton instance
     static let shared = TokenRefresher()
-
-    var onSuccess: (()->Void)?
-    var onFailed: (()->Void)?
 
     // Method to start the timer
     func startTimer() {
@@ -80,4 +82,36 @@ class TokenRefresher {
         }
     }
 
+    // MARK: Private
+
+    private func setupNotificationObservers() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(self.appDidEnterBackground),
+            name: .refresherTokenAppDidEnterBackground,
+            object: nil)
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(self.appWillEnterForeground),
+            name: .refresherTokenAppWillEnterForeground,
+            object: nil)
+    }
+
+    @objc
+    private func appDidEnterBackground() {
+        self.stopTimer()
+    }
+
+    @objc
+    private func appWillEnterForeground() {
+        self.refreshToken()
+    }
+
 }
+
+//AlertUtility.showAlert(
+//    title: Constants.Keys.appName.localized(),
+//    message: Constants.Keys.refresherTokenError.localized())
+//{
+//    AppUtility().loginScene()
+//}
