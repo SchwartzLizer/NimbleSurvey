@@ -9,6 +9,11 @@ import Foundation
 import Security
 
 class Keychain {
+
+    static let shared = Keychain()
+
+    init() { }
+
     func saveRefreshToken(data: String) {
         defaults.set(data, forKey: Constants.KeyChainKey.refreshTokenKey)
     }
