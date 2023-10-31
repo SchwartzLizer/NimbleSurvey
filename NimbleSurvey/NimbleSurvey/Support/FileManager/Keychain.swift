@@ -18,16 +18,16 @@ class Keychain {
         defaults.set(data, forKey: Constants.KeyChainKey.refreshTokenKey)
     }
 
-    func getRefreshToken() -> String? {
-        return defaults.string(forKey: Constants.KeyChainKey.refreshTokenKey)
+    func getRefreshToken() -> String {
+        return defaults.string(forKey: Constants.KeyChainKey.refreshTokenKey) ?? ""
     }
 
     func saveAccessToken(data: String) {
         defaults.set(data, forKey: Constants.KeyChainKey.accessTokenKey)
     }
 
-    func getAccessToken() -> String? {
-        return defaults.string(forKey: Constants.KeyChainKey.accessTokenKey)
+    func getAccessToken() -> String {
+        return defaults.string(forKey: Constants.KeyChainKey.accessTokenKey) ?? ""
     }
 }
 
