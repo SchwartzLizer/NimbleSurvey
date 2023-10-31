@@ -374,12 +374,13 @@
 		1691F8072AEAD60700D0AE30 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
-				1691F8082AEAD61100D0AE30 /* Logger.swift */,
 				1691F8512AEADCD200D0AE30 /* AlertUtility.swift */,
-				1691F8542AEADCF400D0AE30 /* CustomPageControl.swift */,
-				1691F8572AEADD2D00D0AE30 /* Loader.swift */,
-				1691F85A2AEADD5000D0AE30 /* CustomRefreshControl.swift */,
 				1691F85D2AEADD7400D0AE30 /* AppUtility.swift */,
+				1691F8542AEADCF400D0AE30 /* CustomPageControl.swift */,
+				1691F85A2AEADD5000D0AE30 /* CustomRefreshControl.swift */,
+				1691F8572AEADD2D00D0AE30 /* Loader.swift */,
+				1691F8082AEAD61100D0AE30 /* Logger.swift */,
+				165DAB552AF16949001BF664 /* NotificationHandler.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -407,7 +408,6 @@
 				1691F84E2AEADC7500D0AE30 /* Localizable.xcstrings */,
 				1691F86F2AEADE4100D0AE30 /* NotificationCenter.swift */,
 				16C16A9F2AEB9F5B00FB58AC /* Accessibility.swift */,
-				165DAB552AF16949001BF664 /* NotificationHandler.swift */,
 			);
 			path = Support;
 			sourceTree = "<group>";
