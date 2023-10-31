@@ -44,6 +44,8 @@ class TokenRefresher {
                     title: Constants.Keys.appName.localized(),
                     message: Constants.Keys.refresherTokenError.localized())
                 {
+                    self.stopTimer()
+                    let status = Keychain.shared.removeRefreshToken()
                     AppUtility().loginScene()
                 }
                 }
@@ -52,6 +54,7 @@ class TokenRefresher {
                 NotificationCenter.default.post(name: .refresherTokenOnSuccess, object: nil)
             case .failure:
                 self.stopTimer()
+                let status = Keychain.shared.removeRefreshToken()
                 NotificationCenter.default.post(name: .refresherTokenOnFailureAutoLogin, object: nil)
             }
         }

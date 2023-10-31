@@ -100,7 +100,6 @@ extension LoginViewController: Action {
             Loader.shared.hideLoader()
             self.stackView.isHidden = false
             self.stackView.alpha = 1
-            let status = Keychain.shared.removeRefreshToken()
             print(status)
         }
     }
