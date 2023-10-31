@@ -9,6 +9,32 @@ import Foundation
 import Security
 
 class Keychain {
+    func saveRefreshToken(data: String) {
+        defaults.set(data, forKey: Constants.KeyChainKey.refreshTokenKey)
+    }
+
+    func getRefreshToken() -> String? {
+        return defaults.string(forKey: Constants.KeyChainKey.refreshTokenKey)
+    }
+
+    func saveAccessToken(data: String) {
+        defaults.set(data, forKey: Constants.KeyChainKey.accessTokenKey)
+    }
+
+    func getAccessToken() -> String? {
+        return defaults.string(forKey: Constants.KeyChainKey.accessTokenKey)
+    }
+}
+
+extension Constants {
+    enum KeyChainKey {
+        static let refreshTokenKey = "RefreshTokenKey"
+        static let accessTokenKey = "AccessTokenKey"
+    }
+}
+
+
+extension Keychain {
     // Save data to keychain
     static func save(key: String, data: Data) -> OSStatus {
         let query = [
