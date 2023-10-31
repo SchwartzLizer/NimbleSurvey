@@ -59,7 +59,7 @@ extension HomeViewModel: RequestService {
     }
 
     public func pullToRefresh() {
-        self.requestData(accessToken: Keychain().getAccessToken() ?? "")
+        self.requestData(accessToken: Keychain.shared.getAccessToken() ?? "")
     }
 
     public func clearData() {

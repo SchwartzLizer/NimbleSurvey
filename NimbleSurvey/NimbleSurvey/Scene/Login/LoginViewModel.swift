@@ -47,8 +47,8 @@ extension LoginViewModel: RequestService {
                     let refreshToken = model.data?.attributes?.refreshToken,
                     let accessToken = model.data?.attributes?.accessToken
                 {
-                    Keychain().saveAccessToken(data: accessToken)
-                    Keychain().saveRefreshToken(data: refreshToken)
+                    Keychain.shared.saveAccessToken(data: accessToken)
+                    Keychain.shared.saveRefreshToken(data: refreshToken)
                     TokenRefresher.shared.startTimer()
                     self.loginSuccess?()
 
