@@ -381,6 +381,7 @@
 				1691F8572AEADD2D00D0AE30 /* Loader.swift */,
 				1691F8082AEAD61100D0AE30 /* Logger.swift */,
 				165DAB552AF16949001BF664 /* NotificationHandler.swift */,
+				1691F8DE2AEAE53100D0AE30 /* TokenRefresher.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -394,7 +395,6 @@
 				1691F81A2AEAD98A00D0AE30 /* RouterEnumeration.swift */,
 				1691F81D2AEAD9B200D0AE30 /* Router.swift */,
 				1691F8202AEADA1A00D0AE30 /* NetworkManager.swift */,
-				1691F8DE2AEAE53100D0AE30 /* TokenRefresher.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
