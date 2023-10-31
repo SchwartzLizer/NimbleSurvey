@@ -45,13 +45,15 @@ extension LoginViewModel: RequestService {
             switch result {
             case .success(let model):
                 if let refreshToken = model.data?.attributes?.refreshToken {
-                    Keychain.shared.saveRefreshToken(data: refreshToken)
+                    let status = Keychain.shared.saveRefreshToken(data: refreshToken)
+                    print(status)
                 } else {
                     self.noRefreshTokenFound?()
                 }
 
                 if let accessToken = model.data?.attributes?.accessToken {
-                    Keychain.shared.saveAccessToken(data: accessToken)
+                    let status = Keychain.shared.saveAccessToken(data: accessToken)
+                    print(status)
                     TokenRefresher.shared.startTimer()
                     self.loginSuccess?()
                 } else {
@@ -77,13 +79,15 @@ extension LoginViewModel: RequestService {
             switch result {
             case .success(let model):
                 if let refreshToken = model.data?.attributes?.refreshToken {
-                    Keychain.shared.saveRefreshToken(data: refreshToken)
+                    let status = Keychain.shared.saveRefreshToken(data: refreshToken)
+                    print(status)
                 } else {
                     self.noRefreshTokenFound?()
                 }
 
                 if let accessToken = model.data?.attributes?.accessToken {
-                    Keychain.shared.saveAccessToken(data: accessToken)
+                    let status = Keychain.shared.saveAccessToken(data: accessToken)
+                    print(status)
                     TokenRefresher.shared.startTimer()
                     self.loginSuccess?()
                 } else {
@@ -91,7 +95,7 @@ extension LoginViewModel: RequestService {
                 }
             case .failure(let error):
                 let errorMessage = self.errorMessage(from: error)
-                self.loginFailure?(errorMessage)
+                self.refreshTokenFailure?(errorMessage)
             }
         }
     }
