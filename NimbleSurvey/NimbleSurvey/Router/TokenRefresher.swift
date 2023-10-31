@@ -56,6 +56,7 @@ class TokenRefresher {
                 self.stopTimer()
                 let status = Keychain.shared.removeRefreshToken()
                 NotificationCenter.default.post(name: .refresherTokenOnFailureAutoLogin, object: nil)
+                NotificationCenter.default.post(name: .refresherTokenOnFailure, object: nil)
             }
         }
     }
