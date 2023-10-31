@@ -27,7 +27,7 @@ class TokenRefresher {
     public func refreshToken() {
         let router = Router.refreshToken(
             grantType: "refresh_token",
-            refreshToken: UserDefault().getRefreshToken() ?? "",
+            refreshToken: Keychain().getRefreshToken() ?? "",
             clientID: Constants.ServiceKeys.key,
             clientSecret: Constants.ServiceKeys.secrect)
 
@@ -42,7 +42,7 @@ class TokenRefresher {
                     AppUtility().loginScene()
                 }
                 }
-                UserDefault().saveRefreshToken(data: data)
+                Keychain().saveRefreshToken(data: data)
             case .failure:
                 self.onFailed?()
                 AlertUtility.showAlert(title: "Error", message: Constants.Keys.refresherTokenError.localized()) {
