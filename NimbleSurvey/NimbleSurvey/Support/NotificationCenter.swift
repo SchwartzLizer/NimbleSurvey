@@ -15,5 +15,6 @@ extension Notification.Name {
     static let refresherTokenAppDidEnterBackground = Notification.Name("refresherTokenAppDidEnterBackground")
     static let refresherTokenAppWillEnterForeground = Notification.Name("refresherTokenAppWillEnterForeground")
     static let refresherTokenOnSuccess = Notification.Name("refresherTokenOnSuccess")
+    static let refresherTokenOnFailureAutoLogin = Notification.Name("refresherTokenOnFailureAutoLogin")
     static let refresherTokenOnFailure = Notification.Name("refresherTokenOnFailure")
 }
