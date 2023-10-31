@@ -42,12 +42,8 @@ enum Result<T> {
 }
 
 enum GrantType: String {
-    case password
-    case refreshToken
-
-    var value: String {
-        return self.rawValue
-    }
+    case password = "password"
+    case refreshToken = "refresh_token"
 }
 
 

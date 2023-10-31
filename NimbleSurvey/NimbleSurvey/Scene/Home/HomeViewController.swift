@@ -40,7 +40,7 @@ class HomeViewController: UIViewController {
     override func viewDidAppear(_: Bool) {
         super.viewDidAppear(true)
         showSkeletonView()
-        self.viewModel.requestData(accessToken: UserDefault().getAccessToken() ?? "")
+        self.viewModel.requestData(accessToken: Keychain.shared.getAccessToken() ?? "")
     }
 
     deinit {

@@ -95,6 +95,7 @@ extension LoginViewController: Updated {
     internal func onInitialized() {
         self.onSuccess()
         self.onFailed()
+        self.onRefreshTokenFailure()
     }
 
     // MARK: Private
@@ -129,6 +130,14 @@ extension LoginViewController: Updated {
         self.logoIconImage.transform = CGAffineTransform.identity
         self.clearTextField()
     }
+
+    private func onRefreshTokenFailure() {
+        self.stackView.isHidden = false
+        self.stackView.alpha = 1
+        let status = Keychain.shared.removeRefreshToken()
+        print(status)
+    }
+
 }
 
 // MARK: UserInterfaceSetup
@@ -144,13 +153,11 @@ extension LoginViewController:UserInterfaceSetup {
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
             self.animateAndResizeImage()
             self.blurBackgroundImage()
-
-            UIView.animate(withDuration: 1.0) {
-                self.stackView.isHidden = false
-                self.stackView.alpha = 1
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.1) {
+                self.onAutoLogin()
             }
         }
-        
+
         self.textFieldBackgroundView.forEach { view in
             view.applyThemeView(background: self.theme.textfieldBackgroundColor, radius: Constants.Radius.cornerRadiusCard)
             let blurredEffectView = self.createBlurredEffectView(
@@ -221,6 +228,18 @@ extension LoginViewController:UserInterfaceSetup {
 
         UIView.animate(withDuration: 1.0) {
             blurredEffectView.alpha = 1
+        }
+    }
+
+    private func onAutoLogin() {
+        if AppUtility.shared.checkTokenExist() {
+            Loader.shared.showLoader(view: self.view)
+            self.viewModel.requestRefreshToken(token: Keychain.shared.getRefreshToken())
+        } else {
+            UIView.animate(withDuration: 1.0) {
+                self.stackView.isHidden = false
+                self.stackView.alpha = 1
+            }
         }
     }
 

@@ -31,7 +31,7 @@ final class RightMenuViewModel: ViewModel {
 extension RightMenuViewModel: RequestService {
     public func requestLogout() {
         let router = Router.logout(
-            token: UserDefault().getAccessToken() ?? "",
+            token: Keychain.shared.getAccessToken() ?? "",
             clientID: Constants.ServiceKeys.key,
             clientSecret: Constants.ServiceKeys.secrect)
 

@@ -11,6 +11,16 @@ import UIKit
 
 class AppUtility {
 
+    // MARK: Lifecycle
+
+    init() { }
+
+    // MARK: Internal
+
+    static let shared = AppUtility()
+
+    // MARK: Private
+
     private var window: UIWindow? = UIApplication.shared.windows.first
 }
 
@@ -24,6 +34,14 @@ extension AppUtility {
         guard let vc = loginVC else { return }
         let nav = UINavigationController(rootViewController: vc)
         setRootViewController(nav)
+    }
+
+    func checkTokenExist() -> Bool {
+        if Keychain.shared.getRefreshToken() != "" {
+            return true
+        } else {
+            return false
+        }
     }
 
 }
