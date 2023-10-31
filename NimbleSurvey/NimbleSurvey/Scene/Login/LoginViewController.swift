@@ -25,6 +25,10 @@ class LoginViewController: UIViewController {
         self.onDidDisappear()
     }
 
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+
     // MARK: Internal
 
     @IBOutlet weak var logoIconHeightConstraint: NSLayoutConstraint!
@@ -84,6 +88,28 @@ extension LoginViewController: Action {
         self.passwordTextField.endEditing(true)
         self.emailTextField.endEditing(true)
     }
+
+    @objc
+    private func refresherTokenSuccess() {
+        self.goToHome()
+    }
+
+    @objc
+    private func refreshTokenFailure() {
+        DispatchQueue.main.async {
+            Loader.shared.hideLoader()
+            self.stackView.isHidden = false
+            self.stackView.alpha = 1
+        }
+    }
+
+    private func goToHome() {
+        DispatchQueue.main.async {
+            _ = NotificationHandler.shared // Start observing notification
+            Loader.shared.hideLoader()
+            self.navigationController?.pushViewController(HomeViewController(viewModel: HomeViewModel()), animated: true)
+        }
+    }
 }
 
 // MARK: Updated
@@ -95,7 +121,6 @@ extension LoginViewController: Updated {
     internal func onInitialized() {
         self.onSuccess()
         self.onFailed()
-        self.onRefreshTokenFailure()
     }
 
     // MARK: Private
@@ -103,10 +128,7 @@ extension LoginViewController: Updated {
     private func onSuccess() {
         self.viewModel.loginSuccess = { [weak self] in
             guard let self = self else { return }
-            DispatchQueue.main.async {
-                Loader.shared.hideLoader()
-                self.navigationController?.pushViewController(HomeViewController(viewModel: HomeViewModel()), animated: true)
-            }
+            self.goToHome()
         }
     }
 
@@ -131,13 +153,6 @@ extension LoginViewController: Updated {
         self.clearTextField()
     }
 
-    private func onRefreshTokenFailure() {
-        self.stackView.isHidden = false
-        self.stackView.alpha = 1
-        let status = Keychain.shared.removeRefreshToken()
-        print(status)
-    }
-
 }
 
 // MARK: UserInterfaceSetup
@@ -147,6 +162,7 @@ extension LoginViewController:UserInterfaceSetup {
     // MARK: Internal
 
     func setupUI() {
+        self.setupNotificationObservers()
         self.stackView.isHidden = true
         self.stackView.alpha = 0
 
@@ -154,7 +170,7 @@ extension LoginViewController:UserInterfaceSetup {
             self.animateAndResizeImage()
             self.blurBackgroundImage()
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.1) {
-                self.onAutoLogin()
+                self.prepareAutoLogin()
             }
         }
 
@@ -231,16 +247,29 @@ extension LoginViewController:UserInterfaceSetup {
         }
     }
 
-    private func onAutoLogin() {
+    private func prepareAutoLogin() {
         if AppUtility.shared.checkTokenExist() {
             Loader.shared.showLoader(view: self.view)
-            self.viewModel.requestRefreshToken(token: Keychain.shared.getRefreshToken())
+            TokenRefresher.shared.refreshToken()
         } else {
             UIView.animate(withDuration: 1.0) {
                 self.stackView.isHidden = false
                 self.stackView.alpha = 1
             }
         }
+    }
+
+    private func setupNotificationObservers() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(self.refresherTokenSuccess),
+            name: .refresherTokenOnSuccessAutoLogin,
+            object: nil)
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(self.refreshTokenFailure),
+            name: .refresherTokenOnFailureAutoLogin,
+            object: nil)
     }
 
 }

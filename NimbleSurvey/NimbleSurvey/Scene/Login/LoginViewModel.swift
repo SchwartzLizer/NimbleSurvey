@@ -66,40 +66,6 @@ extension LoginViewModel: RequestService {
         }
     }
 
-    public func requestRefreshToken(token: String) {
-        let router = Router.refreshToken(
-            grantType: GrantType.refreshToken.rawValue,
-            refreshToken: token,
-            clientID: Constants.ServiceKeys.key,
-            clientSecret: Constants.ServiceKeys.secrect)
-
-        NetworkManager.shared.request(router: router) { [weak self] (result: NetworkResult<LoginModel, NetworkError>) in
-            guard let self = self else { return }
-
-            switch result {
-            case .success(let model):
-                if let refreshToken = model.data?.attributes?.refreshToken {
-                    let status = Keychain.shared.saveRefreshToken(data: refreshToken)
-                    print(status)
-                } else {
-                    self.noRefreshTokenFound?()
-                }
-
-                if let accessToken = model.data?.attributes?.accessToken {
-                    let status = Keychain.shared.saveAccessToken(data: accessToken)
-                    print(status)
-                    TokenRefresher.shared.startTimer()
-                    self.loginSuccess?()
-                } else {
-                    self.noAccessTokenFound?()
-                }
-            case .failure(let error):
-                let errorMessage = self.errorMessage(from: error)
-                self.refreshTokenFailure?(errorMessage)
-            }
-        }
-    }
-
     // MARK: Private
 
     private func errorMessage(from error: NetworkError) -> String {
