@@ -21,25 +21,50 @@ class Keychain {
     static let shared = Keychain()
 
     func saveRefreshToken(data: String) -> String {
-        let dataToSave = data.data(using: .utf8)!
+        guard let dataToSave = data.data(using: .utf8) else {
+            print("Failed to convert string to data.")
+            return "Failed to convert string to data."
+        }
+
         let status = Keychain.save(key: Constants.KeyChainKey.refreshTokenKey, data: dataToSave)
-        return status.description
+
+        if status == errSecSuccess {
+            print("Successfully saved refresh Token.")
+            return "Successfully saved data."
+        } else {
+            let message = "Failed to save data with status: \(status)"
+            print(message)
+            return message
+        }
     }
 
     func getRefreshToken() -> String {
         guard
             let data = Keychain.load(key: Constants.KeyChainKey.refreshTokenKey),
-            let token = String(data: data, encoding: .utf8) else
-        {
+            let token = String(data: data, encoding: .utf8)
+        else {
+            print("Failed to fetch or decode refreshToken")
             return ""
         }
         return token
     }
 
     func saveAccessToken(data: String) -> String {
-        let dataToSave = data.data(using: .utf8)!
+        guard let dataToSave = data.data(using: .utf8) else {
+            print("Failed to convert string to data.")
+            return "Failed to convert string to data."
+        }
+
         let status = Keychain.save(key: Constants.KeyChainKey.accessTokenKey, data: dataToSave)
-        return status.description
+
+        if status == errSecSuccess {
+            print("Successfully saved accessToken.")
+            return "Successfully saved data."
+        } else {
+            let message = "Failed to save data with status: \(status)"
+            print(message)
+            return message
+        }
     }
 
     func getAccessToken() -> String {
@@ -47,19 +72,25 @@ class Keychain {
             let data = Keychain.load(key: Constants.KeyChainKey.accessTokenKey),
             let token = String(data: data, encoding: .utf8) else
         {
+            print("Failed to fetch or decode accessToken.")
             return ""
         }
+        print("Successfully fetched accessToken: \(token)")
         return token
     }
 
     func removeRefreshToken() -> String {
         let status = Keychain.delete(key: Constants.KeyChainKey.refreshTokenKey)
-        return status.description
+        let message = "Remove refreshToken status: \(status)"
+        print(message)
+        return message
     }
 
     func removeAccessToken() -> String {
         let status = Keychain.delete(key: Constants.KeyChainKey.accessTokenKey)
-        return status.description
+        let message = "Remove accessToken status: \(status)"
+        print(message)
+        return message
     }
 }
 
@@ -77,12 +108,12 @@ extension Keychain {
     // Save data to keychain
     static func save(key: String, data: Data) -> OSStatus {
         let query = [
-            kSecClass as String : kSecClassGenericPassword as String,
-            kSecAttrAccount as String : key,
-            kSecValueData as String : data,
-        ] as [String : Any]
+            kSecClass as String: kSecClassGenericPassword as String,
+            kSecAttrAccount as String: key,
+            kSecValueData as String: data,
+        ] as [String: Any]
 
-        SecItemDelete(query as CFDictionary)
+        SecItemDelete(query as CFDictionary) // Optionally clear any existing item before saving.
         return SecItemAdd(query as CFDictionary, nil)
     }
 
@@ -99,8 +130,9 @@ extension Keychain {
         let status: OSStatus = SecItemCopyMatching(query as CFDictionary, &dataTypeRef)
 
         if status == noErr {
-            return dataTypeRef as! Data?
+            return dataTypeRef as? Data
         } else {
+            print("Failed to fetch data from keychain with status: \(status)")
             return nil
         }
     }
@@ -108,8 +140,8 @@ extension Keychain {
     // Delete data from keychain
     static func delete(key: String) -> OSStatus {
         let query = [
-            kSecClass as String : kSecClassGenericPassword,
-            kSecAttrAccount as String : key,
+            kSecClass as String: kSecClassGenericPassword,
+            kSecAttrAccount as String: key,
         ] as [String : Any]
 
         return SecItemDelete(query as CFDictionary)
