@@ -26,8 +26,8 @@ class TokenRefresher {
     @objc
     public func refreshToken() {
         let router = Router.refreshToken(
-            grantType: "refresh_token",
-            refreshToken: UserDefault().getRefreshToken() ?? "",
+            grantType: GrantType.refreshToken.rawValue,
+            refreshToken: Keychain.shared.getRefreshToken() ?? "",
             clientID: Constants.ServiceKeys.key,
             clientSecret: Constants.ServiceKeys.secrect)
 
@@ -36,16 +36,16 @@ class TokenRefresher {
             case .success(let data):
                 self.onSuccess?()
                 guard let data = data.data?.attributes?.refreshToken else { return AlertUtility.showAlert(
-                    title: "Error",
+                    title: Constants.Keys.appName.localized(),
                     message: Constants.Keys.refresherTokenError.localized())
                 {
                     AppUtility().loginScene()
                 }
                 }
-                UserDefault().saveRefreshToken(data: data)
+                    Keychain.shared.saveRefreshToken(data: data)
             case .failure:
                 self.onFailed?()
-                AlertUtility.showAlert(title: "Error", message: Constants.Keys.refresherTokenError.localized()) {
+                AlertUtility.showAlert(title: Constants.Keys.appName.localized(), message: Constants.Keys.refresherTokenError.localized()) {
                     AppUtility().loginScene()
                 }
             }
