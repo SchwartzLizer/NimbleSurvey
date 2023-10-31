@@ -8,28 +8,62 @@
 import Foundation
 import Security
 
+// MARK: - Keychain
+
 class Keychain {
 
-    static let shared = Keychain()
+    // MARK: Lifecycle
 
     init() { }
 
-    func saveRefreshToken(data: String) {
-        defaults.set(data, forKey: Constants.KeyChainKey.refreshTokenKey)
+    // MARK: Internal
+
+    static let shared = Keychain()
+
+    func saveRefreshToken(data: String) -> String {
+        let dataToSave = data.data(using: .utf8)!
+        let status = Keychain.save(key: Constants.KeyChainKey.refreshTokenKey, data: dataToSave)
+        return status.description
     }
 
     func getRefreshToken() -> String {
-        return defaults.string(forKey: Constants.KeyChainKey.refreshTokenKey) ?? ""
+        guard
+            let data = Keychain.load(key: Constants.KeyChainKey.refreshTokenKey),
+            let token = String(data: data, encoding: .utf8) else
+        {
+            return ""
+        }
+        return token
     }
 
-    func saveAccessToken(data: String) {
-        defaults.set(data, forKey: Constants.KeyChainKey.accessTokenKey)
+    func saveAccessToken(data: String) -> String {
+        let dataToSave = data.data(using: .utf8)!
+        let status = Keychain.save(key: Constants.KeyChainKey.accessTokenKey, data: dataToSave)
+        return status.description
     }
 
     func getAccessToken() -> String {
-        return defaults.string(forKey: Constants.KeyChainKey.accessTokenKey) ?? ""
+        guard
+            let data = Keychain.load(key: Constants.KeyChainKey.accessTokenKey),
+            let token = String(data: data, encoding: .utf8) else
+        {
+            return ""
+        }
+        return token
+    }
+
+    func removeRefreshToken() -> String {
+        let status = Keychain.delete(key: Constants.KeyChainKey.refreshTokenKey)
+        return status.description
+    }
+
+    func removeAccessToken() -> String {
+        let status = Keychain.delete(key: Constants.KeyChainKey.accessTokenKey)
+        return status.description
     }
 }
+
+// MARK: - Constants.KeyChainKey
 
 extension Constants {
     enum KeyChainKey {
