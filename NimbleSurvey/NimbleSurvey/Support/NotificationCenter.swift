@@ -14,7 +14,7 @@ extension Notification.Name {
     static let zoomOutBackground = Notification.Name("zoomOutBackground")
     static let refresherTokenAppDidEnterBackground = Notification.Name("refresherTokenAppDidEnterBackground")
     static let refresherTokenAppWillEnterForeground = Notification.Name("refresherTokenAppWillEnterForeground")
-    static let refresherTokenOnSuccess = Notification.Name("refresherTokenOnSuccess")
+    static let refresherTokenOnSuccessAutoLogin = Notification.Name("refresherTokenOnSuccessAutoLogin")
     static let refresherTokenOnFailureAutoLogin = Notification.Name("refresherTokenOnFailureAutoLogin")
     static let refresherTokenOnFailure = Notification.Name("refresherTokenOnFailure")
 }

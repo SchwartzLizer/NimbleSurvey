@@ -263,7 +263,7 @@ extension LoginViewController:UserInterfaceSetup {
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(self.refresherTokenSuccess),
-            name: .refresherTokenOnSuccess,
+            name: .refresherTokenOnSuccessAutoLogin,
             object: nil)
         NotificationCenter.default.addObserver(
             self,

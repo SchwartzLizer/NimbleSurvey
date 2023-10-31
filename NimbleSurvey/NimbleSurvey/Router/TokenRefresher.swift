@@ -51,7 +51,7 @@ class TokenRefresher {
                 }
                 self.startTimer()
                 _ = Keychain.shared.saveRefreshToken(data: data)
-                NotificationCenter.default.post(name: .refresherTokenOnSuccess, object: nil)
+                NotificationCenter.default.post(name: .refresherTokenOnSuccessAutoLogin, object: nil)
             case .failure:
                 self.stopTimer()
                 _ = Keychain.shared.removeRefreshToken()
