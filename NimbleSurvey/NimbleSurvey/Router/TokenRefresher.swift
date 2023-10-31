@@ -52,7 +52,7 @@ class TokenRefresher {
                 NotificationCenter.default.post(name: .refresherTokenOnSuccess, object: nil)
             case .failure:
                 self.stopTimer()
-                NotificationCenter.default.post(name: .refresherTokenOnFailure, object: nil)
+                NotificationCenter.default.post(name: .refresherTokenOnFailureAutoLogin, object: nil)
             }
         }
     }
@@ -108,10 +108,3 @@ class TokenRefresher {
     }
 
 }
-
-//AlertUtility.showAlert(
-//    title: Constants.Keys.appName.localized(),
-//    message: Constants.Keys.refresherTokenError.localized())
-//{
-//    AppUtility().loginScene()
-//}

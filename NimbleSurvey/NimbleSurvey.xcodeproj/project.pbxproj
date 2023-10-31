@@ -23,6 +23,8 @@
 		1622EF6C2AEB641900E37506 /* WelcomeSurveyCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1622EF6A2AEB641900E37506 /* WelcomeSurveyCollectionViewModel.swift */; };
 		1622EF6E2AEB66E200E37506 /* WelcomeSurveyCollectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1622EF6D2AEB66E200E37506 /* WelcomeSurveyCollectionModel.swift */; };
 		1622EF6F2AEB66E200E37506 /* WelcomeSurveyCollectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1622EF6D2AEB66E200E37506 /* WelcomeSurveyCollectionModel.swift */; };
+		165DAB562AF16949001BF664 /* NotificationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 165DAB552AF16949001BF664 /* NotificationHandler.swift */; };
+		165DAB572AF16949001BF664 /* NotificationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 165DAB552AF16949001BF664 /* NotificationHandler.swift */; };
 		1691F7CF2AEAD3EC00D0AE30 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1691F7CE2AEAD3EC00D0AE30 /* AppDelegate.swift */; };
 		1691F7D12AEAD3EC00D0AE30 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1691F7D02AEAD3EC00D0AE30 /* SceneDelegate.swift */; };
 		1691F7D32AEAD3EC00D0AE30 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1691F7D22AEAD3EC00D0AE30 /* LoginViewController.swift */; };
@@ -185,6 +187,7 @@
 		1622EF652AEB63DF00E37506 /* WelcomeSurveyCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WelcomeSurveyCollectionViewCell.xib; sourceTree = "<group>"; };
 		1622EF6A2AEB641900E37506 /* WelcomeSurveyCollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeSurveyCollectionViewModel.swift; sourceTree = "<group>"; };
 		1622EF6D2AEB66E200E37506 /* WelcomeSurveyCollectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeSurveyCollectionModel.swift; sourceTree = "<group>"; };
+		165DAB552AF16949001BF664 /* NotificationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationHandler.swift; sourceTree = "<group>"; };
 		1691F7CB2AEAD3EC00D0AE30 /* NimbleSurvey.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NimbleSurvey.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1691F7CE2AEAD3EC00D0AE30 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1691F7D02AEAD3EC00D0AE30 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -404,6 +407,7 @@
 				1691F84E2AEADC7500D0AE30 /* Localizable.xcstrings */,
 				1691F86F2AEADE4100D0AE30 /* NotificationCenter.swift */,
 				16C16A9F2AEB9F5B00FB58AC /* Accessibility.swift */,
+				165DAB552AF16949001BF664 /* NotificationHandler.swift */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -966,6 +970,7 @@
 				1691F89B2AEAE12000D0AE30 /* ForgotPasswordViewController.swift in Sources */,
 				1691F8452AEADBFB00D0AE30 /* Protocol+Extension.swift in Sources */,
 				1691F8642AEADDAC00D0AE30 /* String+Extension.swift in Sources */,
+				165DAB562AF16949001BF664 /* NotificationHandler.swift in Sources */,
 				1691F8CD2AEAE23B00D0AE30 /* HomeBackgroundCollectionViewModel.swift in Sources */,
 				1691F8522AEADCD200D0AE30 /* AlertUtility.swift in Sources */,
 				1622EF6B2AEB641900E37506 /* WelcomeSurveyCollectionViewModel.swift in Sources */,
@@ -1020,6 +1025,7 @@
 				1691F8982AEAE0FD00D0AE30 /* LoginViewModel.swift in Sources */,
 				16C16AA12AEB9F5B00FB58AC /* Accessibility.swift in Sources */,
 				1691F88C2AEAE07700D0AE30 /* StyleSheets.swift in Sources */,
+				165DAB572AF16949001BF664 /* NotificationHandler.swift in Sources */,
 				1691F8CE2AEAE23B00D0AE30 /* HomeBackgroundCollectionViewModel.swift in Sources */,
 				1691F8362AEADB0700D0AE30 /* LoginModel.swift in Sources */,
 				1691F8C52AEAE1E800D0AE30 /* NotificationModel.swift in Sources */,
