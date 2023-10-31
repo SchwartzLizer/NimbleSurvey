@@ -19,6 +19,7 @@ final class LoginViewModel: ViewModel {
 
     public var loginSuccess: (() -> Void)?
     public var loginFailure: ((String) -> Void)?
+    public var refreshTokenFailure: ((String) -> Void)?
     public var noRefreshTokenFound: (() -> Void)?
     public var noAccessTokenFound: (() -> Void)?
 
@@ -43,20 +44,51 @@ extension LoginViewModel: RequestService {
 
             switch result {
             case .success(let model):
-                if
-                    let refreshToken = model.data?.attributes?.refreshToken,
-                    let accessToken = model.data?.attributes?.accessToken
-                {
-                    Keychain.shared.saveAccessToken(data: accessToken)
+                if let refreshToken = model.data?.attributes?.refreshToken {
                     Keychain.shared.saveRefreshToken(data: refreshToken)
-                    TokenRefresher.shared.startTimer()
-                    self.loginSuccess?()
-
                 } else {
                     self.noRefreshTokenFound?()
-                    self.noAccessTokenFound?()
                 }
 
+                if let accessToken = model.data?.attributes?.accessToken {
+                    Keychain.shared.saveAccessToken(data: accessToken)
+                    TokenRefresher.shared.startTimer()
+                    self.loginSuccess?()
+                } else {
+                    self.noAccessTokenFound?()
+                }
+            case .failure(let error):
+                let errorMessage = self.errorMessage(from: error)
+                self.loginFailure?(errorMessage)
+            }
+        }
+    }
+
+    public func requestRefreshToken(token: String) {
+        let router = Router.refreshToken(
+            grantType: GrantType.refreshToken.rawValue,
+            refreshToken: token,
+            clientID: Constants.ServiceKeys.key,
+            clientSecret: Constants.ServiceKeys.secrect)
+
+        NetworkManager.shared.request(router: router) { [weak self] (result: NetworkResult<LoginModel, NetworkError>) in
+            guard let self = self else { return }
+
+            switch result {
+            case .success(let model):
+                if let refreshToken = model.data?.attributes?.refreshToken {
+                    Keychain.shared.saveRefreshToken(data: refreshToken)
+                } else {
+                    self.noRefreshTokenFound?()
+                }
+
+                if let accessToken = model.data?.attributes?.accessToken {
+                    Keychain.shared.saveAccessToken(data: accessToken)
+                    TokenRefresher.shared.startTimer()
+                    self.loginSuccess?()
+                } else {
+                    self.noAccessTokenFound?()
+                }
             case .failure(let error):
                 let errorMessage = self.errorMessage(from: error)
                 self.loginFailure?(errorMessage)
