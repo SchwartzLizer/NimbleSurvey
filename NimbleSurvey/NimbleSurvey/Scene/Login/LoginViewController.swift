@@ -248,7 +248,7 @@ extension LoginViewController:UserInterfaceSetup {
     }
 
     private func prepareAutoLogin() {
-        if AppUtility.shared.checkTokenExist() {
+        if AppUtility().checkTokenExist() {
             Loader.shared.showLoader(view: self.view)
             TokenRefresher.shared.refreshToken()
         } else {
