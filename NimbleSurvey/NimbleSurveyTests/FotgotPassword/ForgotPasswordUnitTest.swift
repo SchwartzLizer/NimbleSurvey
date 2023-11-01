@@ -26,7 +26,7 @@ final class ForgotPasswordUnitTest: XCTestCase {
         super.tearDown()
     }
 
-    func testForgotPasswordUnitTest_Success() {
+    func testForgotPassword_Success() {
         let jsonData = """
             {
                 "meta": {
@@ -49,7 +49,7 @@ final class ForgotPasswordUnitTest: XCTestCase {
         wait(for: [expectation], timeout: 5.0)
     }
 
-    func testForgotPasswordUnitTest_Failure() {
+    func testForgotPassword_Failure() {
         let errorJsonData = """
             {
                 "errors": [
