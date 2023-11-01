@@ -72,10 +72,14 @@ class NetworkManager {
         }
     }
 
+    func setSession(_ newSession: URLSession) {
+        self.session = newSession
+    }
+
     // MARK: Private
 
     private let config: URLSessionConfiguration
-    private let session: URLSession
+    private var session: URLSession
 
 }
 
