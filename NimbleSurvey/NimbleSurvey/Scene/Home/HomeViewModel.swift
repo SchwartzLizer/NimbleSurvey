@@ -59,7 +59,7 @@ extension HomeViewModel: RequestService {
     }
 
     public func pullToRefresh() {
-        self.requestData(accessToken: Keychain.shared.getAccessToken() ?? "")
+        self.requestData(accessToken: Keychain.shared.getAccessToken())
     }
 
     public func clearData() {
@@ -103,9 +103,7 @@ extension HomeViewModel: RequestService {
         }
     }
 
-    // MARK: Private
-
-    private func handleFailureError(_ error: NetworkError,isServeyRequest _:Bool = false) {
+    public func handleFailureError(_ error: NetworkError,isServeyRequest _:Bool = false) {
         if self.checkLocalDeviceData() {
             self.datas = UserDefault().getSurveyList() ?? []
             self.lists = self.processData(data: self.datas)
@@ -126,7 +124,9 @@ extension HomeViewModel: RequestService {
         }
     }
 
-    private func checkLocalDeviceData() -> Bool {
+    // MARK: Internal
+
+    internal func checkLocalDeviceData() -> Bool {
         return UserDefault().getSurveyList() != nil
     }
 }
@@ -134,7 +134,7 @@ extension HomeViewModel: RequestService {
 // MARK: ProcessDataSource
 
 extension HomeViewModel: ProcessDataSource {
-    private func processData(data: [SurveyListModelData]) -> [HomeDataModel] {
+    internal func processData(data: [SurveyListModelData]) -> [HomeDataModel] {
         return data.map { HomeDataModel(title: $0.attributes?.title, subTitle: $0.attributes?.description) }
     }
 }
@@ -142,7 +142,10 @@ extension HomeViewModel: ProcessDataSource {
 // MARK: Logic
 
 extension HomeViewModel: Logic {
-    public func scrollViewUpdate(page: Int) -> HomeDataModel {
+    public func scrollViewUpdate(page: Int) -> HomeDataModel? {
+        guard page >= 0 && page < self.lists.count else {
+            return nil
+        }
         self.onScrollUpdated?(self.lists[page])
         return self.lists[page]
     }
