@@ -11,8 +11,7 @@ class NotificationHandler {
 
     // MARK: Lifecycle
 
-    // Private initializer to prevent creating different instances
-    private init() {
+    public init() {
         self.setupNotificationObservers()
     }
 
@@ -20,10 +19,24 @@ class NotificationHandler {
         NotificationCenter.default.removeObserver(self)
     }
 
+    // MARK: Public
+
+    @objc
+    public func handleRefreshTokenFailure() {
+        alertUtility.showAlert(
+            title: Constants.Keys.appName.localized(),
+            message: Constants.Keys.refresherTokenError.localized())
+        {
+            self.appUtility.loginScene()
+        }
+    }
+
     // MARK: Internal
 
     // Singleton instance
     static let shared = NotificationHandler()
+    var alertUtility: AlertShowing.Type = AlertUtility.self
+    var appUtility: AppUtilityProtocol = AppUtility()
 
     // MARK: Private
 
@@ -35,13 +48,4 @@ class NotificationHandler {
             object: nil)
     }
 
-    @objc
-    private func handleRefreshTokenFailure() {
-        AlertUtility.showAlert(
-            title: Constants.Keys.appName.localized(),
-            message: Constants.Keys.refresherTokenError.localized())
-        {
-            AppUtility().loginScene()
-        }
-    }
 }
