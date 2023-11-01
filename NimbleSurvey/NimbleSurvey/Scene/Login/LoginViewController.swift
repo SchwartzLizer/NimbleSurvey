@@ -25,6 +25,10 @@ class LoginViewController: UIViewController {
         self.onDidDisappear()
     }
 
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+
     // MARK: Internal
 
     @IBOutlet weak var logoIconHeightConstraint: NSLayoutConstraint!
@@ -84,6 +88,28 @@ extension LoginViewController: Action {
         self.passwordTextField.endEditing(true)
         self.emailTextField.endEditing(true)
     }
+
+    @objc
+    private func refresherTokenSuccess() {
+        self.goToHome()
+    }
+
+    @objc
+    private func refreshTokenFailure() {
+        DispatchQueue.main.async {
+            Loader.shared.hideLoader()
+            self.stackView.isHidden = false
+            self.stackView.alpha = 1
+        }
+    }
+
+    private func goToHome() {
+        DispatchQueue.main.async {
+            _ = NotificationHandler.shared // Start observing notification
+            Loader.shared.hideLoader()
+            self.navigationController?.pushViewController(HomeViewController(viewModel: HomeViewModel()), animated: true)
+        }
+    }
 }
 
 // MARK: Updated
@@ -102,10 +128,7 @@ extension LoginViewController: Updated {
     private func onSuccess() {
         self.viewModel.loginSuccess = { [weak self] in
             guard let self = self else { return }
-            DispatchQueue.main.async {
-                Loader.shared.hideLoader()
-                self.navigationController?.pushViewController(HomeViewController(viewModel: HomeViewModel()), animated: true)
-            }
+            self.goToHome()
         }
     }
 
@@ -123,12 +146,16 @@ extension LoginViewController: Updated {
         self.viewModel.noRefreshTokenFound = {
             errorHandler(Constants.Keys.errorNoRefreshTokenFound.localized())
         }
+        self.viewModel.noAccessTokenFound = {
+            errorHandler(Constants.Keys.errorNoAccessTokenFound.localized())
+        }
     }
 
     private func onDidDisappear() {
         self.logoIconImage.transform = CGAffineTransform.identity
         self.clearTextField()
     }
+
 }
 
 // MARK: UserInterfaceSetup
@@ -138,19 +165,18 @@ extension LoginViewController:UserInterfaceSetup {
     // MARK: Internal
 
     func setupUI() {
+        self.setupNotificationObservers()
         self.stackView.isHidden = true
         self.stackView.alpha = 0
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
             self.animateAndResizeImage()
             self.blurBackgroundImage()
-
-            UIView.animate(withDuration: 1.0) {
-                self.stackView.isHidden = false
-                self.stackView.alpha = 1
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.1) {
+                self.prepareAutoLogin()
             }
         }
-        
+
         self.textFieldBackgroundView.forEach { view in
             view.applyThemeView(background: self.theme.textfieldBackgroundColor, radius: Constants.Radius.cornerRadiusCard)
             let blurredEffectView = self.createBlurredEffectView(
@@ -222,6 +248,31 @@ extension LoginViewController:UserInterfaceSetup {
         UIView.animate(withDuration: 1.0) {
             blurredEffectView.alpha = 1
         }
+    }
+
+    private func prepareAutoLogin() {
+        if AppUtility().checkTokenExist() {
+            Loader.shared.showLoader(view: self.view)
+            TokenRefresher.shared.refreshToken()
+        } else {
+            UIView.animate(withDuration: 1.0) {
+                self.stackView.isHidden = false
+                self.stackView.alpha = 1
+            }
+        }
+    }
+
+    private func setupNotificationObservers() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(self.refresherTokenSuccess),
+            name: .refresherTokenOnSuccessAutoLogin,
+            object: nil)
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(self.refreshTokenFailure),
+            name: .refresherTokenOnFailureAutoLogin,
+            object: nil)
     }
 
 }

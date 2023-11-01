@@ -10,77 +10,73 @@ import XCTest
 final class ForgotPasswordUnitTest: XCTestCase {
 
     var viewModel: ForgotPasswordViewModel!
+    var mockSession: MockURLSession!
 
     override func setUp() {
         super.setUp()
+        self.mockSession = MockURLSession()
+        NetworkManager.shared.setSession(self.mockSession)
         self.viewModel = ForgotPasswordViewModel()
     }
 
     override func tearDown() {
-        self.viewModel = nil
+        self.viewModel = ForgotPasswordViewModel()
+        NetworkManager.shared.setSession(URLSession(configuration: .default))
+        self.mockSession = nil
         super.tearDown()
     }
 
-    // MARK: 403 - invalid client
-    func testSignInInvaildClient() {
-        let expectation = self.expectation(description: "Test Forgot Passwrod invalid client")
-        let email = "dev@nimblehq.co"
-        let clientID = ""
-        let clientSecret = ""
-
-        let router = Router.forgotPassword(email: email, clientID: clientID, clientSecret: clientSecret)
-
-
-        NetworkManager.shared.request(router: router) { (result: NetworkResult<LoginModel, NetworkError>) in
-            switch result {
-            case .success:
-                XCTFail("Expected failure for 'invalid grant' but got success.")
-                expectation.fulfill()
-            case .failure(let error):
-                if case .serverError(let errorResponse) = error {
-                    XCTAssertFalse(errorResponse.errors.isEmpty, "Expected non-empty errors list")
-                    let detail = errorResponse.errors.first?.detail ?? ""
-                    Logger.print(detail)
-                    XCTAssertEqual(
-                        detail,
-                        "Client authentication failed due to unknown client, no client authentication included, or unsupported authentication method.")
-                } else {
-                    XCTFail("Expected server error with detail, got different error: \(error)")
+    func testForgotPassword_Success() {
+        let jsonData = """
+            {
+                "meta": {
+                    "message": "If your email address exists in our database, you will receive a password recovery link at your email address in a few minutes."
                 }
-                expectation.fulfill()
             }
+            """.data(using: .utf8)
+        self.mockSession.data = jsonData
+        self.mockSession.urlResponse = HTTPURLResponse(
+            url: URL(string: "http://example.com")!,
+            statusCode: 200,
+            httpVersion: nil,
+            headerFields: nil)
+        self.mockSession.error = nil
+        let expectation = XCTestExpectation(description: "Reset password success")
+        self.viewModel.requestForgotPassword(email: "test@example.com")
+        self.viewModel.resetSuccess = {
+            expectation.fulfill()
         }
-
-        self.waitForExpectations(timeout: 10.0) { error in
-            if let error = error {
-                XCTFail("Expectation failed with error: \(error)")
-            }
-        }
+        wait(for: [expectation], timeout: 5.0)
     }
 
-    // MARK: 200 - success
-    func testFogotPasswordSuccess() {
-        let expectation = self.expectation(description: "Test Forgot Password success")
-        let email = "dev@nimblehq.co"
-        let clientID = Constants.ServiceKeys.key
-        let clientSecret = Constants.ServiceKeys.secrect
-
-        let router = Router.forgotPassword(email: email, clientID: clientID, clientSecret: clientSecret)
-
-        NetworkManager.shared.request(router: router) { (result: NetworkResult<LoginModel, NetworkError>) in
-            switch result {
-                case .success(_):
-                expectation.fulfill()
-            case .failure(let error):
-                XCTFail("Forgot Password request failed with error: \(error)")
+    func testForgotPassword_Failure() {
+        let errorJsonData = """
+            {
+                "errors": [
+                    {
+                        "detail": "Client authentication failed due to unknown client, no client authentication included, or unsupported authentication method.",
+                        "code": "invalid_client"
+                    }
+                ]
             }
+            """.data(using: .utf8)
+        self.mockSession.data = errorJsonData
+        self.mockSession.urlResponse = HTTPURLResponse(
+            url: URL(string: "http://example.com")!,
+            statusCode: 403,
+            httpVersion: nil,
+            headerFields: nil)
+        self.mockSession.error = nil
+        let expectation = XCTestExpectation(description: "Reset password failure")
+        var resetFailedCalled = false
+        self.viewModel.resetFailed = { _ in
+            resetFailedCalled = true
+            expectation.fulfill()
         }
-
-        self.waitForExpectations(timeout: 10.0) { error in
-            if let error = error {
-                XCTFail("Expectation failed with error: \(error)")
-            }
-        }
+        self.viewModel.requestForgotPassword(email: "invalid-email")
+        wait(for: [expectation], timeout: 5.0)
+        XCTAssertTrue(resetFailedCalled, "resetFailed should have been called")
     }
+
 }
 

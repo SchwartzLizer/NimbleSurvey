@@ -21,7 +21,7 @@ final class ForgotPasswordViewModel: ViewModel {
     var resetSuccess: (() -> Void)?
 }
 
-// MARK: - ForgotViewModel + RequestService
+// MARK: RequestService
 
 extension ForgotPasswordViewModel: RequestService {
     public func requestForgotPassword(email: String) {

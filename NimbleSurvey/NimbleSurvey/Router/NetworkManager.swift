@@ -72,10 +72,14 @@ class NetworkManager {
         }
     }
 
+    func setSession(_ newSession: URLSession) {
+        self.session = newSession
+    }
+
     // MARK: Private
 
     private let config: URLSessionConfiguration
-    private let session: URLSession
+    private var session: URLSession
 
 }
 
@@ -107,3 +111,19 @@ enum NetworkError: Error {
     case serverError(ErrorResponse) // This is your custom server error
     case unknown
 }
+
+class MockNetworkManager: NetworkManager {
+    override func request<T: Decodable>(router _: Router, completion: @escaping (NetworkResult<T, NetworkError>) -> ()) {
+        // Replace with your expected successful JSON response
+        let successfulResponse = """
+            """.data(using: .utf8)!
+
+        do {
+            let decodedData = try JSONDecoder().decode(T.self, from: successfulResponse)
+            completion(.success(decodedData))
+        } catch {
+            completion(.failure(.decodingError(error)))
+        }
+    }
+}
+

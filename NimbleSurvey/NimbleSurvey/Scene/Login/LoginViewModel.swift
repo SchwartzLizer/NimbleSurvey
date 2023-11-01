@@ -45,18 +45,24 @@ extension LoginViewModel: RequestService {
             case .success(let model):
                 if
                     let refreshToken = model.data?.attributes?.refreshToken,
-                    let accessToken = model.data?.attributes?.accessToken
+                    model.data?.attributes?.refreshToken != ""
                 {
-                    UserDefault().saveAccessToken(data: accessToken)
-                    UserDefault().saveRefreshToken(data: refreshToken)
-                    TokenRefresher.shared.startTimer()
-                    self.loginSuccess?()
-
+                    let status = Keychain.shared.saveRefreshToken(data: refreshToken)
+                    print(status)
                 } else {
                     self.noRefreshTokenFound?()
-                    self.noAccessTokenFound?()
                 }
 
+                if let accessToken = model.data?.attributes?.accessToken,
+                   model.data?.attributes?.accessToken != ""
+                    {
+                    let status = Keychain.shared.saveAccessToken(data: accessToken)
+                    print(status)
+                    TokenRefresher.shared.startTimer()
+                    self.loginSuccess?()
+                } else {
+                    self.noAccessTokenFound?()
+                }
             case .failure(let error):
                 let errorMessage = self.errorMessage(from: error)
                 self.loginFailure?(errorMessage)
