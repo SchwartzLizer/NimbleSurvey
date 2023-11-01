@@ -30,6 +30,10 @@ class UserDefault {
         }
     }
 
+    func removeSurveyList() {
+        defaults.removeObject(forKey: Constants.UserDefaultKey.surveyListKey)
+    }
+
 }
 
 // MARK: - Constants.UserDefaultKey

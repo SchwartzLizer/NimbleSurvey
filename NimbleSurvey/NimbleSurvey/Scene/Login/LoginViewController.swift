@@ -146,6 +146,9 @@ extension LoginViewController: Updated {
         self.viewModel.noRefreshTokenFound = {
             errorHandler(Constants.Keys.errorNoRefreshTokenFound.localized())
         }
+        self.viewModel.noAccessTokenFound = {
+            errorHandler(Constants.Keys.errorNoAccessTokenFound.localized())
+        }
     }
 
     private func onDidDisappear() {
@@ -248,7 +251,7 @@ extension LoginViewController:UserInterfaceSetup {
     }
 
     private func prepareAutoLogin() {
-        if AppUtility.shared.checkTokenExist() {
+        if AppUtility().checkTokenExist() {
             Loader.shared.showLoader(view: self.view)
             TokenRefresher.shared.refreshToken()
         } else {
