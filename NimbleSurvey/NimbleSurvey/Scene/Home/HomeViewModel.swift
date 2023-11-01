@@ -83,7 +83,7 @@ extension HomeViewModel: RequestService {
                 self.lists = self.processData(data: data)
                 completion()
             case .failure(let error):
-                self.handleFailureError(error)
+                self.handleFailureError(error,isServeyRequest: true)
             }
         }
     }
@@ -105,19 +105,29 @@ extension HomeViewModel: RequestService {
 
     // MARK: Private
 
-    private func handleFailureError(_ error: NetworkError) {
-        let detailedError: Error
-
-        if case .serverError(let errorResponse) = error, let serverMessage = errorResponse.errors.first?.detail {
-            detailedError = NSError(
-                domain: "Server Error",
-                code: 0,
-                userInfo: [NSLocalizedDescriptionKey: serverMessage])
+    private func handleFailureError(_ error: NetworkError,isServeyRequest _:Bool = false) {
+        if self.checkLocalDeviceData() {
+            self.datas = UserDefault().getSurveyList() ?? []
+            self.lists = self.processData(data: self.datas)
+            self.onUpdated?()
         } else {
-            detailedError = error
-        }
+            let detailedError: Error
 
-        self.onFailed?(detailedError.localizedDescription)
+            if case .serverError(let errorResponse) = error, let serverMessage = errorResponse.errors.first?.detail {
+                detailedError = NSError(
+                    domain: "Server Error",
+                    code: 0,
+                    userInfo: [NSLocalizedDescriptionKey: serverMessage])
+            } else {
+                detailedError = error
+            }
+
+            self.onFailed?(detailedError.localizedDescription)
+        }
+    }
+
+    private func checkLocalDeviceData() -> Bool {
+        return UserDefault().getSurveyList() != nil
     }
 }
 
@@ -147,15 +157,8 @@ extension HomeViewModel: Logic {
     }
 
     public func save(data: SurveyListModel) {
-        let dataManager = DataManager.shared
-        dataManager.saveSurveyToCoreData(surveyList: data)
         guard let data = data.data else { return }
-        dataManager.fetchAndPrintSurveys()
         UserDefault().saveSurveyList(data: data)
-        print("Data Saved")
-        print("Show Save Data \(String(describing: UserDefault().getSurveyList()))")
-        _ = FilesManagerHelper.shared?.saveSurveys(surveys: data, withName: "Survey")
-        print("Files Save")
-        print("Read File Save \(String(describing: FilesManagerHelper.shared?.readSurveys(withName: "Survey")))")
     }
+
 }
