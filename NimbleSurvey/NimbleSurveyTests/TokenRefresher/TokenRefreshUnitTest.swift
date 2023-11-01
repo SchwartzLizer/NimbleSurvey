@@ -231,22 +231,19 @@ class TokenRefresherTests: XCTestCase {
     }
 
     func testRefreshToken_StartTimer() {
-        let tokenRefresher = TokenRefresher()
-
-        tokenRefresher.startTimer()
+        self.tokenRefresher.startTimer()
 
         XCTAssertNotNil(tokenRefresher.refreshTokenTimer, "Expected timer to be started")
     }
 
     func testRefreshToken_StopTimer() {
-        let tokenRefresher = TokenRefresher()
         let observableTimer = ObservableTimer()
 
-        tokenRefresher.refreshTokenTimer = observableTimer
-        tokenRefresher.stopTimer()
+        self.tokenRefresher.refreshTokenTimer = observableTimer
+        self.tokenRefresher.stopTimer()
 
         XCTAssertTrue(observableTimer.invalidateCalled, "Expected timer to be invalidated")
-        XCTAssertNil(tokenRefresher.refreshTokenTimer, "Expected timer to be nil")
+        XCTAssertNil(self.tokenRefresher.refreshTokenTimer, "Expected timer to be nil")
     }
 
     func testRefreshToken_SaveRefreshToken() {
