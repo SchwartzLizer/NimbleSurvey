@@ -43,14 +43,19 @@ extension LoginViewModel: RequestService {
 
             switch result {
             case .success(let model):
-                if let refreshToken = model.data?.attributes?.refreshToken {
+                if
+                    let refreshToken = model.data?.attributes?.refreshToken,
+                    model.data?.attributes?.refreshToken != ""
+                {
                     let status = Keychain.shared.saveRefreshToken(data: refreshToken)
                     print(status)
                 } else {
                     self.noRefreshTokenFound?()
                 }
 
-                if let accessToken = model.data?.attributes?.accessToken {
+                if let accessToken = model.data?.attributes?.accessToken,
+                   model.data?.attributes?.accessToken != ""
+                    {
                     let status = Keychain.shared.saveAccessToken(data: accessToken)
                     print(status)
                     TokenRefresher.shared.startTimer()
