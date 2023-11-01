@@ -146,6 +146,9 @@ extension LoginViewController: Updated {
         self.viewModel.noRefreshTokenFound = {
             errorHandler(Constants.Keys.errorNoRefreshTokenFound.localized())
         }
+        self.viewModel.noAccessTokenFound = {
+            errorHandler(Constants.Keys.errorNoAccessTokenFound.localized())
+        }
     }
 
     private func onDidDisappear() {

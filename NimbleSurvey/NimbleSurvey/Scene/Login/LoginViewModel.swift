@@ -19,7 +19,6 @@ final class LoginViewModel: ViewModel {
 
     public var loginSuccess: (() -> Void)?
     public var loginFailure: ((String) -> Void)?
-    public var refreshTokenFailure: ((String) -> Void)?
     public var noRefreshTokenFound: (() -> Void)?
     public var noAccessTokenFound: (() -> Void)?
 
