@@ -11,8 +11,6 @@ import UIKit
 
 class AlertUtility {
 
-    // MARK: - Alert with OK Button
-
     static func showAlert(title: String?, message: String?, completion: (() -> Void)? = nil) {
         guard let topVC = UIApplication.topViewController() else { return }
 
@@ -111,4 +109,30 @@ extension UIApplication {
             return UIApplication.shared.windows.first(where: { $0.isKeyWindow })
         }
     }
+
+    func showAlertUnitTest(title _: String?, message _: String?, completion _: (() -> Void)? = nil) { }
 }
+
+// MARK: - MockAlertUtility
+
+class MockAlertUtility: AlertShowing {
+        static var showAlertCalled = false
+        static var titlePassed: String?
+        static var messagePassed: String?
+        static var completion: (() -> Void)?
+
+        static func showAlert(title: String?, message: String?, completion: (() -> Void)?) {
+            showAlertCalled = true
+            titlePassed = title
+            messagePassed = message
+            self.completion = completion
+        }
+    }
+
+// MARK: - AlertShowing
+
+protocol AlertShowing {
+    static func showAlert(title: String?, message: String?, completion: (() -> Void)?)
+}
+
+extension AlertUtility: AlertShowing {}

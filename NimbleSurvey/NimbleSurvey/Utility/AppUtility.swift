@@ -11,14 +11,6 @@ import UIKit
 
 class AppUtility {
 
-    // MARK: Lifecycle
-
-    init() { }
-
-    // MARK: Internal
-
-    static let shared = AppUtility()
-
     // MARK: Private
 
     private var window: UIWindow? = UIApplication.shared.windows.first
@@ -27,15 +19,6 @@ class AppUtility {
 // MARK: Scene
 
 extension AppUtility {
-    func loginScene() {
-        let loginVC: LoginViewController? = getViewController(
-            storyboardName: "Login",
-            withIdentifier: "LoginViewController")
-        guard let vc = loginVC else { return }
-        let nav = UINavigationController(rootViewController: vc)
-        setRootViewController(nav)
-    }
-
     func checkTokenExist() -> Bool {
         if Keychain.shared.getRefreshToken() != "" {
             return true
@@ -75,5 +58,22 @@ extension AppUtility {
         self.window?.rootViewController = viewController
         self.window?.makeKeyAndVisible()
         self.animateWindow()
+    }
+}
+
+// MARK: - AppUtilityProtocol
+
+protocol AppUtilityProtocol {
+    func loginScene()
+}
+
+extension AppUtility: AppUtilityProtocol {
+    func loginScene() {
+        let loginVC: LoginViewController? = getViewController(
+            storyboardName: "Login",
+            withIdentifier: "LoginViewController")
+        guard let vc = loginVC else { return }
+        let nav = UINavigationController(rootViewController: vc)
+        setRootViewController(nav)
     }
 }

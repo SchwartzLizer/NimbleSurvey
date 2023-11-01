@@ -109,7 +109,7 @@ enum Fonts: Int {
     var buttonFontSize: UIFont {
         switch self {
         case .main:
-            return UIFont(name: Constants.Font.bold, size: 22.00)!
+            return UIFont(name: Constants.Font.bold, size: 17.00)!
         }
     }
 

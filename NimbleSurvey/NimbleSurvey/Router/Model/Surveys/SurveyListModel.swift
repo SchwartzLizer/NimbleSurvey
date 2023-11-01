@@ -9,14 +9,22 @@ import Foundation
 
 // MARK: - SurveyListModel
 
-struct SurveyListModel: Codable {
+struct SurveyListModel: Codable, Equatable {
+    static func == (lhs: SurveyListModel, rhs: SurveyListModel) -> Bool {
+        return lhs.data == rhs.data
+    }
+
     let data: [SurveyListModelData]?
     let meta: SurveyListModelMeta?
 }
 
 // MARK: - SurveyListModelData
 
-struct SurveyListModelData: Codable {
+struct SurveyListModelData: Codable, Equatable {
+    static func == (lhs: SurveyListModelData, rhs: SurveyListModelData) -> Bool {
+        return lhs.id == rhs.id
+    }
+
     let id, type: String?
     let attributes: SurveyListModelAttributes?
     let relationships: SurveyListModelRelationships?
