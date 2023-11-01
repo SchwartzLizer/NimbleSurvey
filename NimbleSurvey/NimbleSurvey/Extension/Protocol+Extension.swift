@@ -46,3 +46,5 @@ protocol ProcessDataSource { }
 // MARK: - Logic
 
 protocol Logic { }
+
+protocol UnitsTest { }
