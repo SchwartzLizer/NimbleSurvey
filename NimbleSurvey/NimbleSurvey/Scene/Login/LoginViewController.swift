@@ -109,7 +109,6 @@ extension LoginViewController: Action {
 
     private func goToHome() {
         DispatchQueue.main.async {
-            _ = NotificationHandler.shared // Start observing notification
             Loader.shared.hideLoader()
             self.navigationController?.pushViewController(HomeViewController(viewModel: HomeViewModel()), animated: true)
         }
@@ -169,7 +168,6 @@ extension LoginViewController:UserInterfaceSetup {
     // MARK: Internal
 
     func setupUI() {
-        self.setupNotificationObservers()
         self.stackView.isHidden = true
         self.stackView.alpha = 0
 
@@ -177,7 +175,10 @@ extension LoginViewController:UserInterfaceSetup {
             self.animateAndResizeImage()
             self.blurBackgroundImage()
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.1) {
-                self.prepareAutoLogin()
+                UIView.animate(withDuration: 1.0) {
+                    self.stackView.isHidden = false
+                    self.stackView.alpha = 1
+                }
             }
         }
 
@@ -252,31 +253,6 @@ extension LoginViewController:UserInterfaceSetup {
         UIView.animate(withDuration: 1.0) {
             blurredEffectView.alpha = 1
         }
-    }
-
-    private func prepareAutoLogin() {
-        if AppUtility().checkTokenExist() {
-            Loader.shared.showLoader(view: self.view)
-            TokenRefresher.shared.refreshToken()
-        } else {
-            UIView.animate(withDuration: 1.0) {
-                self.stackView.isHidden = false
-                self.stackView.alpha = 1
-            }
-        }
-    }
-
-    private func setupNotificationObservers() {
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(self.refresherTokenSuccess),
-            name: .refresherTokenOnSuccessAutoLogin,
-            object: nil)
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(self.refreshTokenFailure),
-            name: .refresherTokenOnFailureAutoLogin,
-            object: nil)
     }
 
 }

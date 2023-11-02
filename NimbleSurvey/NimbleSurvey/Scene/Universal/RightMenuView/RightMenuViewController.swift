@@ -93,7 +93,6 @@ extension RightMenuViewController: Updated {
     private func onLogoutSuccess() {
         self.viewModel.onLogoutSuccess = { [weak self] in
             guard let self = self else { return }
-            TokenRefresher.shared.stopTimer()
             AppUtility().loginScene()
         }
     }
