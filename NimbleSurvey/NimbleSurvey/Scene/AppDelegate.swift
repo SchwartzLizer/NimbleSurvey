@@ -34,14 +34,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
 
-    func applicationDidEnterBackground(_ application: UIApplication) {
-        NotificationCenter.default.post(name: .refresherTokenAppDidEnterBackground, object: nil)
-    }
-
-    func applicationWillEnterForeground(_ application: UIApplication) {
-        NotificationCenter.default.post(name: .refresherTokenAppWillEnterForeground, object: nil)
-    }
-
     // MARK: - Core Data stack
 
     lazy var persistentContainer: NSPersistentContainer = {

@@ -67,7 +67,6 @@ extension LoginViewModel: RequestService {
             return
         }
         _ = Keychain.shared.saveAccessToken(data: accessToken)
-        TokenRefresher.shared.startTimer()
         self.loginSuccess?()
     }
 
