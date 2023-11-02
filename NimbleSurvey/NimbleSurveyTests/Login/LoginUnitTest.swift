@@ -21,9 +21,9 @@ final class LoginUnitTest: XCTestCase {
     }
 
     override func tearDown() {
-        self.viewModel = LoginViewModel()
-        NetworkManager.shared.setSession(URLSession(configuration: .default))
+        self.viewModel = nil
         self.mockSession = nil
+        NetworkManager.shared.setSession(URLSession(configuration: .default))
         super.tearDown()
     }
 
@@ -206,6 +206,89 @@ final class LoginUnitTest: XCTestCase {
         wait(for: [expectation], timeout: 5.0)
     }
 
+    // Tests for handleRefreshToken
+
+    func testLogin_handleRefreshToken_Save() {
+        let attributes = LoginAttributes(
+            accessToken: "",
+            tokenType: nil,
+            expiresIn: nil,
+            refreshToken: "testToken",
+            createdAt: nil)
+        let data = LoginData(id: "1", type: "login", attributes: attributes)
+        let model = LoginModel(data: data)
+        self.viewModel.handleRefreshToken(model: model)
+        let fetchedToken = Keychain.shared.getRefreshToken()
+        XCTAssertEqual(fetchedToken, "testToken")
+    }
+
+    func testLogin_HandleRefreshToken_withNilToken() {
+        let attributes = LoginAttributes(accessToken: nil, tokenType: nil, expiresIn: nil, refreshToken: nil, createdAt: nil)
+        let data = LoginData(id: "1", type: "login", attributes: attributes)
+        let model = LoginModel(data: data)
+        var noRefreshTokenFoundCalled = false
+        self.viewModel.noRefreshTokenFound = { noRefreshTokenFoundCalled = true }
+        self.viewModel.handleRefreshToken(model: model)
+        XCTAssertTrue(noRefreshTokenFoundCalled, "noRefreshTokenFound closure was not invoked")
+    }
+
+    func testLogin_HandleRefreshToken_withEmptyToken() {
+        let attributes = LoginAttributes(accessToken: "", tokenType: nil, expiresIn: nil, refreshToken: "", createdAt: nil)
+        let data = LoginData(id: "1", type: "login", attributes: attributes)
+        let model = LoginModel(data: data)
+        var noRefreshTokenFoundCalled = false
+        self.viewModel.noRefreshTokenFound = { noRefreshTokenFoundCalled = true }
+        self.viewModel.handleRefreshToken(model: model)
+        XCTAssertTrue(noRefreshTokenFoundCalled, "noRefreshTokenFound closure was not invoked")
+    }
+
+    func testLogin_HandleAccessToken_withValidToken() {
+        let testToken = "testToken"
+        let attributes = LoginAttributes(
+            accessToken: testToken,
+            tokenType: nil,
+            expiresIn: nil,
+            refreshToken: nil,
+            createdAt: nil)
+        let data = LoginData(id: "1", type: "login", attributes: attributes)
+        let model = LoginModel(data: data)
+
+        var loginSuccessCalled = false
+        self.viewModel.loginSuccess = { loginSuccessCalled = true }
+
+        self.viewModel.handleAccessToken(model: model)
+
+        let fetchedToken = Keychain().getAccessToken()
+        XCTAssertEqual(fetchedToken, testToken, "Saved token does not match expected token")
+        XCTAssertNotNil(TokenRefresher.shared.refreshTokenTimer, "Expected timer to be started")
+        XCTAssertTrue(loginSuccessCalled, "loginSuccess closure was not invoked")
+    }
+
+    func testLogin_HandleAccessToken_withEmptyToken() {
+        let attributes = LoginAttributes(accessToken: "", tokenType: nil, expiresIn: nil, refreshToken: nil, createdAt: nil)
+        let data = LoginData(id: "1", type: "login", attributes: attributes)
+        let model = LoginModel(data: data)
+
+        var noAccessTokenFoundCalled = false
+        self.viewModel.noAccessTokenFound = { noAccessTokenFoundCalled = true }
+
+        self.viewModel.handleAccessToken(model: model)
+
+        XCTAssertTrue(noAccessTokenFoundCalled, "noAccessTokenFound closure was not invoked")
+    }
+
+    func testLogin_HandleAccessToken_withNilToken() {
+        let attributes = LoginAttributes(accessToken: nil, tokenType: nil, expiresIn: nil, refreshToken: nil, createdAt: nil)
+        let data = LoginData(id: "1", type: "login", attributes: attributes)
+        let model = LoginModel(data: data)
+
+        var noAccessTokenFoundCalled = false
+        self.viewModel.noAccessTokenFound = { noAccessTokenFoundCalled = true }
+
+        self.viewModel.handleAccessToken(model: model)
+
+        XCTAssertTrue(noAccessTokenFoundCalled, "noAccessTokenFound closure was not invoked")
+    }
 
 }
 
