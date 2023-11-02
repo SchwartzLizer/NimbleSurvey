@@ -43,26 +43,7 @@ extension LoginViewModel: RequestService {
 
             switch result {
             case .success(let model):
-                if
-                    let refreshToken = model.data?.attributes?.refreshToken,
-                    model.data?.attributes?.refreshToken != ""
-                {
-                    let status = Keychain.shared.saveRefreshToken(data: refreshToken)
-                    print(status)
-                } else {
-                    self.noRefreshTokenFound?()
-                }
-
-                if let accessToken = model.data?.attributes?.accessToken,
-                   model.data?.attributes?.accessToken != ""
-                    {
-                    let status = Keychain.shared.saveAccessToken(data: accessToken)
-                    print(status)
-                    TokenRefresher.shared.startTimer()
-                    self.loginSuccess?()
-                } else {
-                    self.noAccessTokenFound?()
-                }
+                self.handleTokens(model: model)
             case .failure(let error):
                 let errorMessage = self.errorMessage(from: error)
                 self.loginFailure?(errorMessage)
@@ -70,7 +51,32 @@ extension LoginViewModel: RequestService {
         }
     }
 
+    // MARK: Internal
+
+    internal func handleRefreshToken(model: LoginModel) {
+        guard let refreshToken = model.data?.attributes?.refreshToken, !refreshToken.isEmpty else {
+            self.noRefreshTokenFound?()
+            return
+        }
+        _ = Keychain.shared.saveRefreshToken(data: refreshToken)
+    }
+
+    internal func handleAccessToken(model: LoginModel) {
+        guard let accessToken = model.data?.attributes?.accessToken, !accessToken.isEmpty else {
+            self.noAccessTokenFound?()
+            return
+        }
+        _ = Keychain.shared.saveAccessToken(data: accessToken)
+        TokenRefresher.shared.startTimer()
+        self.loginSuccess?()
+    }
+
     // MARK: Private
+
+    private func handleTokens(model: LoginModel) {
+        self.handleRefreshToken(model: model)
+        self.handleAccessToken(model: model)
+    }
 
     private func errorMessage(from error: NetworkError) -> String {
         switch error {
@@ -80,4 +86,5 @@ extension LoginViewModel: RequestService {
             return error.localizedDescription
         }
     }
+
 }
