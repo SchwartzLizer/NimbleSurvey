@@ -21,7 +21,7 @@ class UserDefault {
         }
     }
 
-    func getSurveyList() -> [SurveyListModelData]? {
+    func loadSurveyList() -> [SurveyListModelData]? {
         do {
             return try defaults.getObject(forKey: Constants.UserDefaultKey.surveyListKey, castTo: [SurveyListModelData].self)
         } catch {
@@ -34,6 +34,27 @@ class UserDefault {
         defaults.removeObject(forKey: Constants.UserDefaultKey.surveyListKey)
     }
 
+    func saveProfile(data: UserProfileAttributes) {
+        do {
+            try defaults.setObject(data, forKey: Constants.UserDefaultKey.profileKey)
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+
+    func loadProfile() -> UserProfileAttributes? {
+        do {
+            return try defaults.getObject(forKey: Constants.UserDefaultKey.profileKey, castTo: UserProfileAttributes.self)
+        } catch {
+            print(error.localizedDescription)
+            return nil
+        }
+    }
+
+    func removeProfile() {
+        defaults.removeObject(forKey: Constants.UserDefaultKey.profileKey)
+    }
+
 }
 
 // MARK: - Constants.UserDefaultKey
@@ -43,5 +64,6 @@ extension Constants {
         static let refreshTokenKey = "RefreshTokenKey"
         static let accessTokenKey = "AccessTokenKey"
         static let surveyListKey = "SurveyListKey"
+        static let profileKey = "ProfileKey"
     }
 }
