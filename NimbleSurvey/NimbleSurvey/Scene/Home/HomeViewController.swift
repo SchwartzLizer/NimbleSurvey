@@ -173,6 +173,7 @@ extension HomeViewController: Updated {
     internal func onInitialized() {
         self.onUpdated()
         self.onScrollUpdated()
+        self.onFailed()
     }
 
     // MARK: Private
