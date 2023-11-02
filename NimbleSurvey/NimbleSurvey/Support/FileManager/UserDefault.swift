@@ -61,8 +61,6 @@ class UserDefault {
 
 extension Constants {
     enum UserDefaultKey {
-        static let refreshTokenKey = "RefreshTokenKey"
-        static let accessTokenKey = "AccessTokenKey"
         static let surveyListKey = "SurveyListKey"
         static let profileKey = "ProfileKey"
     }
