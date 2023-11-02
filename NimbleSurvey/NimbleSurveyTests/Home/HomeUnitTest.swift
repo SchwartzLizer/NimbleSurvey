@@ -108,7 +108,9 @@ final class HomeUnitTest: XCTestCase {
         wait(for: [expectation], timeout: 5.0)
         XCTAssertEqual(self.viewModel.profileData.email, "dev@nimblehq.co")
         XCTAssertEqual(self.viewModel.profileData.name, "Team Nimble")
-        XCTAssertEqual(self.viewModel.profileData.avatarURL, "https://secure.gravatar.com/avatar/6733d09432e89459dba795de8312ac2d")
+        XCTAssertEqual(
+            self.viewModel.profileData.avatarURL,
+            "https://secure.gravatar.com/avatar/6733d09432e89459dba795de8312ac2d")
     }
 
     func testHome_HandleFailureErrorWithLocalData() {
@@ -131,10 +133,18 @@ final class HomeUnitTest: XCTestCase {
                     id: "test",
                     type: "test")]))),
         ]
+        let profileAttributes = UserProfileAttributes(
+            email: "test@email.com",
+            name: "John Doe",
+            avatarURL: "https://example.com/avatar.jpg")
+        UserDefault().saveProfile(data: profileAttributes)
         UserDefault().saveSurveyList(data: mockSurveyListData)
         let mockError = NetworkError.serverError(ErrorResponse(errors: []))
         self.viewModel.handleFailureError(mockError)
         XCTAssertEqual(self.viewModel.datas, mockSurveyListData)
+        XCTAssertEqual(self.viewModel.profileData.email, profileAttributes.email)
+        XCTAssertEqual(self.viewModel.profileData.name, profileAttributes.name)
+        XCTAssertEqual(self.viewModel.profileData.avatarURL, profileAttributes.avatarURL)
     }
 
     func testHome_HandleFailureError_ServerError() {
@@ -295,11 +305,30 @@ final class HomeUnitTest: XCTestCase {
         let mockSurveyListModel = SurveyListModel(
             data: surveyListData,
             meta: SurveyListModelMeta(page: 1, pages: 1, pageSize: 1, records: 1))
-        viewModel.save(data: mockSurveyListModel)
-        if let savedData = UserDefault().getSurveyList() {
+        viewModel.saveSurveyList(data: mockSurveyListModel)
+        if let savedData = UserDefault().loadSurveyList() {
             XCTAssertNotNil(savedData)
         } else {
             XCTFail("Failed to retrieve saved survey data")
         }
     }
+
+    func testHome_SaveProfileData() {
+        // Given
+        let profileAttributes = UserProfileAttributes(
+            email: "test@email.com",
+            name: "John Doe",
+            avatarURL: "https://example.com/avatar.jpg")
+
+        // When
+        self.viewModel.saveProfile(data: profileAttributes)
+
+        // Then
+        if let savedData = UserDefault().loadProfile() {
+            XCTAssertNotNil(savedData)
+        } else {
+            XCTFail("Failed to retrieve saved profile data")
+        }
+    }
+
 }

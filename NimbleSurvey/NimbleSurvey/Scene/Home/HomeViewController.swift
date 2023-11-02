@@ -173,6 +173,7 @@ extension HomeViewController: Updated {
     internal func onInitialized() {
         self.onUpdated()
         self.onScrollUpdated()
+        self.onFailed()
     }
 
     // MARK: Private
@@ -252,6 +253,14 @@ extension HomeViewController: Updated {
             guard let self = self else { return }
             self.titleLabel.text = data.title
             self.subTitleLabel.text = data.subTitle
+        }
+    }
+
+    private func onFailed() {
+        self.viewModel.onFailed = { [weak self] message in
+            AlertUtility.showAlert(title: Constants.Keys.appName.localized(), message: message) {
+                self?.viewModel.pullToRefresh()
+            }
         }
     }
 
