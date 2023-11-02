@@ -255,6 +255,14 @@ extension HomeViewController: Updated {
         }
     }
 
+    private func onFailed() {
+        self.viewModel.onFailed = { [weak self] message in
+            AlertUtility.showAlert(title: Constants.Keys.appName.localized(), message: message) {
+                self?.viewModel.pullToRefresh()
+            }
+        }
+    }
+
     private func showSkeletonView() {
         self.titleLabel.showGradientSkeleton()
         self.subTitleLabel.showAnimatedGradientSkeleton()
