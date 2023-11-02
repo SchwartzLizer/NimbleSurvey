@@ -15,9 +15,13 @@ class LoginViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.onInitialized()
-        self.setupUI()
-        self.applyTheme()
+        if !Keychain().getAccessToken().isEmpty {
+            self.goToHome()
+        } else {
+            self.onInitialized()
+            self.setupUI()
+            self.applyTheme()
+        }
     }
 
     override func viewDidDisappear(_ animated: Bool) {

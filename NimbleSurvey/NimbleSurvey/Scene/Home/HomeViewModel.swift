@@ -77,13 +77,11 @@ extension HomeViewModel: RequestService {
         NetworkManager.shared.request(router: router) { (result: NetworkResult<SurveyListModel, NetworkError>) in
             switch result {
             case .success(let success):
-                guard let data = success.data else { break }
-                self.save(data: success)
-                self.datas = data
-                self.lists = self.processData(data: data)
+                self.handleSuccessSurveyList(data: success)
                 completion()
             case .failure(let error):
-                self.handleFailureError(error,isServeyRequest: true)
+                self.handleFailureError(error)
+                completion()
             }
         }
     }
@@ -94,8 +92,7 @@ extension HomeViewModel: RequestService {
         NetworkManager.shared.request(router: router) { (result: NetworkResult<UserProfileModel, NetworkError>) in
             switch result {
             case .success(let success):
-                guard let data = success.data?.attributes else { break }
-                self.profileData = data
+                self.handleSuccessUserProfile(data: success)
                 completion()
             case .failure(let error):
                 self.handleFailureError(error)
@@ -103,14 +100,26 @@ extension HomeViewModel: RequestService {
         }
     }
 
-    public func handleFailureError(_ error: NetworkError,isServeyRequest _:Bool = false) {
+    public func handleSuccessSurveyList(data: SurveyListModel) {
+        self.saveSurveyList(data: data)
+        guard let dataListModel = data.data else { return }
+        self.datas = dataListModel
+        self.lists = self.processData(data: dataListModel)
+    }
+
+    public func handleSuccessUserProfile(data: UserProfileModel) {
+        guard let data = data.data?.attributes else { return }
+        self.saveProfile(data: data)
+        self.profileData = data
+    }
+
+    public func handleFailureError(_ error: NetworkError) {
         if self.checkLocalDeviceData() {
-            self.datas = UserDefault().getSurveyList() ?? []
+            self.datas = UserDefault().loadSurveyList() ?? []
             self.lists = self.processData(data: self.datas)
-            self.onUpdated?()
+            self.profileData = UserDefault().loadProfile() ?? UserProfileAttributes(email: "", name: "", avatarURL: "")
         } else {
             let detailedError: Error
-
             if case .serverError(let errorResponse) = error, let serverMessage = errorResponse.errors.first?.detail {
                 detailedError = NSError(
                     domain: "Server Error",
@@ -119,16 +128,10 @@ extension HomeViewModel: RequestService {
             } else {
                 detailedError = error
             }
-
             self.onFailed?(detailedError.localizedDescription)
         }
     }
 
-    // MARK: Internal
-
-    internal func checkLocalDeviceData() -> Bool {
-        return UserDefault().getSurveyList() != nil
-    }
 }
 
 // MARK: ProcessDataSource
@@ -159,9 +162,17 @@ extension HomeViewModel: Logic {
         return formattedDate
     }
 
-    public func save(data: SurveyListModel) {
+    public func saveSurveyList(data: SurveyListModel) {
         guard let data = data.data else { return }
         UserDefault().saveSurveyList(data: data)
+    }
+
+    public func saveProfile(data: UserProfileAttributes) {
+        UserDefault().saveProfile(data: data)
+    }
+
+    internal func checkLocalDeviceData() -> Bool {
+        return UserDefault().loadSurveyList() != nil && UserDefault().loadProfile() != nil
     }
 
 }
